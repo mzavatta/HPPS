@@ -252,7 +252,7 @@ def importComponent(node, components):
 
 
 
-	#go into the mpd and take bus interfaces and ports which do not belong to the bus
+	#go into the mpd and take bus interfaces and ports which do not belong to a bus
 	for clas in componentClasses:
 		if clas.className == cls:
 			temp_mpd_path = clas.mpdPath
@@ -269,8 +269,8 @@ def importComponent(node, components):
 			tempInstance.businterfaces.append(BusInterface(elem[nameIndex],elem[stdIndex],elem[typeIndex],""))
 	for line in range(0,len(tmpFileLines)): # fetch ports which do not belong to a bus
 		if tmpFileLines[line].find("PORT")>=0 and tmpFileLines[line].find("BUS")<0:
-			elem = tmpFileLines[line].rstrip().split(" ")
-			elem = [e.strip(",") for e in elem]
+			elem = tmpFileLines[line].rstrip().split(' ')
+			elem = [e.strip(",").strip("\t\t=") for e in elem]
 			#SIGIS and DIR attributes might not be present
 			sigisIndex=0
 			dirIndex=0
@@ -393,9 +393,9 @@ def connect(link, components, globalports):
 		elif srcInstance.value!="" and tgtInterface.value=="": #copy to the other one
 			tgtInterface.value=srcInstance.value
 		elif srcInstance.value!="" and tgtInterface.value!="" and srcInstance.value==tgtInterface.value:
-			print "ok anyway" ## ok anyway, already matching
+			print "WARNING: LINK ALREADY PRESENT, LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
 		else: 
-			print "the two interfaces are already assigned to different components"
+			print "ERROR: the two interfaces are already assigned to different components"
 			sys.exit()
 			
 
@@ -403,10 +403,11 @@ def connect(link, components, globalports):
 		# device to device connection, either bus or port
 		# device might be a bus device e.g. plb, need to check bus attribute of the device instance
 		# srcInstance and srcInterface
-		
-		print srcInstance.instance+" "+tgtInstance.instance
-		print srcInterfaceName
-		print tgtInterfaceName
+		print ""
+		print "-------"
+		print "device to device connection"
+		print srcInstance.instance+" on "+srcInterfaceName
+		print tgtInstance.instance+" on "+tgtInterfaceName
 		found = 0
 
 		src_isBus = 0
@@ -459,28 +460,63 @@ def connect(link, components, globalports):
 
 		if src_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
+			print "device to bus connection"
 			assert (tgtInterface.value=="" or tgtInterface==srcInstance.instance) and tgtInterface.std==srcInstance.bus
 			tgtInterface.value = srcInstance.instance
 
 		elif tgt_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
+			print "device to bus connection"
 			assert (srcInterface.value==""  or srcInterface==tgtInstance.instance) and srcInterface.std==tgtInstance.bus
 			srcInterface.value = tgtInstance.instance	
 
 		elif src_isBus and tgt_isBus:  #point-to-point bus connection
+			print "point to point bus connection"
 			assert srcInterface.std == tgtInterface.std
 			assert (srcInterface.type=="INITIATOR" and tgtInterface.type=="TARGET") or \
 			(srcInterface.type=="TARGET" and tgtInterface.type=="INITIATOR")
 			srcInterface.value="pp_bus_conn_"+str(count)
-			srcInterface.value="pp_bus_conn_"+str(count)
+			tgtInterface.value="pp_bus_conn_"+str(count)
 			count+=1
 			
-		elif not src_isBus and not tgt_isBus:
-			print "placeholder"
+		elif not src_isBus and not tgt_isBus: #port to port connection
+			# beware of the interrupt manager that enables &-ing of the signals
+
+			print "port to port connection"
+			print srcInterface.value
+			print tgtInterface.value
+			assert srcInterface.sigis==tgtInterface.sigis
+			
+			if srcInterface.value=="" and tgtInterface.value=="":
+				srcInterface.value="pp_port_conn_"+str(count)
+				tgtInterface.value="pp_port_conn_"+str(count)
+				print "both assigned to "+srcInterface.value
+			elif srcInterface.value=="" and tgtInterface.value!="":
+				#what if it is an interrupt and int needs to be &-ed?
+				#srcInterface.value=tgtInterface.value
+				print "destination interface name already assigned"
+				if tgtInterface.sigis=="INTERRUPT" and srcInterface.sigis=="INTERRUPT":
+					print "\tbut it is an interrupt, therefore compound"
+					srcInterface.value="interrupt_conn_"+str(count)
+					tgtInterface.value=tgtInterface.value+"&interrupt_conn_"+str(count)
+				else: srcInterface.value=tgtInterface.value
+			elif srcInterface.value!="" and tgtInterface.value=="":
+				print "destination source name already assigned"
+				tgtInterface.value=srcInterface.value
+			elif srcInterface.value!="" and tgtInterface.value!="" and (srcInterface.value==tgtInterface.value):
+				print "WARNING: LINK ALREADY PRESENT, LIKELY SPECIFIED TWICE IN THE XML"
+			else:
+				print "ERROR: the two interfaces are already assigned to different components"
+				sys.exit()
+			count+=1
 		
 		else:
-			print "ERROR: TRYING TO CONNECT TWO COMPONENTS FROM BUS TO PORT (OR VICE VERSA)"
+			print "ERROR: trying to connect two components from bus to port or vice versa"
+			print "Source: "+srcInstance.instance+" on: "+srcInterface.name
+			print "Target: "+tgtInstance.instance+" on: "+tgtInterface.name
 			sys.exit()
+			
+		print "-------------------"
 
 	"""	
 	else: 
@@ -500,6 +536,8 @@ def connect(link, components, globalports):
 
 
 
+###### Check not only slaves on the buses?
+
 #############################################################
 
 
@@ -518,41 +556,7 @@ for node in pinoutNode.childNodes:
 	if node.nodeType == 1:
 		importGlobalPort(node, globalports)
 
-######### Print out the mhs
 
-f = open(mhsoutput,'w')
-print "\nIMPORTED ARCH PRINTED ON "+mhsoutput
-f.write("################\n")
-f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
-f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
-f.write("# "+str(datetime.date.today())+"\n")
-f.write("# Generated from "+xmlinput+"\n")
-f.write("################\n\n")
-
-for item1 in globalports:
-		f.write("PORT "+item1.name+" = "+item1.value)
-		for item2 in item1.attributes:
-			f.write(", "+item2.name+" = "+item2.value)
-		f.write("\n")
-f.write("\n")
-
-for item1 in components:
-		#print "\n"
-		f.write("BEGIN "+item1.cls+"\n")
-		f.write("PARAMETER INSTANCE "+item1.instance+"\n")
-		f.write("BUS "+item1.bus+"\n")
-		for item2 in item1.parameters:
-			f.write("PARAMETER "+item2.name+" "+item2.value+"\n")
-		for item3 in item1.ports:
-			f.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+"\n")
-		for item4 in item1.businterfaces:
-			f.write("BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type+"\n")
-		f.write("END"+"\n")
-		f.write("\n")
-
-#sys.exit()
-
-###########
 
 ############### Interconnects connection
 
@@ -565,11 +569,80 @@ for node in virtualNode.childNodes:
 		connect(node, components, globalports)
 
 
+######### Print out all the database in mhs syntax
+def printall():
+	f = open(mhsoutput,'w')
+	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n"
+	f.write("################\n")
+	f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
+	f.write("# "+str(datetime.date.today())+"\n")
+	f.write("# Generated from "+xmlinput+"\n")
+	f.write("################\n\n")
 
+	for item1 in globalports:
+			f.write("PORT "+item1.name+" = "+item1.value)
+			for item2 in item1.attributes:
+				f.write(", "+item2.name+" = "+item2.value)
+			f.write("\n")
+	f.write("\n")
 
+	for item1 in components:
+			#print "\n"
+			f.write("BEGIN "+item1.cls+"\n")
+			f.write("PARAMETER INSTANCE "+item1.instance+"\n")
+			f.write("BUS "+item1.bus+"\n")
+			for item2 in item1.parameters:
+				f.write("PARAMETER "+item2.name+" "+item2.value+"\n")
+			for item3 in item1.ports:
+				f.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+"\n")
+			for item4 in item1.businterfaces:
+				f.write("BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type+"\n")
+			f.write("END"+"\n")
+			f.write("\n")
 
+	sys.exit()
+###########
 
-sys.exit()
+######### Print out the final mhs file
+def printmhs():
+	f = open(mhsoutput,'w')
+	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput
+	f.write("################\n")
+	f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
+	f.write("# "+str(datetime.date.today())+"\n")
+	f.write("# Generated from "+xmlinput+"\n")
+	f.write("################\n\n")
+
+	for item1 in globalports:
+			f.write("PORT "+item1.name+" = "+item1.value)
+			for item2 in item1.attributes:
+				f.write(", "+item2.name+" = "+item2.value)
+			f.write("\n")
+	f.write("\n")
+
+	for item1 in components:
+			#print "\n"
+			f.write("BEGIN "+item1.cls+"\n")
+			f.write("PARAMETER INSTANCE = "+item1.instance+"\n")
+			#f.write("BUS "+item1.bus+"\n")
+			for item2 in item1.parameters:
+				if item2.value!="":
+					f.write("PARAMETER "+item2.name+" = "+item2.value+"\n")
+			for item3 in item1.ports:
+				if item3.value!="":
+					f.write("PORT "+item3.name+" = "+item3.value+"\n")
+			for item4 in item1.businterfaces:
+				if item4.value!="":
+					f.write("BUS_INTERFACE "+item4.name+" = "+item4.value+"\n")
+			f.write("END"+"\n")
+			f.write("\n")
+
+	sys.exit()
+###########
+
+printmhs()
 """
 print "\nIMPORTED ARCH"
 for item1 in components:

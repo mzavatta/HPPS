@@ -150,45 +150,157 @@
 				<srcint id="INTERRUPT"/>
 				<tgtint id="Irq"/>
 			</link>
-			<link src="dlmb_cntlr" tgt="dlmb" type="LMB"/>
-			<link src="dlmb_cntlr" tgt="lmb_bram" type="BUS"/>
-			<link src="ilmb_cntlr" tgt="ilmb" type="LMB"/>
-			<link src="ilmb_cntlr" tgt="lmb_bram" type="BUS"/>
 
-			<link src="microblaze_1" tgt="mb_plb_1" type="PLB"/>
-			<link src="microblaze_1" tgt="ilmb_1" type="LMB"/>
-			<link src="microblaze_1" tgt="dlmb_1" type="LMB"/>
+
+
+			<link src="dlmb_cntlr" tgt="dlmb" type="LMB">
+				<srcint id="SLMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="dlmb_cntlr" tgt="lmb_bram" type="BUS">
+				<srcint id="BRAM_PORT"/>
+				<tgtint id="PORTB"/>
+			</link>
+			<link src="ilmb_cntlr" tgt="ilmb" type="LMB">
+				<srcint id="SLMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="ilmb_cntlr" tgt="lmb_bram" type="BUS">
+				<srcint id="BRAM_PORT"/>
+				<tgtint id="PORTA"/>
+			</link>
+
+
+
+			<link src="microblaze_1" tgt="mb_plb_1" type="PLB">
+				<srcint id="DPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="microblaze_1" tgt="ilmb_1" type="LMB">
+				<srcint id="ILMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="microblaze_1" tgt="dlmb_1" type="LMB">
+				<srcint id="DLMB"/>
+				<tgtint id="self"/>
+			</link>
 			<link src="microblaze_1" tgt="mdm_0" type="DEBUG">
 				<srcint id="DEBUG"/>
 				<tgtint id="MBDEBUG_1"/>
 			</link>
-			<link src="microblaze_1" tgt="Intr_Main" type="PORT"/>
+			<link src="microblaze_1" tgt="Intr_Main" type="PORT">
+				<srcint id="INTERRUPT"/>
+				<tgtint id="Irq"/>
+			</link>
 
-			<link src="dlmb_cntlr_1" tgt="dlmb_1" type="LMB"/>
-			<link src="dlmb_cntlr_1" tgt="lmb_bram_1" type="BUS"/>
-			<link src="ilmb_cntlr_1" tgt="ilmb_1" type="LMB"/>
-			<link src="ilmb_cntlr_1" tgt="lmb_bram_1" type="BUS"/>
 
-			<link src="mdm_0" tgt="mb_plb_1" type="PLB"/>
 
-			<link src="Intr_Access" tgt="mb_plb" type="PLB"/>
-			<link src="Intr_Main" tgt="mb_plb_1" type="PLB"/>
+			<link src="dlmb_cntlr_1" tgt="dlmb_1" type="LMB">
+				<srcint id="SLMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="dlmb_cntlr_1" tgt="lmb_bram_1" type="BUS">
+				<srcint id="BRAM_PORT"/>
+				<tgtint id="PORTB"/>
+			</link>
+			<link src="ilmb_cntlr_1" tgt="ilmb_1" type="LMB">
+				<srcint id="SLMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="ilmb_cntlr_1" tgt="lmb_bram_1" type="BUS">
+				<srcint id="BRAM_PORT"/>
+				<tgtint id="PORTA"/>
+			</link>
+
+
+			<link src="mdm_0" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+
+
+
+			<link src="Intr_Access" tgt="mb_plb" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="Intr_Main" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+
+
 		
-			<link src="xps_mailbox_0" tgt="mb_plb_1" type="PLB"/>
-			<link src="xps_mailbox_0" tgt="mb_plb" type="PLB"/>
-			<link src="xps_mailbox_0" tgt="Intr_Main" type="PORT"/>
-			<link src="xps_mailbox_0" tgt="Intr_Access" type="PORT"/>
+			<link src="xps_mailbox_0" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB1"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="xps_mailbox_0" tgt="mb_plb" type="PLB">
+				<srcint id="SPLB0"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="xps_mailbox_0" tgt="Intr_Main" type="PORT">
+				<srcint id="Interrupt_1"/>
+				<tgtint id="Intr"/>
+			</link>
+			<link src="xps_mailbox_0" tgt="Intr_Access" type="PORT">
+				<srcint id="Interrupt_0"/>
+				<tgtint id="Intr"/>
+			</link>
 
-			<link src="ddr2_sdram" tgt="mb_plb" type="PLB"/>
-			<link src="ddr2_sdram" tgt="mb_plb_1" type="PLB"/>
+
+
+			<link src="ddr2_sdram" tgt="mb_plb" type="PLB">
+				<srcint id="SPLB1"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="ddr2_sdram" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB0"/>
+				<tgtint id="self"/>
+			</link>
+
+
 		
-			<link src="npi_coreE_0" tgt="mb_plb_1" type="PLB"/>
-			<link src="npi_coreE_0" tgt="Intr_Main" type="PORT"/>
-			<link src="npi_coreE_0" tgt="ddr2_sdram" type="PIM"/>
+			<link src="npi_coreE_0" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="npi_coreE_0" tgt="Intr_Main" type="PORT">
+				<srcint id="INT_DONE"/>
+				<tgtint id="Intr"/>
+			</link>
+			<link src="npi_coreE_0" tgt="ddr2_sdram" type="PIM">
+				<srcint id="XIL_NPI"/>
+				<tgtint id="MPMC_PIM4"/>
+			</link>
 
-			<link src="npi_coreD_0" tgt="mb_plb_1" type="PLB"/>
-			<link src="npi_coreD_0" tgt="Intr_Main" type="PORT"/>
-			<link src="npi_coreD_0" tgt="ddr2_sdram" type="PIM"/>
+
+
+			<link src="npi_coreD_0" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="npi_coreD_0" tgt="Intr_Main" type="PORT">
+				<srcint id="INT_DONE"/>
+				<tgtint id="Intr"/>
+			</link>
+			<link src="npi_coreD_0" tgt="ddr2_sdram" type="PIM">
+				<srcint id="XIL_NPI"/>
+				<tgtint id="MPMC_PIM3"/>
+			</link>
+
+			<link src="npi_coreA_0" tgt="mb_plb_1" type="PLB">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="npi_coreA_0" tgt="Intr_Main" type="PORT">
+				<srcint id="INT_DONE"/>
+				<tgtint id="Intr"/>
+			</link>
+			<link src="npi_coreA_0" tgt="ddr2_sdram" type="PIM">
+				<srcint id="XIL_NPI"/>
+				<tgtint id="MPMC_PIM2"/>
+			</link>
 
 		</virtual>
 </connection>	

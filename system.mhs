@@ -48,7 +48,7 @@ BEGIN xps_mailbox
  BUS_INTERFACE SPLB1 = mb_plb_1
  PORT Interrupt_0 = xps_mailbox_0_Interrupt_0
  PORT Interrupt_1 = xps_mailbox_0_Interrupt_1
- PORT FSL_Clk = clk_100_0000MHzPLL0intc
+ PORT FSL_Clk = clk_100_0000MHzPLL0
 END
 
 BEGIN xps_intc
