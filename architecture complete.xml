@@ -1,0 +1,1389 @@
+<faster>
+<architecture>
+<system id="fpga_0" friendly_name="fpga_0" device="XC5VLX30T-FF665">
+<ipCore id="xps_mailbox_0" type="IP" name="xps_mailbox_0">
+<addrs>
+<addr id="SPLB0" base="0x81e00000" high="0x81e0ffff" />
+<addr id="SPLB1" base="0x82000000" high="0x8200ffff" />
+</addrs>
+<interface>
+	<PORT id="Interrupt_0" size="1" direction="OUT" />
+	<PORT id="Interrupt_1" size="1" direction="OUT" />
+	<PORT id="FSL_Clk" size="1" direction="IN" />
+	<PORT id="SPLB0_Clk" size="1" direction="IN" />
+	<PORT id="SPLB0_Rst" size="1" direction="IN" />
+	<PORT id="PLB0_ABus" size="32" direction="IN" />
+	<PORT id="PLB0_PAValid" size="1" direction="IN" />
+	<PORT id="PLB0_masterID" size="1" direction="IN" />
+	<PORT id="PLB0_RNW" size="1" direction="IN" />
+	<PORT id="PLB0_BE" size="8" direction="IN" />
+	<PORT id="PLB0_size" size="4" direction="IN" />
+	<PORT id="PLB0_type" size="3" direction="IN" />
+	<PORT id="PLB0_wrDBus" size="64" direction="IN" />
+	<PORT id="Sl0_addrAck" size="1" direction="OUT" />
+	<PORT id="Sl0_SSize" size="2" direction="OUT" />
+	<PORT id="Sl0_wait" size="1" direction="OUT" />
+	<PORT id="Sl0_rearbitrate" size="1" direction="OUT" />
+	<PORT id="Sl0_wrDAck" size="1" direction="OUT" />
+	<PORT id="Sl0_wrComp" size="1" direction="OUT" />
+	<PORT id="Sl0_rdDBus" size="64" direction="OUT" />
+	<PORT id="Sl0_rdDAck" size="1" direction="OUT" />
+	<PORT id="Sl0_rdComp" size="1" direction="OUT" />
+	<PORT id="Sl0_MBusy" size="2" direction="OUT" />
+	<PORT id="Sl0_MWrErr" size="2" direction="OUT" />
+	<PORT id="Sl0_MRdErr" size="2" direction="OUT" />
+	<PORT id="PLB0_UABus" size="32" direction="IN" />
+	<PORT id="PLB0_SAValid" size="1" direction="IN" />
+	<PORT id="PLB0_rdPrim" size="1" direction="IN" />
+	<PORT id="PLB0_wrPrim" size="1" direction="IN" />
+	<PORT id="PLB0_abort" size="1" direction="IN" />
+	<PORT id="PLB0_busLock" size="1" direction="IN" />
+	<PORT id="PLB0_MSize" size="2" direction="IN" />
+	<PORT id="PLB0_lockErr" size="1" direction="IN" />
+	<PORT id="PLB0_wrBurst" size="1" direction="IN" />
+	<PORT id="PLB0_rdBurst" size="1" direction="IN" />
+	<PORT id="PLB0_wrPendReq" size="1" direction="IN" />
+	<PORT id="PLB0_rdPendReq" size="1" direction="IN" />
+	<PORT id="PLB0_wrPendPri" size="2" direction="IN" />
+	<PORT id="PLB0_rdPendPri" size="2" direction="IN" />
+	<PORT id="PLB0_reqPri" size="2" direction="IN" />
+	<PORT id="PLB0_TAttribute" size="16" direction="IN" />
+	<PORT id="Sl0_wrBTerm" size="1" direction="OUT" />
+	<PORT id="Sl0_rdWdAddr" size="4" direction="OUT" />
+	<PORT id="Sl0_rdBTerm" size="1" direction="OUT" />
+	<PORT id="Sl0_MIRQ" size="2" direction="OUT" />
+	<PORT id="SPLB1_Clk" size="1" direction="IN" />
+	<PORT id="SPLB1_Rst" size="1" direction="IN" />
+	<PORT id="PLB1_ABus" size="32" direction="IN" />
+	<PORT id="PLB1_PAValid" size="1" direction="IN" />
+	<PORT id="PLB1_masterID" size="1" direction="IN" />
+	<PORT id="PLB1_RNW" size="1" direction="IN" />
+	<PORT id="PLB1_BE" size="8" direction="IN" />
+	<PORT id="PLB1_size" size="4" direction="IN" />
+	<PORT id="PLB1_type" size="3" direction="IN" />
+	<PORT id="PLB1_wrDBus" size="64" direction="IN" />
+	<PORT id="Sl1_addrAck" size="1" direction="OUT" />
+	<PORT id="Sl1_SSize" size="2" direction="OUT" />
+	<PORT id="Sl1_wait" size="1" direction="OUT" />
+	<PORT id="Sl1_rearbitrate" size="1" direction="OUT" />
+	<PORT id="Sl1_wrDAck" size="1" direction="OUT" />
+	<PORT id="Sl1_wrComp" size="1" direction="OUT" />
+	<PORT id="Sl1_rdDBus" size="64" direction="OUT" />
+	<PORT id="Sl1_rdDAck" size="1" direction="OUT" />
+	<PORT id="Sl1_rdComp" size="1" direction="OUT" />
+	<PORT id="Sl1_MBusy" size="2" direction="OUT" />
+	<PORT id="Sl1_MWrErr" size="2" direction="OUT" />
+	<PORT id="Sl1_MRdErr" size="2" direction="OUT" />
+	<PORT id="PLB1_UABus" size="32" direction="IN" />
+	<PORT id="PLB1_SAValid" size="1" direction="IN" />
+	<PORT id="PLB1_rdPrim" size="1" direction="IN" />
+	<PORT id="PLB1_wrPrim" size="1" direction="IN" />
+	<PORT id="PLB1_abort" size="1" direction="IN" />
+	<PORT id="PLB1_busLock" size="1" direction="IN" />
+	<PORT id="PLB1_MSize" size="2" direction="IN" />
+	<PORT id="PLB1_lockErr" size="1" direction="IN" />
+	<PORT id="PLB1_wrBurst" size="1" direction="IN" />
+	<PORT id="PLB1_rdBurst" size="1" direction="IN" />
+	<PORT id="PLB1_wrPendReq" size="1" direction="IN" />
+	<PORT id="PLB1_rdPendReq" size="1" direction="IN" />
+	<PORT id="PLB1_wrPendPri" size="2" direction="IN" />
+	<PORT id="PLB1_rdPendPri" size="2" direction="IN" />
+	<PORT id="PLB1_reqPri" size="2" direction="IN" />
+	<PORT id="PLB1_TAttribute" size="16" direction="IN" />
+	<PORT id="Sl1_wrBTerm" size="1" direction="OUT" />
+	<PORT id="Sl1_rdWdAddr" size="4" direction="OUT" />
+	<PORT id="Sl1_rdBTerm" size="1" direction="OUT" />
+	<PORT id="Sl1_MIRQ" size="2" direction="OUT" />
+	<PORT id="FSL_Rst" size="1" direction="OUT" />
+</interface>
+</ipCore>
+<ipCore id="proc_sys_reset_0" type="IP" name="proc_sys_reset_0">
+<interface>
+	<PORT id="Slowest_sync_clk" size="1" direction="IN" />
+	<PORT id="Ext_Reset_In" size="1" direction="IN" />
+	<PORT id="MB_Debug_Sys_Rst" size="1" direction="IN" />
+	<PORT id="Dcm_locked" size="1" direction="IN" />
+	<PORT id="MB_Reset" size="1" direction="OUT" />
+	<PORT id="Bus_Struct_Reset" size="1" direction="OUT" />
+	<PORT id="Peripheral_Reset" size="1" direction="OUT" />
+</interface>
+</ipCore>
+<processingElement id="microblaze_1" type="MICROBLAZE" name="microblaze_1">
+<interface>
+	<PORT id="MB_RESET" size="1" direction="IN" />
+	<PORT id="INTERRUPT" size="1" direction="IN" />
+	<PORT id="CLK" size="1" direction="IN" />
+	<PORT id="RESET" size="1" direction="IN" />
+	<PORT id="EXT_BRK" size="1" direction="IN" />
+	<PORT id="EXT_NM_BRK" size="1" direction="IN" />
+	<PORT id="INSTR" size="32" direction="IN" />
+	<PORT id="IREADY" size="1" direction="IN" />
+	<PORT id="IWAIT" size="1" direction="IN" />
+	<PORT id="INSTR_ADDR" size="32" direction="OUT" />
+	<PORT id="IFETCH" size="1" direction="OUT" />
+	<PORT id="I_AS" size="1" direction="OUT" />
+	<PORT id="IPLB_M_ABort" size="1" direction="OUT" />
+	<PORT id="IPLB_M_ABus" size="32" direction="OUT" />
+	<PORT id="IPLB_M_UABus" size="32" direction="OUT" />
+	<PORT id="IPLB_M_BE" size="8" direction="OUT" />
+	<PORT id="IPLB_M_busLock" size="1" direction="OUT" />
+	<PORT id="IPLB_M_lockErr" size="1" direction="OUT" />
+	<PORT id="IPLB_M_MSize" size="2" direction="OUT" />
+	<PORT id="IPLB_M_priority" size="2" direction="OUT" />
+	<PORT id="IPLB_M_rdBurst" size="1" direction="OUT" />
+	<PORT id="IPLB_M_request" size="1" direction="OUT" />
+	<PORT id="IPLB_M_RNW" size="1" direction="OUT" />
+	<PORT id="IPLB_M_size" size="4" direction="OUT" />
+	<PORT id="IPLB_M_TAttribute" size="16" direction="OUT" />
+	<PORT id="IPLB_M_type" size="3" direction="OUT" />
+	<PORT id="IPLB_M_wrBurst" size="1" direction="OUT" />
+	<PORT id="IPLB_M_wrDBus" size="64" direction="OUT" />
+	<PORT id="IPLB_MBusy" size="1" direction="IN" />
+	<PORT id="IPLB_MRdErr" size="1" direction="IN" />
+	<PORT id="IPLB_MWrErr" size="1" direction="IN" />
+	<PORT id="IPLB_MIRQ" size="1" direction="IN" />
+	<PORT id="IPLB_MWrBTerm" size="1" direction="IN" />
+	<PORT id="IPLB_MWrDAck" size="1" direction="IN" />
+	<PORT id="IPLB_MAddrAck" size="1" direction="IN" />
+	<PORT id="IPLB_MRdBTerm" size="1" direction="IN" />
+	<PORT id="IPLB_MRdDAck" size="1" direction="IN" />
+	<PORT id="IPLB_MRdDBus" size="64" direction="IN" />
+	<PORT id="IPLB_MRdWdAddr" size="4" direction="IN" />
+	<PORT id="IPLB_MRearbitrate" size="1" direction="IN" />
+	<PORT id="IPLB_MSSize" size="2" direction="IN" />
+	<PORT id="IPLB_MTimeout" size="1" direction="IN" />
+	<PORT id="DATA_READ" size="32" direction="IN" />
+	<PORT id="DREADY" size="1" direction="IN" />
+	<PORT id="DWAIT" size="1" direction="IN" />
+	<PORT id="DATA_WRITE" size="32" direction="OUT" />
+	<PORT id="DATA_ADDR" size="32" direction="OUT" />
+	<PORT id="D_AS" size="1" direction="OUT" />
+	<PORT id="READ_STROBE" size="1" direction="OUT" />
+	<PORT id="WRITE_STROBE" size="1" direction="OUT" />
+	<PORT id="BYTE_ENABLE" size="4" direction="OUT" />
+	<PORT id="DPLB_M_ABort" size="1" direction="OUT" />
+	<PORT id="DPLB_M_ABus" size="32" direction="OUT" />
+	<PORT id="DPLB_M_UABus" size="32" direction="OUT" />
+	<PORT id="DPLB_M_BE" size="8" direction="OUT" />
+	<PORT id="DPLB_M_busLock" size="1" direction="OUT" />
+	<PORT id="DPLB_M_lockErr" size="1" direction="OUT" />
+	<PORT id="DPLB_M_MSize" size="2" direction="OUT" />
+	<PORT id="DPLB_M_priority" size="2" direction="OUT" />
+	<PORT id="DPLB_M_rdBurst" size="1" direction="OUT" />
+	<PORT id="DPLB_M_request" size="1" direction="OUT" />
+	<PORT id="DPLB_M_RNW" size="1" direction="OUT" />
+	<PORT id="DPLB_M_size" size="4" direction="OUT" />
+	<PORT id="DPLB_M_TAttribute" size="16" direction="OUT" />
+	<PORT id="DPLB_M_type" size="3" direction="OUT" />
+	<PORT id="DPLB_M_wrBurst" size="1" direction="OUT" />
+	<PORT id="DPLB_M_wrDBus" size="64" direction="OUT" />
+	<PORT id="DPLB_MBusy" size="1" direction="IN" />
+	<PORT id="DPLB_MRdErr" size="1" direction="IN" />
+	<PORT id="DPLB_MWrErr" size="1" direction="IN" />
+	<PORT id="DPLB_MIRQ" size="1" direction="IN" />
+	<PORT id="DPLB_MWrBTerm" size="1" direction="IN" />
+	<PORT id="DPLB_MWrDAck" size="1" direction="IN" />
+	<PORT id="DPLB_MAddrAck" size="1" direction="IN" />
+	<PORT id="DPLB_MRdBTerm" size="1" direction="IN" />
+	<PORT id="DPLB_MRdDAck" size="1" direction="IN" />
+	<PORT id="DPLB_MRdDBus" size="64" direction="IN" />
+	<PORT id="DPLB_MRdWdAddr" size="4" direction="IN" />
+	<PORT id="DPLB_MRearbitrate" size="1" direction="IN" />
+	<PORT id="DPLB_MSSize" size="2" direction="IN" />
+	<PORT id="DPLB_MTimeout" size="1" direction="IN" />
+	<PORT id="DBG_CLK" size="1" direction="IN" />
+	<PORT id="DBG_TDI" size="1" direction="IN" />
+	<PORT id="DBG_TDO" size="1" direction="OUT" />
+	<PORT id="DBG_REG_EN" size="5" direction="IN" />
+	<PORT id="DBG_SHIFT" size="1" direction="IN" />
+	<PORT id="DBG_CAPTURE" size="1" direction="IN" />
+	<PORT id="DBG_UPDATE" size="1" direction="IN" />
+	<PORT id="DEBUG_RST" size="1" direction="IN" />
+</interface>
+</processingElement>
+<processingElement id="microblaze_0" type="MICROBLAZE" name="microblaze_0">
+<interface>
+	<PORT id="MB_RESET" size="1" direction="IN" />
+	<PORT id="INTERRUPT" size="1" direction="IN" />
+	<PORT id="CLK" size="1" direction="IN" />
+	<PORT id="RESET" size="1" direction="IN" />
+	<PORT id="EXT_BRK" size="1" direction="IN" />
+	<PORT id="EXT_NM_BRK" size="1" direction="IN" />
+	<PORT id="INSTR" size="32" direction="IN" />
+	<PORT id="IREADY" size="1" direction="IN" />
+	<PORT id="IWAIT" size="1" direction="IN" />
+	<PORT id="INSTR_ADDR" size="32" direction="OUT" />
+	<PORT id="IFETCH" size="1" direction="OUT" />
+	<PORT id="I_AS" size="1" direction="OUT" />
+	<PORT id="IPLB_M_ABort" size="1" direction="OUT" />
+	<PORT id="IPLB_M_ABus" size="32" direction="OUT" />
+	<PORT id="IPLB_M_UABus" size="32" direction="OUT" />
+	<PORT id="IPLB_M_BE" size="8" direction="OUT" />
+	<PORT id="IPLB_M_busLock" size="1" direction="OUT" />
+	<PORT id="IPLB_M_lockErr" size="1" direction="OUT" />
+	<PORT id="IPLB_M_MSize" size="2" direction="OUT" />
+	<PORT id="IPLB_M_priority" size="2" direction="OUT" />
+	<PORT id="IPLB_M_rdBurst" size="1" direction="OUT" />
+	<PORT id="IPLB_M_request" size="1" direction="OUT" />
+	<PORT id="IPLB_M_RNW" size="1" direction="OUT" />
+	<PORT id="IPLB_M_size" size="4" direction="OUT" />
+	<PORT id="IPLB_M_TAttribute" size="16" direction="OUT" />
+	<PORT id="IPLB_M_type" size="3" direction="OUT" />
+	<PORT id="IPLB_M_wrBurst" size="1" direction="OUT" />
+	<PORT id="IPLB_M_wrDBus" size="64" direction="OUT" />
+	<PORT id="IPLB_MBusy" size="1" direction="IN" />
+	<PORT id="IPLB_MRdErr" size="1" direction="IN" />
+	<PORT id="IPLB_MWrErr" size="1" direction="IN" />
+	<PORT id="IPLB_MIRQ" size="1" direction="IN" />
+	<PORT id="IPLB_MWrBTerm" size="1" direction="IN" />
+	<PORT id="IPLB_MWrDAck" size="1" direction="IN" />
+	<PORT id="IPLB_MAddrAck" size="1" direction="IN" />
+	<PORT id="IPLB_MRdBTerm" size="1" direction="IN" />
+	<PORT id="IPLB_MRdDAck" size="1" direction="IN" />
+	<PORT id="IPLB_MRdDBus" size="64" direction="IN" />
+	<PORT id="IPLB_MRdWdAddr" size="4" direction="IN" />
+	<PORT id="IPLB_MRearbitrate" size="1" direction="IN" />
+	<PORT id="IPLB_MSSize" size="2" direction="IN" />
+	<PORT id="IPLB_MTimeout" size="1" direction="IN" />
+	<PORT id="DATA_READ" size="32" direction="IN" />
+	<PORT id="DREADY" size="1" direction="IN" />
+	<PORT id="DWAIT" size="1" direction="IN" />
+	<PORT id="DATA_WRITE" size="32" direction="OUT" />
+	<PORT id="DATA_ADDR" size="32" direction="OUT" />
+	<PORT id="D_AS" size="1" direction="OUT" />
+	<PORT id="READ_STROBE" size="1" direction="OUT" />
+	<PORT id="WRITE_STROBE" size="1" direction="OUT" />
+	<PORT id="BYTE_ENABLE" size="4" direction="OUT" />
+	<PORT id="DPLB_M_ABort" size="1" direction="OUT" />
+	<PORT id="DPLB_M_ABus" size="32" direction="OUT" />
+	<PORT id="DPLB_M_UABus" size="32" direction="OUT" />
+	<PORT id="DPLB_M_BE" size="8" direction="OUT" />
+	<PORT id="DPLB_M_busLock" size="1" direction="OUT" />
+	<PORT id="DPLB_M_lockErr" size="1" direction="OUT" />
+	<PORT id="DPLB_M_MSize" size="2" direction="OUT" />
+	<PORT id="DPLB_M_priority" size="2" direction="OUT" />
+	<PORT id="DPLB_M_rdBurst" size="1" direction="OUT" />
+	<PORT id="DPLB_M_request" size="1" direction="OUT" />
+	<PORT id="DPLB_M_RNW" size="1" direction="OUT" />
+	<PORT id="DPLB_M_size" size="4" direction="OUT" />
+	<PORT id="DPLB_M_TAttribute" size="16" direction="OUT" />
+	<PORT id="DPLB_M_type" size="3" direction="OUT" />
+	<PORT id="DPLB_M_wrBurst" size="1" direction="OUT" />
+	<PORT id="DPLB_M_wrDBus" size="64" direction="OUT" />
+	<PORT id="DPLB_MBusy" size="1" direction="IN" />
+	<PORT id="DPLB_MRdErr" size="1" direction="IN" />
+	<PORT id="DPLB_MWrErr" size="1" direction="IN" />
+	<PORT id="DPLB_MIRQ" size="1" direction="IN" />
+	<PORT id="DPLB_MWrBTerm" size="1" direction="IN" />
+	<PORT id="DPLB_MWrDAck" size="1" direction="IN" />
+	<PORT id="DPLB_MAddrAck" size="1" direction="IN" />
+	<PORT id="DPLB_MRdBTerm" size="1" direction="IN" />
+	<PORT id="DPLB_MRdDAck" size="1" direction="IN" />
+	<PORT id="DPLB_MRdDBus" size="64" direction="IN" />
+	<PORT id="DPLB_MRdWdAddr" size="4" direction="IN" />
+	<PORT id="DPLB_MRearbitrate" size="1" direction="IN" />
+	<PORT id="DPLB_MSSize" size="2" direction="IN" />
+	<PORT id="DPLB_MTimeout" size="1" direction="IN" />
+	<PORT id="DBG_CLK" size="1" direction="IN" />
+	<PORT id="DBG_TDI" size="1" direction="IN" />
+	<PORT id="DBG_TDO" size="1" direction="OUT" />
+	<PORT id="DBG_REG_EN" size="5" direction="IN" />
+	<PORT id="DBG_SHIFT" size="1" direction="IN" />
+	<PORT id="DBG_CAPTURE" size="1" direction="IN" />
+	<PORT id="DBG_UPDATE" size="1" direction="IN" />
+	<PORT id="DEBUG_RST" size="1" direction="IN" />
+</interface>
+</processingElement>
+<ipCore id="mdm_0" type="IP" name="mdm_0">
+<addrs>
+<addr id="mdm_0" base="0x84400000" high="0x8440ffff" />
+</addrs>
+<interface>
+	<PORT id="Debug_SYS_Rst" size="1" direction="OUT" />
+	<PORT id="Ext_BRK" size="1" direction="OUT" />
+	<PORT id="Ext_NM_BRK" size="1" direction="OUT" />
+	<PORT id="SPLB_Clk" size="1" direction="IN" />
+	<PORT id="SPLB_Rst" size="1" direction="IN" />
+	<PORT id="PLB_ABus" size="32" direction="IN" />
+	<PORT id="PLB_UABus" size="32" direction="IN" />
+	<PORT id="PLB_PAValid" size="1" direction="IN" />
+	<PORT id="PLB_SAValid" size="1" direction="IN" />
+	<PORT id="PLB_rdPrim" size="1" direction="IN" />
+	<PORT id="PLB_wrPrim" size="1" direction="IN" />
+	<PORT id="PLB_masterID" size="1" direction="IN" />
+	<PORT id="PLB_abort" size="1" direction="IN" />
+	<PORT id="PLB_busLock" size="1" direction="IN" />
+	<PORT id="PLB_RNW" size="1" direction="IN" />
+	<PORT id="PLB_BE" size="8" direction="IN" />
+	<PORT id="PLB_MSize" size="2" direction="IN" />
+	<PORT id="PLB_size" size="4" direction="IN" />
+	<PORT id="PLB_type" size="3" direction="IN" />
+	<PORT id="PLB_lockErr" size="1" direction="IN" />
+	<PORT id="PLB_wrDBus" size="64" direction="IN" />
+	<PORT id="PLB_wrBurst" size="1" direction="IN" />
+	<PORT id="PLB_rdBurst" size="1" direction="IN" />
+	<PORT id="PLB_wrPendReq" size="1" direction="IN" />
+	<PORT id="PLB_rdPendReq" size="1" direction="IN" />
+	<PORT id="PLB_wrPendPri" size="2" direction="IN" />
+	<PORT id="PLB_rdPendPri" size="2" direction="IN" />
+	<PORT id="PLB_reqPri" size="2" direction="IN" />
+	<PORT id="PLB_TAttribute" size="16" direction="IN" />
+	<PORT id="Sl_addrAck" size="1" direction="OUT" />
+	<PORT id="Sl_SSize" size="2" direction="OUT" />
+	<PORT id="Sl_wait" size="1" direction="OUT" />
+	<PORT id="Sl_rearbitrate" size="1" direction="OUT" />
+	<PORT id="Sl_wrDAck" size="1" direction="OUT" />
+	<PORT id="Sl_wrComp" size="1" direction="OUT" />
+	<PORT id="Sl_wrBTerm" size="1" direction="OUT" />
+	<PORT id="Sl_rdDBus" size="64" direction="OUT" />
+	<PORT id="Sl_rdWdAddr" size="4" direction="OUT" />
+	<PORT id="Sl_rdDAck" size="1" direction="OUT" />
+	<PORT id="Sl_rdComp" size="1" direction="OUT" />
+	<PORT id="Sl_rdBTerm" size="1" direction="OUT" />
+	<PORT id="Sl_MBusy" size="2" direction="OUT" />
+	<PORT id="Sl_MWrErr" size="2" direction="OUT" />
+	<PORT id="Sl_MRdErr" size="2" direction="OUT" />
+	<PORT id="Sl_MIRQ" size="2" direction="OUT" />
+	<PORT id="Dbg_Clk_0" size="1" direction="OUT" />
+	<PORT id="Dbg_TDI_0" size="1" direction="OUT" />
+	<PORT id="Dbg_TDO_0" size="1" direction="IN" />
+	<PORT id="Dbg_Reg_En_0" size="5" direction="OUT" />
+	<PORT id="Dbg_Capture_0" size="1" direction="OUT" />
+	<PORT id="Dbg_Shift_0" size="1" direction="OUT" />
+	<PORT id="Dbg_Update_0" size="1" direction="OUT" />
+	<PORT id="Dbg_Rst_0" size="1" direction="OUT" />
+	<PORT id="Dbg_Clk_1" size="1" direction="OUT" />
+	<PORT id="Dbg_TDI_1" size="1" direction="OUT" />
+	<PORT id="Dbg_TDO_1" size="1" direction="IN" />
+	<PORT id="Dbg_Reg_En_1" size="5" direction="OUT" />
+	<PORT id="Dbg_Capture_1" size="1" direction="OUT" />
+	<PORT id="Dbg_Shift_1" size="1" direction="OUT" />
+	<PORT id="Dbg_Update_1" size="1" direction="OUT" />
+	<PORT id="Dbg_Rst_1" size="1" direction="OUT" />
+	<PORT id="bscan_tdi" size="1" direction="OUT" />
+	<PORT id="bscan_reset" size="1" direction="OUT" />
+	<PORT id="bscan_shift" size="1" direction="OUT" />
+	<PORT id="bscan_update" size="1" direction="OUT" />
+	<PORT id="bscan_capture" size="1" direction="OUT" />
+	<PORT id="bscan_sel1" size="1" direction="OUT" />
+	<PORT id="bscan_drck1" size="1" direction="OUT" />
+	<PORT id="bscan_tdo1" size="1" direction="IN" />
+</interface>
+</ipCore>
+<communication id="mb_plb_1" type="BUS_PLB" name="mb_plb_1">
+<interface>
+	<PORT id="PLB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="PLB_Rst" size="1" direction="OUT" />
+	<PORT id="SPLB_Rst" size="7" direction="OUT" />
+	<PORT id="MPLB_Rst" size="2" direction="OUT" />
+	<PORT id="M_ABus" size="64" direction="IN" />
+	<PORT id="M_UABus" size="64" direction="IN" />
+	<PORT id="M_BE" size="16" direction="IN" />
+	<PORT id="M_RNW" size="2" direction="IN" />
+	<PORT id="M_abort" size="2" direction="IN" />
+	<PORT id="M_busLock" size="2" direction="IN" />
+	<PORT id="M_TAttribute" size="32" direction="IN" />
+	<PORT id="M_lockErr" size="2" direction="IN" />
+	<PORT id="M_MSize" size="4" direction="IN" />
+	<PORT id="M_priority" size="4" direction="IN" />
+	<PORT id="M_rdBurst" size="2" direction="IN" />
+	<PORT id="M_request" size="2" direction="IN" />
+	<PORT id="M_size" size="8" direction="IN" />
+	<PORT id="M_type" size="6" direction="IN" />
+	<PORT id="M_wrBurst" size="2" direction="IN" />
+	<PORT id="M_wrDBus" size="128" direction="IN" />
+	<PORT id="Sl_addrAck" size="7" direction="IN" />
+	<PORT id="Sl_MRdErr" size="14" direction="IN" />
+	<PORT id="Sl_MWrErr" size="14" direction="IN" />
+	<PORT id="Sl_MBusy" size="14" direction="IN" />
+	<PORT id="Sl_rdBTerm" size="7" direction="IN" />
+	<PORT id="Sl_rdComp" size="7" direction="IN" />
+	<PORT id="Sl_rdDAck" size="7" direction="IN" />
+	<PORT id="Sl_rdDBus" size="448" direction="IN" />
+	<PORT id="Sl_rdWdAddr" size="28" direction="IN" />
+	<PORT id="Sl_rearbitrate" size="7" direction="IN" />
+	<PORT id="Sl_SSize" size="14" direction="IN" />
+	<PORT id="Sl_wait" size="7" direction="IN" />
+	<PORT id="Sl_wrBTerm" size="7" direction="IN" />
+	<PORT id="Sl_wrComp" size="7" direction="IN" />
+	<PORT id="Sl_wrDAck" size="7" direction="IN" />
+	<PORT id="Sl_MIRQ" size="14" direction="IN" />
+	<PORT id="PLB_MIRQ" size="2" direction="OUT" />
+	<PORT id="PLB_ABus" size="32" direction="OUT" />
+	<PORT id="PLB_UABus" size="32" direction="OUT" />
+	<PORT id="PLB_BE" size="8" direction="OUT" />
+	<PORT id="PLB_MAddrAck" size="2" direction="OUT" />
+	<PORT id="PLB_MTimeout" size="2" direction="OUT" />
+	<PORT id="PLB_MBusy" size="2" direction="OUT" />
+	<PORT id="PLB_MRdErr" size="2" direction="OUT" />
+	<PORT id="PLB_MWrErr" size="2" direction="OUT" />
+	<PORT id="PLB_MRdBTerm" size="2" direction="OUT" />
+	<PORT id="PLB_MRdDAck" size="2" direction="OUT" />
+	<PORT id="PLB_MRdDBus" size="128" direction="OUT" />
+	<PORT id="PLB_MRdWdAddr" size="8" direction="OUT" />
+	<PORT id="PLB_MRearbitrate" size="2" direction="OUT" />
+	<PORT id="PLB_MWrBTerm" size="2" direction="OUT" />
+	<PORT id="PLB_MWrDAck" size="2" direction="OUT" />
+	<PORT id="PLB_MSSize" size="4" direction="OUT" />
+	<PORT id="PLB_PAValid" size="1" direction="OUT" />
+	<PORT id="PLB_RNW" size="1" direction="OUT" />
+	<PORT id="PLB_SAValid" size="1" direction="OUT" />
+	<PORT id="PLB_abort" size="1" direction="OUT" />
+	<PORT id="PLB_busLock" size="1" direction="OUT" />
+	<PORT id="PLB_TAttribute" size="16" direction="OUT" />
+	<PORT id="PLB_lockErr" size="1" direction="OUT" />
+	<PORT id="PLB_masterID" size="1" direction="OUT" />
+	<PORT id="PLB_MSize" size="2" direction="OUT" />
+	<PORT id="PLB_rdPendPri" size="2" direction="OUT" />
+	<PORT id="PLB_wrPendPri" size="2" direction="OUT" />
+	<PORT id="PLB_rdPendReq" size="1" direction="OUT" />
+	<PORT id="PLB_wrPendReq" size="1" direction="OUT" />
+	<PORT id="PLB_rdBurst" size="1" direction="OUT" />
+	<PORT id="PLB_rdPrim" size="7" direction="OUT" />
+	<PORT id="PLB_reqPri" size="2" direction="OUT" />
+	<PORT id="PLB_size" size="4" direction="OUT" />
+	<PORT id="PLB_type" size="3" direction="OUT" />
+	<PORT id="PLB_wrBurst" size="1" direction="OUT" />
+	<PORT id="PLB_wrDBus" size="64" direction="OUT" />
+	<PORT id="PLB_wrPrim" size="7" direction="OUT" />
+	<PORT id="PLB_SaddrAck" size="1" direction="OUT" />
+	<PORT id="PLB_SMRdErr" size="2" direction="OUT" />
+	<PORT id="PLB_SMWrErr" size="2" direction="OUT" />
+	<PORT id="PLB_SMBusy" size="2" direction="OUT" />
+	<PORT id="PLB_SrdBTerm" size="1" direction="OUT" />
+	<PORT id="PLB_SrdComp" size="1" direction="OUT" />
+	<PORT id="PLB_SrdDAck" size="1" direction="OUT" />
+	<PORT id="PLB_SrdDBus" size="64" direction="OUT" />
+	<PORT id="PLB_SrdWdAddr" size="4" direction="OUT" />
+	<PORT id="PLB_Srearbitrate" size="1" direction="OUT" />
+	<PORT id="PLB_Sssize" size="2" direction="OUT" />
+	<PORT id="PLB_Swait" size="1" direction="OUT" />
+	<PORT id="PLB_SwrBTerm" size="1" direction="OUT" />
+	<PORT id="PLB_SwrComp" size="1" direction="OUT" />
+	<PORT id="PLB_SwrDAck" size="1" direction="OUT" />
+</interface>
+</communication>
+<communication id="mb_plb" type="BUS_PLB" name="mb_plb">
+<interface>
+	<PORT id="PLB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="PLB_Rst" size="1" direction="OUT" />
+	<PORT id="SPLB_Rst" size="3" direction="OUT" />
+	<PORT id="MPLB_Rst" size="2" direction="OUT" />
+	<PORT id="M_ABus" size="64" direction="IN" />
+	<PORT id="M_UABus" size="64" direction="IN" />
+	<PORT id="M_BE" size="16" direction="IN" />
+	<PORT id="M_RNW" size="2" direction="IN" />
+	<PORT id="M_abort" size="2" direction="IN" />
+	<PORT id="M_busLock" size="2" direction="IN" />
+	<PORT id="M_TAttribute" size="32" direction="IN" />
+	<PORT id="M_lockErr" size="2" direction="IN" />
+	<PORT id="M_MSize" size="4" direction="IN" />
+	<PORT id="M_priority" size="4" direction="IN" />
+	<PORT id="M_rdBurst" size="2" direction="IN" />
+	<PORT id="M_request" size="2" direction="IN" />
+	<PORT id="M_size" size="8" direction="IN" />
+	<PORT id="M_type" size="6" direction="IN" />
+	<PORT id="M_wrBurst" size="2" direction="IN" />
+	<PORT id="M_wrDBus" size="128" direction="IN" />
+	<PORT id="Sl_addrAck" size="3" direction="IN" />
+	<PORT id="Sl_MRdErr" size="6" direction="IN" />
+	<PORT id="Sl_MWrErr" size="6" direction="IN" />
+	<PORT id="Sl_MBusy" size="6" direction="IN" />
+	<PORT id="Sl_rdBTerm" size="3" direction="IN" />
+	<PORT id="Sl_rdComp" size="3" direction="IN" />
+	<PORT id="Sl_rdDAck" size="3" direction="IN" />
+	<PORT id="Sl_rdDBus" size="192" direction="IN" />
+	<PORT id="Sl_rdWdAddr" size="12" direction="IN" />
+	<PORT id="Sl_rearbitrate" size="3" direction="IN" />
+	<PORT id="Sl_SSize" size="6" direction="IN" />
+	<PORT id="Sl_wait" size="3" direction="IN" />
+	<PORT id="Sl_wrBTerm" size="3" direction="IN" />
+	<PORT id="Sl_wrComp" size="3" direction="IN" />
+	<PORT id="Sl_wrDAck" size="3" direction="IN" />
+	<PORT id="Sl_MIRQ" size="6" direction="IN" />
+	<PORT id="PLB_MIRQ" size="2" direction="OUT" />
+	<PORT id="PLB_ABus" size="32" direction="OUT" />
+	<PORT id="PLB_UABus" size="32" direction="OUT" />
+	<PORT id="PLB_BE" size="8" direction="OUT" />
+	<PORT id="PLB_MAddrAck" size="2" direction="OUT" />
+	<PORT id="PLB_MTimeout" size="2" direction="OUT" />
+	<PORT id="PLB_MBusy" size="2" direction="OUT" />
+	<PORT id="PLB_MRdErr" size="2" direction="OUT" />
+	<PORT id="PLB_MWrErr" size="2" direction="OUT" />
+	<PORT id="PLB_MRdBTerm" size="2" direction="OUT" />
+	<PORT id="PLB_MRdDAck" size="2" direction="OUT" />
+	<PORT id="PLB_MRdDBus" size="128" direction="OUT" />
+	<PORT id="PLB_MRdWdAddr" size="8" direction="OUT" />
+	<PORT id="PLB_MRearbitrate" size="2" direction="OUT" />
+	<PORT id="PLB_MWrBTerm" size="2" direction="OUT" />
+	<PORT id="PLB_MWrDAck" size="2" direction="OUT" />
+	<PORT id="PLB_MSSize" size="4" direction="OUT" />
+	<PORT id="PLB_PAValid" size="1" direction="OUT" />
+	<PORT id="PLB_RNW" size="1" direction="OUT" />
+	<PORT id="PLB_SAValid" size="1" direction="OUT" />
+	<PORT id="PLB_abort" size="1" direction="OUT" />
+	<PORT id="PLB_busLock" size="1" direction="OUT" />
+	<PORT id="PLB_TAttribute" size="16" direction="OUT" />
+	<PORT id="PLB_lockErr" size="1" direction="OUT" />
+	<PORT id="PLB_masterID" size="1" direction="OUT" />
+	<PORT id="PLB_MSize" size="2" direction="OUT" />
+	<PORT id="PLB_rdPendPri" size="2" direction="OUT" />
+	<PORT id="PLB_wrPendPri" size="2" direction="OUT" />
+	<PORT id="PLB_rdPendReq" size="1" direction="OUT" />
+	<PORT id="PLB_wrPendReq" size="1" direction="OUT" />
+	<PORT id="PLB_rdBurst" size="1" direction="OUT" />
+	<PORT id="PLB_rdPrim" size="3" direction="OUT" />
+	<PORT id="PLB_reqPri" size="2" direction="OUT" />
+	<PORT id="PLB_size" size="4" direction="OUT" />
+	<PORT id="PLB_type" size="3" direction="OUT" />
+	<PORT id="PLB_wrBurst" size="1" direction="OUT" />
+	<PORT id="PLB_wrDBus" size="64" direction="OUT" />
+	<PORT id="PLB_wrPrim" size="3" direction="OUT" />
+	<PORT id="PLB_SaddrAck" size="1" direction="OUT" />
+	<PORT id="PLB_SMRdErr" size="2" direction="OUT" />
+	<PORT id="PLB_SMWrErr" size="2" direction="OUT" />
+	<PORT id="PLB_SMBusy" size="2" direction="OUT" />
+	<PORT id="PLB_SrdBTerm" size="1" direction="OUT" />
+	<PORT id="PLB_SrdComp" size="1" direction="OUT" />
+	<PORT id="PLB_SrdDAck" size="1" direction="OUT" />
+	<PORT id="PLB_SrdDBus" size="64" direction="OUT" />
+	<PORT id="PLB_SrdWdAddr" size="4" direction="OUT" />
+	<PORT id="PLB_Srearbitrate" size="1" direction="OUT" />
+	<PORT id="PLB_Sssize" size="2" direction="OUT" />
+	<PORT id="PLB_Swait" size="1" direction="OUT" />
+	<PORT id="PLB_SwrBTerm" size="1" direction="OUT" />
+	<PORT id="PLB_SwrComp" size="1" direction="OUT" />
+	<PORT id="PLB_SwrDAck" size="1" direction="OUT" />
+</interface>
+</communication>
+<memory id="lmb_bram_1" type="BRAM" name="lmb_bram_1">
+<interface>
+	<PORT id="BRAM_Rst_A" size="1" direction="IN" />
+	<PORT id="BRAM_Clk_A" size="1" direction="IN" />
+	<PORT id="BRAM_EN_A" size="1" direction="IN" />
+	<PORT id="BRAM_WEN_A" size="4" direction="IN" />
+	<PORT id="BRAM_Addr_A" size="32" direction="IN" />
+	<PORT id="BRAM_Din_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Dout_A" size="32" direction="IN" />
+	<PORT id="BRAM_Rst_B" size="1" direction="IN" />
+	<PORT id="BRAM_Clk_B" size="1" direction="IN" />
+	<PORT id="BRAM_EN_B" size="1" direction="IN" />
+	<PORT id="BRAM_WEN_B" size="4" direction="IN" />
+	<PORT id="BRAM_Addr_B" size="32" direction="IN" />
+	<PORT id="BRAM_Din_B" size="32" direction="OUT" />
+	<PORT id="BRAM_Dout_B" size="32" direction="IN" />
+</interface>
+</memory>
+<memory id="lmb_bram" type="BRAM" name="lmb_bram">
+<interface>
+	<PORT id="BRAM_Rst_A" size="1" direction="IN" />
+	<PORT id="BRAM_Clk_A" size="1" direction="IN" />
+	<PORT id="BRAM_EN_A" size="1" direction="IN" />
+	<PORT id="BRAM_WEN_A" size="4" direction="IN" />
+	<PORT id="BRAM_Addr_A" size="32" direction="IN" />
+	<PORT id="BRAM_Din_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Dout_A" size="32" direction="IN" />
+	<PORT id="BRAM_Rst_B" size="1" direction="IN" />
+	<PORT id="BRAM_Clk_B" size="1" direction="IN" />
+	<PORT id="BRAM_EN_B" size="1" direction="IN" />
+	<PORT id="BRAM_WEN_B" size="4" direction="IN" />
+	<PORT id="BRAM_Addr_B" size="32" direction="IN" />
+	<PORT id="BRAM_Din_B" size="32" direction="OUT" />
+	<PORT id="BRAM_Dout_B" size="32" direction="IN" />
+</interface>
+</memory>
+<memory id="ilmb_cntlr_1" type="MEMORY_CONTROLLER" name="ilmb_cntlr_1">
+<addrs>
+<addr id="ilmb_cntlr_1" base="0x00000000" high="0x0000ffff" />
+</addrs>
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="IN" />
+	<PORT id="LMB_WriteDBus" size="32" direction="IN" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="IN" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="IN" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="IN" />
+	<PORT id="LMB_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="OUT" />
+	<PORT id="Sl_Ready" size="1" direction="OUT" />
+	<PORT id="BRAM_Rst_A" size="1" direction="OUT" />
+	<PORT id="BRAM_Clk_A" size="1" direction="OUT" />
+	<PORT id="BRAM_EN_A" size="1" direction="OUT" />
+	<PORT id="BRAM_WEN_A" size="4" direction="OUT" />
+	<PORT id="BRAM_Addr_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Din_A" size="32" direction="IN" />
+	<PORT id="BRAM_Dout_A" size="32" direction="OUT" />
+</interface>
+</memory>
+<memory id="ilmb_cntlr" type="MEMORY_CONTROLLER" name="ilmb_cntlr">
+<addrs>
+<addr id="ilmb_cntlr" base="0x00000000" high="0x0000ffff" />
+</addrs>
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="IN" />
+	<PORT id="LMB_WriteDBus" size="32" direction="IN" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="IN" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="IN" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="IN" />
+	<PORT id="LMB_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="OUT" />
+	<PORT id="Sl_Ready" size="1" direction="OUT" />
+	<PORT id="BRAM_Rst_A" size="1" direction="OUT" />
+	<PORT id="BRAM_Clk_A" size="1" direction="OUT" />
+	<PORT id="BRAM_EN_A" size="1" direction="OUT" />
+	<PORT id="BRAM_WEN_A" size="4" direction="OUT" />
+	<PORT id="BRAM_Addr_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Din_A" size="32" direction="IN" />
+	<PORT id="BRAM_Dout_A" size="32" direction="OUT" />
+</interface>
+</memory>
+<communication id="ilmb_1" type="BUS" name="ilmb_1">
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="OUT" />
+	<PORT id="M_ABus" size="32" direction="IN" />
+	<PORT id="M_ReadStrobe" size="1" direction="IN" />
+	<PORT id="M_WriteStrobe" size="1" direction="IN" />
+	<PORT id="M_AddrStrobe" size="1" direction="IN" />
+	<PORT id="M_DBus" size="32" direction="IN" />
+	<PORT id="M_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="IN" />
+	<PORT id="Sl_Ready" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="OUT" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_ReadDBus" size="32" direction="OUT" />
+	<PORT id="LMB_WriteDBus" size="32" direction="OUT" />
+	<PORT id="LMB_Ready" size="1" direction="OUT" />
+	<PORT id="LMB_BE" size="4" direction="OUT" />
+</interface>
+</communication>
+<communication id="ilmb" type="BUS" name="ilmb">
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="OUT" />
+	<PORT id="M_ABus" size="32" direction="IN" />
+	<PORT id="M_ReadStrobe" size="1" direction="IN" />
+	<PORT id="M_WriteStrobe" size="1" direction="IN" />
+	<PORT id="M_AddrStrobe" size="1" direction="IN" />
+	<PORT id="M_DBus" size="32" direction="IN" />
+	<PORT id="M_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="IN" />
+	<PORT id="Sl_Ready" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="OUT" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_ReadDBus" size="32" direction="OUT" />
+	<PORT id="LMB_WriteDBus" size="32" direction="OUT" />
+	<PORT id="LMB_Ready" size="1" direction="OUT" />
+	<PORT id="LMB_BE" size="4" direction="OUT" />
+</interface>
+</communication>
+<memory id="dlmb_cntlr_1" type="MEMORY_CONTROLLER" name="dlmb_cntlr_1">
+<addrs>
+<addr id="dlmb_cntlr_1" base="0x00000000" high="0x0000ffff" />
+</addrs>
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="IN" />
+	<PORT id="LMB_WriteDBus" size="32" direction="IN" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="IN" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="IN" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="IN" />
+	<PORT id="LMB_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="OUT" />
+	<PORT id="Sl_Ready" size="1" direction="OUT" />
+	<PORT id="BRAM_Rst_A" size="1" direction="OUT" />
+	<PORT id="BRAM_Clk_A" size="1" direction="OUT" />
+	<PORT id="BRAM_EN_A" size="1" direction="OUT" />
+	<PORT id="BRAM_WEN_A" size="4" direction="OUT" />
+	<PORT id="BRAM_Addr_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Din_A" size="32" direction="IN" />
+	<PORT id="BRAM_Dout_A" size="32" direction="OUT" />
+</interface>
+</memory>
+<memory id="dlmb_cntlr" type="MEMORY_CONTROLLER" name="dlmb_cntlr">
+<addrs>
+<addr id="dlmb_cntlr" base="0x00000000" high="0x0000ffff" />
+</addrs>
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="IN" />
+	<PORT id="LMB_WriteDBus" size="32" direction="IN" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="IN" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="IN" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="IN" />
+	<PORT id="LMB_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="OUT" />
+	<PORT id="Sl_Ready" size="1" direction="OUT" />
+	<PORT id="BRAM_Rst_A" size="1" direction="OUT" />
+	<PORT id="BRAM_Clk_A" size="1" direction="OUT" />
+	<PORT id="BRAM_EN_A" size="1" direction="OUT" />
+	<PORT id="BRAM_WEN_A" size="4" direction="OUT" />
+	<PORT id="BRAM_Addr_A" size="32" direction="OUT" />
+	<PORT id="BRAM_Din_A" size="32" direction="IN" />
+	<PORT id="BRAM_Dout_A" size="32" direction="OUT" />
+</interface>
+</memory>
+<communication id="dlmb_1" type="BUS" name="dlmb_1">
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="OUT" />
+	<PORT id="M_ABus" size="32" direction="IN" />
+	<PORT id="M_ReadStrobe" size="1" direction="IN" />
+	<PORT id="M_WriteStrobe" size="1" direction="IN" />
+	<PORT id="M_AddrStrobe" size="1" direction="IN" />
+	<PORT id="M_DBus" size="32" direction="IN" />
+	<PORT id="M_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="IN" />
+	<PORT id="Sl_Ready" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="OUT" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_ReadDBus" size="32" direction="OUT" />
+	<PORT id="LMB_WriteDBus" size="32" direction="OUT" />
+	<PORT id="LMB_Ready" size="1" direction="OUT" />
+	<PORT id="LMB_BE" size="4" direction="OUT" />
+</interface>
+</communication>
+<communication id="dlmb" type="BUS" name="dlmb">
+<interface>
+	<PORT id="LMB_Clk" size="1" direction="IN" />
+	<PORT id="SYS_Rst" size="1" direction="IN" />
+	<PORT id="LMB_Rst" size="1" direction="OUT" />
+	<PORT id="M_ABus" size="32" direction="IN" />
+	<PORT id="M_ReadStrobe" size="1" direction="IN" />
+	<PORT id="M_WriteStrobe" size="1" direction="IN" />
+	<PORT id="M_AddrStrobe" size="1" direction="IN" />
+	<PORT id="M_DBus" size="32" direction="IN" />
+	<PORT id="M_BE" size="4" direction="IN" />
+	<PORT id="Sl_DBus" size="32" direction="IN" />
+	<PORT id="Sl_Ready" size="1" direction="IN" />
+	<PORT id="LMB_ABus" size="32" direction="OUT" />
+	<PORT id="LMB_ReadStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_WriteStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_AddrStrobe" size="1" direction="OUT" />
+	<PORT id="LMB_ReadDBus" size="32" direction="OUT" />
+	<PORT id="LMB_WriteDBus" size="32" direction="OUT" />
+	<PORT id="LMB_Ready" size="1" direction="OUT" />
+	<PORT id="LMB_BE" size="4" direction="OUT" />
+</interface>
+</communication>
+<clock id="clock_generator_0" type="CLOCK_GENERATOR" name="clock_generator_0">
+<interface>
+</interface>
+</clock>
+<memory id="DDR2_SDRAM" type="TODEFINE" name="DDR2_SDRAM">
+<addrs>
+<addr id="MPMC" base="0x90000000" high="0x9fffffff" />
+</addrs>
+<interface>
+	<PORT id="MPMC_Clk0" size="1" direction="IN" />
+	<PORT id="MPMC_Clk0_DIV2" size="1" direction="IN" />
+	<PORT id="MPMC_Clk90" size="1" direction="IN" />
+	<PORT id="MPMC_Clk_200MHz" size="1" direction="IN" />
+	<PORT id="MPMC_Rst" size="1" direction="IN" />
+	<PORT id="DDR2_Clk" size="0" direction="OUT" />
+	<PORT id="DDR2_Clk_n" size="0" direction="OUT" />
+	<PORT id="DDR2_CE" size="0" direction="OUT" />
+	<PORT id="DDR2_CS_n" size="0" direction="OUT" />
+	<PORT id="DDR2_ODT" size="0" direction="OUT" />
+	<PORT id="DDR2_RAS_n" size="1" direction="OUT" />
+	<PORT id="DDR2_CAS_n" size="1" direction="OUT" />
+	<PORT id="DDR2_WE_n" size="1" direction="OUT" />
+	<PORT id="DDR2_BankAddr" size="0" direction="OUT" />
+	<PORT id="DDR2_Addr" size="-11" direction="OUT" />
+	<PORT id="DDR2_DQ" size="-62" direction="INOUT" />
+	<PORT id="DDR2_DM" size="-6" direction="OUT" />
+	<PORT id="DDR2_DQS" size="-6" direction="INOUT" />
+	<PORT id="DDR2_DQS_n" size="-6" direction="INOUT" />
+	<PORT id="SPLB0_Clk" size="1" direction="IN" />
+	<PORT id="SPLB0_Rst" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_ABus" size="32" direction="IN" />
+	<PORT id="SPLB0_PLB_PAValid" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_SAValid" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_masterID" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_RNW" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_BE" size="8" direction="IN" />
+	<PORT id="SPLB0_PLB_UABus" size="32" direction="IN" />
+	<PORT id="SPLB0_PLB_rdPrim" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_wrPrim" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_abort" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_busLock" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_MSize" size="2" direction="IN" />
+	<PORT id="SPLB0_PLB_size" size="4" direction="IN" />
+	<PORT id="SPLB0_PLB_type" size="3" direction="IN" />
+	<PORT id="SPLB0_PLB_lockErr" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_wrPendReq" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_wrPendPri" size="2" direction="IN" />
+	<PORT id="SPLB0_PLB_rdPendReq" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_rdPendPri" size="2" direction="IN" />
+	<PORT id="SPLB0_PLB_reqPri" size="2" direction="IN" />
+	<PORT id="SPLB0_PLB_TAttribute" size="16" direction="IN" />
+	<PORT id="SPLB0_PLB_rdBurst" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_wrBurst" size="1" direction="IN" />
+	<PORT id="SPLB0_PLB_wrDBus" size="64" direction="IN" />
+	<PORT id="SPLB0_Sl_addrAck" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_SSize" size="2" direction="OUT" />
+	<PORT id="SPLB0_Sl_wait" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_rearbitrate" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_wrDAck" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_wrComp" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_wrBTerm" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_rdDBus" size="64" direction="OUT" />
+	<PORT id="SPLB0_Sl_rdWdAddr" size="4" direction="OUT" />
+	<PORT id="SPLB0_Sl_rdDAck" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_rdComp" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_rdBTerm" size="1" direction="OUT" />
+	<PORT id="SPLB0_Sl_MBusy" size="2" direction="OUT" />
+	<PORT id="SPLB0_Sl_MRdErr" size="2" direction="OUT" />
+	<PORT id="SPLB0_Sl_MWrErr" size="2" direction="OUT" />
+	<PORT id="SPLB0_Sl_MIRQ" size="2" direction="OUT" />
+	<PORT id="SPLB1_Clk" size="1" direction="IN" />
+	<PORT id="SPLB1_Rst" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_ABus" size="32" direction="IN" />
+	<PORT id="SPLB1_PLB_PAValid" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_SAValid" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_masterID" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_RNW" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_BE" size="8" direction="IN" />
+	<PORT id="SPLB1_PLB_UABus" size="32" direction="IN" />
+	<PORT id="SPLB1_PLB_rdPrim" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_wrPrim" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_abort" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_busLock" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_MSize" size="2" direction="IN" />
+	<PORT id="SPLB1_PLB_size" size="4" direction="IN" />
+	<PORT id="SPLB1_PLB_type" size="3" direction="IN" />
+	<PORT id="SPLB1_PLB_lockErr" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_wrPendReq" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_wrPendPri" size="2" direction="IN" />
+	<PORT id="SPLB1_PLB_rdPendReq" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_rdPendPri" size="2" direction="IN" />
+	<PORT id="SPLB1_PLB_reqPri" size="2" direction="IN" />
+	<PORT id="SPLB1_PLB_TAttribute" size="16" direction="IN" />
+	<PORT id="SPLB1_PLB_rdBurst" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_wrBurst" size="1" direction="IN" />
+	<PORT id="SPLB1_PLB_wrDBus" size="64" direction="IN" />
+	<PORT id="SPLB1_Sl_addrAck" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_SSize" size="2" direction="OUT" />
+	<PORT id="SPLB1_Sl_wait" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_rearbitrate" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_wrDAck" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_wrComp" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_wrBTerm" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_rdDBus" size="64" direction="OUT" />
+	<PORT id="SPLB1_Sl_rdWdAddr" size="4" direction="OUT" />
+	<PORT id="SPLB1_Sl_rdDAck" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_rdComp" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_rdBTerm" size="1" direction="OUT" />
+	<PORT id="SPLB1_Sl_MBusy" size="2" direction="OUT" />
+	<PORT id="SPLB1_Sl_MRdErr" size="2" direction="OUT" />
+	<PORT id="SPLB1_Sl_MWrErr" size="2" direction="OUT" />
+	<PORT id="SPLB1_Sl_MIRQ" size="2" direction="OUT" />
+	<PORT id="PIM2_Addr" size="-30" direction="IN" />
+	<PORT id="PIM2_AddrReq" size="1" direction="IN" />
+	<PORT id="PIM2_AddrAck" size="1" direction="OUT" />
+	<PORT id="PIM2_RNW" size="1" direction="IN" />
+	<PORT id="PIM2_Size" size="-2" direction="IN" />
+	<PORT id="PIM2_RdModWr" size="1" direction="IN" />
+	<PORT id="PIM2_WrFIFO_Data" size="-62" direction="IN" />
+	<PORT id="PIM2_WrFIFO_BE" size="-6" direction="IN" />
+	<PORT id="PIM2_WrFIFO_Push" size="1" direction="IN" />
+	<PORT id="PIM2_RdFIFO_Data" size="-62" direction="OUT" />
+	<PORT id="PIM2_RdFIFO_Pop" size="1" direction="IN" />
+	<PORT id="PIM2_RdFIFO_RdWdAddr" size="-2" direction="OUT" />
+	<PORT id="PIM2_WrFIFO_Empty" size="1" direction="OUT" />
+	<PORT id="PIM2_WrFIFO_AlmostFull" size="1" direction="OUT" />
+	<PORT id="PIM2_WrFIFO_Flush" size="1" direction="IN" />
+	<PORT id="PIM2_RdFIFO_Empty" size="1" direction="OUT" />
+	<PORT id="PIM2_RdFIFO_Flush" size="1" direction="IN" />
+	<PORT id="PIM2_RdFIFO_Latency" size="0" direction="OUT" />
+	<PORT id="PIM2_InitDone" size="1" direction="OUT" />
+	<PORT id="PIM3_Addr" size="-30" direction="IN" />
+	<PORT id="PIM3_AddrReq" size="1" direction="IN" />
+	<PORT id="PIM3_AddrAck" size="1" direction="OUT" />
+	<PORT id="PIM3_RNW" size="1" direction="IN" />
+	<PORT id="PIM3_Size" size="-2" direction="IN" />
+	<PORT id="PIM3_RdModWr" size="1" direction="IN" />
+	<PORT id="PIM3_WrFIFO_Data" size="-62" direction="IN" />
+	<PORT id="PIM3_WrFIFO_BE" size="-6" direction="IN" />
+	<PORT id="PIM3_WrFIFO_Push" size="1" direction="IN" />
+	<PORT id="PIM3_RdFIFO_Data" size="-62" direction="OUT" />
+	<PORT id="PIM3_RdFIFO_Pop" size="1" direction="IN" />
+	<PORT id="PIM3_RdFIFO_RdWdAddr" size="-2" direction="OUT" />
+	<PORT id="PIM3_WrFIFO_Empty" size="1" direction="OUT" />
+	<PORT id="PIM3_WrFIFO_AlmostFull" size="1" direction="OUT" />
+	<PORT id="PIM3_WrFIFO_Flush" size="1" direction="IN" />
+	<PORT id="PIM3_RdFIFO_Empty" size="1" direction="OUT" />
+	<PORT id="PIM3_RdFIFO_Flush" size="1" direction="IN" />
+	<PORT id="PIM3_RdFIFO_Latency" size="0" direction="OUT" />
+	<PORT id="PIM3_InitDone" size="1" direction="OUT" />
+</interface>
+</memory>
+<connection>
+<physical>
+	<link src="mb_plb.PLB_Rst" tgt="xps_mailbox_0.SPLB0_Rst" size="1"/>
+	<link src="mb_plb.PLB_ABus" tgt="xps_mailbox_0.PLB0_ABus" size="32"/>
+	<link src="mb_plb.PLB_PAValid" tgt="xps_mailbox_0.PLB0_PAValid" size="1"/>
+	<link src="mb_plb.PLB_masterID" tgt="xps_mailbox_0.PLB0_masterID" size="1"/>
+	<link src="mb_plb.PLB_RNW" tgt="xps_mailbox_0.PLB0_RNW" size="1"/>
+	<link src="mb_plb.PLB_BE" tgt="xps_mailbox_0.PLB0_BE" size="8"/>
+	<link src="mb_plb.PLB_size" tgt="xps_mailbox_0.PLB0_size" size="4"/>
+	<link src="mb_plb.PLB_type" tgt="xps_mailbox_0.PLB0_type" size="3"/>
+	<link src="mb_plb.PLB_wrDBus" tgt="xps_mailbox_0.PLB0_wrDBus" size="64"/>
+	<link src="xps_mailbox_0.Sl0_addrAck" tgt="mb_plb.Sl_addrAck" size="3"/>
+	<link src="xps_mailbox_0.Sl0_SSize" tgt="mb_plb.Sl_SSize" size="6"/>
+	<link src="xps_mailbox_0.Sl0_wait" tgt="mb_plb.Sl_wait" size="3"/>
+	<link src="xps_mailbox_0.Sl0_rearbitrate" tgt="mb_plb.Sl_rearbitrate" size="3"/>
+	<link src="xps_mailbox_0.Sl0_wrDAck" tgt="mb_plb.Sl_wrDAck" size="3"/>
+	<link src="xps_mailbox_0.Sl0_wrComp" tgt="mb_plb.Sl_wrComp" size="3"/>
+	<link src="xps_mailbox_0.Sl0_rdDBus" tgt="mb_plb.Sl_rdDBus" size="192"/>
+	<link src="xps_mailbox_0.Sl0_rdDAck" tgt="mb_plb.Sl_rdDAck" size="3"/>
+	<link src="xps_mailbox_0.Sl0_rdComp" tgt="mb_plb.Sl_rdComp" size="3"/>
+	<link src="xps_mailbox_0.Sl0_MBusy" tgt="mb_plb.Sl_MBusy" size="6"/>
+	<link src="xps_mailbox_0.Sl0_MWrErr" tgt="mb_plb.Sl_MWrErr" size="6"/>
+	<link src="xps_mailbox_0.Sl0_MRdErr" tgt="mb_plb.Sl_MRdErr" size="6"/>
+	<link src="mb_plb.PLB_UABus" tgt="xps_mailbox_0.PLB0_UABus" size="32"/>
+	<link src="mb_plb.PLB_SAValid" tgt="xps_mailbox_0.PLB0_SAValid" size="1"/>
+	<link src="mb_plb.PLB_rdPrim" tgt="xps_mailbox_0.PLB0_rdPrim" size="3"/>
+	<link src="mb_plb.PLB_wrPrim" tgt="xps_mailbox_0.PLB0_wrPrim" size="3"/>
+	<link src="mb_plb.PLB_abort" tgt="xps_mailbox_0.PLB0_abort" size="1"/>
+	<link src="mb_plb.PLB_busLock" tgt="xps_mailbox_0.PLB0_busLock" size="1"/>
+	<link src="mb_plb.PLB_MSize" tgt="xps_mailbox_0.PLB0_MSize" size="2"/>
+	<link src="mb_plb.PLB_lockErr" tgt="xps_mailbox_0.PLB0_lockErr" size="1"/>
+	<link src="mb_plb.PLB_wrBurst" tgt="xps_mailbox_0.PLB0_wrBurst" size="1"/>
+	<link src="mb_plb.PLB_rdBurst" tgt="xps_mailbox_0.PLB0_rdBurst" size="1"/>
+	<link src="mb_plb.PLB_wrPendReq" tgt="xps_mailbox_0.PLB0_wrPendReq" size="1"/>
+	<link src="mb_plb.PLB_rdPendReq" tgt="xps_mailbox_0.PLB0_rdPendReq" size="1"/>
+	<link src="mb_plb.PLB_wrPendPri" tgt="xps_mailbox_0.PLB0_wrPendPri" size="2"/>
+	<link src="mb_plb.PLB_rdPendPri" tgt="xps_mailbox_0.PLB0_rdPendPri" size="2"/>
+	<link src="mb_plb.PLB_reqPri" tgt="xps_mailbox_0.PLB0_reqPri" size="2"/>
+	<link src="mb_plb.PLB_TAttribute" tgt="xps_mailbox_0.PLB0_TAttribute" size="16"/>
+	<link src="xps_mailbox_0.Sl0_wrBTerm" tgt="mb_plb.Sl_wrBTerm" size="3"/>
+	<link src="xps_mailbox_0.Sl0_rdWdAddr" tgt="mb_plb.Sl_rdWdAddr" size="12"/>
+	<link src="xps_mailbox_0.Sl0_rdBTerm" tgt="mb_plb.Sl_rdBTerm" size="3"/>
+	<link src="xps_mailbox_0.Sl0_MIRQ" tgt="mb_plb.Sl_MIRQ" size="6"/>
+	<link src="mb_plb_1.PLB_Rst" tgt="xps_mailbox_0.SPLB1_Rst" size="1"/>
+	<link src="mb_plb_1.PLB_ABus" tgt="xps_mailbox_0.PLB1_ABus" size="32"/>
+	<link src="mb_plb_1.PLB_PAValid" tgt="xps_mailbox_0.PLB1_PAValid" size="1"/>
+	<link src="mb_plb_1.PLB_masterID" tgt="xps_mailbox_0.PLB1_masterID" size="1"/>
+	<link src="mb_plb_1.PLB_RNW" tgt="xps_mailbox_0.PLB1_RNW" size="1"/>
+	<link src="mb_plb_1.PLB_BE" tgt="xps_mailbox_0.PLB1_BE" size="8"/>
+	<link src="mb_plb_1.PLB_size" tgt="xps_mailbox_0.PLB1_size" size="4"/>
+	<link src="mb_plb_1.PLB_type" tgt="xps_mailbox_0.PLB1_type" size="3"/>
+	<link src="mb_plb_1.PLB_wrDBus" tgt="xps_mailbox_0.PLB1_wrDBus" size="64"/>
+	<link src="xps_mailbox_0.Sl1_addrAck" tgt="mb_plb_1.Sl_addrAck" size="7"/>
+	<link src="xps_mailbox_0.Sl1_SSize" tgt="mb_plb_1.Sl_SSize" size="14"/>
+	<link src="xps_mailbox_0.Sl1_wait" tgt="mb_plb_1.Sl_wait" size="7"/>
+	<link src="xps_mailbox_0.Sl1_rearbitrate" tgt="mb_plb_1.Sl_rearbitrate" size="7"/>
+	<link src="xps_mailbox_0.Sl1_wrDAck" tgt="mb_plb_1.Sl_wrDAck" size="7"/>
+	<link src="xps_mailbox_0.Sl1_wrComp" tgt="mb_plb_1.Sl_wrComp" size="7"/>
+	<link src="xps_mailbox_0.Sl1_rdDBus" tgt="mb_plb_1.Sl_rdDBus" size="448"/>
+	<link src="xps_mailbox_0.Sl1_rdDAck" tgt="mb_plb_1.Sl_rdDAck" size="7"/>
+	<link src="xps_mailbox_0.Sl1_rdComp" tgt="mb_plb_1.Sl_rdComp" size="7"/>
+	<link src="xps_mailbox_0.Sl1_MBusy" tgt="mb_plb_1.Sl_MBusy" size="14"/>
+	<link src="xps_mailbox_0.Sl1_MWrErr" tgt="mb_plb_1.Sl_MWrErr" size="14"/>
+	<link src="xps_mailbox_0.Sl1_MRdErr" tgt="mb_plb_1.Sl_MRdErr" size="14"/>
+	<link src="mb_plb_1.PLB_UABus" tgt="xps_mailbox_0.PLB1_UABus" size="32"/>
+	<link src="mb_plb_1.PLB_SAValid" tgt="xps_mailbox_0.PLB1_SAValid" size="1"/>
+	<link src="mb_plb_1.PLB_rdPrim" tgt="xps_mailbox_0.PLB1_rdPrim" size="7"/>
+	<link src="mb_plb_1.PLB_wrPrim" tgt="xps_mailbox_0.PLB1_wrPrim" size="7"/>
+	<link src="mb_plb_1.PLB_abort" tgt="xps_mailbox_0.PLB1_abort" size="1"/>
+	<link src="mb_plb_1.PLB_busLock" tgt="xps_mailbox_0.PLB1_busLock" size="1"/>
+	<link src="mb_plb_1.PLB_MSize" tgt="xps_mailbox_0.PLB1_MSize" size="2"/>
+	<link src="mb_plb_1.PLB_lockErr" tgt="xps_mailbox_0.PLB1_lockErr" size="1"/>
+	<link src="mb_plb_1.PLB_wrBurst" tgt="xps_mailbox_0.PLB1_wrBurst" size="1"/>
+	<link src="mb_plb_1.PLB_rdBurst" tgt="xps_mailbox_0.PLB1_rdBurst" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendReq" tgt="xps_mailbox_0.PLB1_wrPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_rdPendReq" tgt="xps_mailbox_0.PLB1_rdPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendPri" tgt="xps_mailbox_0.PLB1_wrPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_rdPendPri" tgt="xps_mailbox_0.PLB1_rdPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_reqPri" tgt="xps_mailbox_0.PLB1_reqPri" size="2"/>
+	<link src="mb_plb_1.PLB_TAttribute" tgt="xps_mailbox_0.PLB1_TAttribute" size="16"/>
+	<link src="xps_mailbox_0.Sl1_wrBTerm" tgt="mb_plb_1.Sl_wrBTerm" size="7"/>
+	<link src="xps_mailbox_0.Sl1_rdWdAddr" tgt="mb_plb_1.Sl_rdWdAddr" size="28"/>
+	<link src="xps_mailbox_0.Sl1_rdBTerm" tgt="mb_plb_1.Sl_rdBTerm" size="7"/>
+	<link src="xps_mailbox_0.Sl1_MIRQ" tgt="mb_plb_1.Sl_MIRQ" size="14"/>
+	<link src="mdm_0.Debug_SYS_Rst" tgt="proc_sys_reset_0.MB_Debug_Sys_Rst" size="1"/>
+	<link src="proc_sys_reset_0.MB_Reset" tgt="microblaze_1.MB_RESET" size="1"/>
+	<link src="proc_sys_reset_0.MB_Reset" tgt="microblaze_0.MB_RESET" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="mb_plb_1.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="mb_plb.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="ilmb_1.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="ilmb.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="dlmb_1.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Bus_Struct_Reset" tgt="dlmb.SYS_Rst" size="1"/>
+	<link src="proc_sys_reset_0.Peripheral_Reset" tgt="DDR2_SDRAM.MPMC_Rst" size="1"/>
+	<link src="dlmb_1.LMB_Rst" tgt="microblaze_1.RESET" size="1"/>
+	<link src="mdm_0.Ext_BRK" tgt="microblaze_1.EXT_BRK" size="1"/>
+	<link src="mdm_0.Ext_NM_BRK" tgt="microblaze_1.EXT_NM_BRK" size="1"/>
+	<link src="ilmb_1.LMB_ReadDBus" tgt="microblaze_1.INSTR" size="32"/>
+	<link src="ilmb_1.LMB_Ready" tgt="microblaze_1.IREADY" size="1"/>
+	<link src="microblaze_1.INSTR_ADDR" tgt="ilmb_1.M_ABus" size="32"/>
+	<link src="microblaze_1.IFETCH" tgt="ilmb_1.M_ReadStrobe" size="1"/>
+	<link src="microblaze_1.I_AS" tgt="ilmb_1.M_AddrStrobe" size="1"/>
+	<link src="microblaze_1.IPLB_M_ABus" tgt="mb_plb_1.M_ABus" size="64"/>
+	<link src="microblaze_1.IPLB_M_UABus" tgt="mb_plb_1.M_UABus" size="64"/>
+	<link src="microblaze_1.IPLB_M_BE" tgt="mb_plb_1.M_BE" size="16"/>
+	<link src="microblaze_1.IPLB_M_busLock" tgt="mb_plb_1.M_busLock" size="2"/>
+	<link src="microblaze_1.IPLB_M_lockErr" tgt="mb_plb_1.M_lockErr" size="2"/>
+	<link src="microblaze_1.IPLB_M_MSize" tgt="mb_plb_1.M_MSize" size="4"/>
+	<link src="microblaze_1.IPLB_M_priority" tgt="mb_plb_1.M_priority" size="4"/>
+	<link src="microblaze_1.IPLB_M_rdBurst" tgt="mb_plb_1.M_rdBurst" size="2"/>
+	<link src="microblaze_1.IPLB_M_request" tgt="mb_plb_1.M_request" size="2"/>
+	<link src="microblaze_1.IPLB_M_RNW" tgt="mb_plb_1.M_RNW" size="2"/>
+	<link src="microblaze_1.IPLB_M_size" tgt="mb_plb_1.M_size" size="8"/>
+	<link src="microblaze_1.IPLB_M_TAttribute" tgt="mb_plb_1.M_TAttribute" size="32"/>
+	<link src="microblaze_1.IPLB_M_type" tgt="mb_plb_1.M_type" size="6"/>
+	<link src="microblaze_1.IPLB_M_wrBurst" tgt="mb_plb_1.M_wrBurst" size="2"/>
+	<link src="microblaze_1.IPLB_M_wrDBus" tgt="mb_plb_1.M_wrDBus" size="128"/>
+	<link src="mb_plb_1.PLB_MBusy" tgt="microblaze_1.IPLB_MBusy" size="2"/>
+	<link src="mb_plb_1.PLB_MRdErr" tgt="microblaze_1.IPLB_MRdErr" size="2"/>
+	<link src="mb_plb_1.PLB_MWrErr" tgt="microblaze_1.IPLB_MWrErr" size="2"/>
+	<link src="mb_plb_1.PLB_MIRQ" tgt="microblaze_1.IPLB_MIRQ" size="2"/>
+	<link src="mb_plb_1.PLB_MWrBTerm" tgt="microblaze_1.IPLB_MWrBTerm" size="2"/>
+	<link src="mb_plb_1.PLB_MWrDAck" tgt="microblaze_1.IPLB_MWrDAck" size="2"/>
+	<link src="mb_plb_1.PLB_MAddrAck" tgt="microblaze_1.IPLB_MAddrAck" size="2"/>
+	<link src="mb_plb_1.PLB_MRdBTerm" tgt="microblaze_1.IPLB_MRdBTerm" size="2"/>
+	<link src="mb_plb_1.PLB_MRdDAck" tgt="microblaze_1.IPLB_MRdDAck" size="2"/>
+	<link src="mb_plb_1.PLB_MRdDBus" tgt="microblaze_1.IPLB_MRdDBus" size="128"/>
+	<link src="mb_plb_1.PLB_MRdWdAddr" tgt="microblaze_1.IPLB_MRdWdAddr" size="8"/>
+	<link src="mb_plb_1.PLB_MRearbitrate" tgt="microblaze_1.IPLB_MRearbitrate" size="2"/>
+	<link src="mb_plb_1.PLB_MSSize" tgt="microblaze_1.IPLB_MSSize" size="4"/>
+	<link src="mb_plb_1.PLB_MTimeout" tgt="microblaze_1.IPLB_MTimeout" size="2"/>
+	<link src="dlmb_1.LMB_ReadDBus" tgt="microblaze_1.DATA_READ" size="32"/>
+	<link src="dlmb_1.LMB_Ready" tgt="microblaze_1.DREADY" size="1"/>
+	<link src="microblaze_1.DATA_WRITE" tgt="dlmb_1.M_DBus" size="32"/>
+	<link src="microblaze_1.DATA_ADDR" tgt="dlmb_1.M_ABus" size="32"/>
+	<link src="microblaze_1.D_AS" tgt="dlmb_1.M_AddrStrobe" size="1"/>
+	<link src="microblaze_1.READ_STROBE" tgt="dlmb_1.M_ReadStrobe" size="1"/>
+	<link src="microblaze_1.WRITE_STROBE" tgt="dlmb_1.M_WriteStrobe" size="1"/>
+	<link src="microblaze_1.BYTE_ENABLE" tgt="dlmb_1.M_BE" size="4"/>
+	<link src="microblaze_1.DPLB_M_ABus" tgt="mb_plb_1.M_ABus" size="64"/>
+	<link src="microblaze_1.DPLB_M_UABus" tgt="mb_plb_1.M_UABus" size="64"/>
+	<link src="microblaze_1.DPLB_M_BE" tgt="mb_plb_1.M_BE" size="16"/>
+	<link src="microblaze_1.DPLB_M_busLock" tgt="mb_plb_1.M_busLock" size="2"/>
+	<link src="microblaze_1.DPLB_M_lockErr" tgt="mb_plb_1.M_lockErr" size="2"/>
+	<link src="microblaze_1.DPLB_M_MSize" tgt="mb_plb_1.M_MSize" size="4"/>
+	<link src="microblaze_1.DPLB_M_priority" tgt="mb_plb_1.M_priority" size="4"/>
+	<link src="microblaze_1.DPLB_M_rdBurst" tgt="mb_plb_1.M_rdBurst" size="2"/>
+	<link src="microblaze_1.DPLB_M_request" tgt="mb_plb_1.M_request" size="2"/>
+	<link src="microblaze_1.DPLB_M_RNW" tgt="mb_plb_1.M_RNW" size="2"/>
+	<link src="microblaze_1.DPLB_M_size" tgt="mb_plb_1.M_size" size="8"/>
+	<link src="microblaze_1.DPLB_M_TAttribute" tgt="mb_plb_1.M_TAttribute" size="32"/>
+	<link src="microblaze_1.DPLB_M_type" tgt="mb_plb_1.M_type" size="6"/>
+	<link src="microblaze_1.DPLB_M_wrBurst" tgt="mb_plb_1.M_wrBurst" size="2"/>
+	<link src="microblaze_1.DPLB_M_wrDBus" tgt="mb_plb_1.M_wrDBus" size="128"/>
+	<link src="mb_plb_1.PLB_MBusy" tgt="microblaze_1.DPLB_MBusy" size="2"/>
+	<link src="mb_plb_1.PLB_MRdErr" tgt="microblaze_1.DPLB_MRdErr" size="2"/>
+	<link src="mb_plb_1.PLB_MWrErr" tgt="microblaze_1.DPLB_MWrErr" size="2"/>
+	<link src="mb_plb_1.PLB_MIRQ" tgt="microblaze_1.DPLB_MIRQ" size="2"/>
+	<link src="mb_plb_1.PLB_MWrBTerm" tgt="microblaze_1.DPLB_MWrBTerm" size="2"/>
+	<link src="mb_plb_1.PLB_MWrDAck" tgt="microblaze_1.DPLB_MWrDAck" size="2"/>
+	<link src="mb_plb_1.PLB_MAddrAck" tgt="microblaze_1.DPLB_MAddrAck" size="2"/>
+	<link src="mb_plb_1.PLB_MRdBTerm" tgt="microblaze_1.DPLB_MRdBTerm" size="2"/>
+	<link src="mb_plb_1.PLB_MRdDAck" tgt="microblaze_1.DPLB_MRdDAck" size="2"/>
+	<link src="mb_plb_1.PLB_MRdDBus" tgt="microblaze_1.DPLB_MRdDBus" size="128"/>
+	<link src="mb_plb_1.PLB_MRdWdAddr" tgt="microblaze_1.DPLB_MRdWdAddr" size="8"/>
+	<link src="mb_plb_1.PLB_MRearbitrate" tgt="microblaze_1.DPLB_MRearbitrate" size="2"/>
+	<link src="mb_plb_1.PLB_MSSize" tgt="microblaze_1.DPLB_MSSize" size="4"/>
+	<link src="mb_plb_1.PLB_MTimeout" tgt="microblaze_1.DPLB_MTimeout" size="2"/>
+	<link src="mdm_0.Dbg_Clk_1" tgt="microblaze_1.DBG_CLK" size="1"/>
+	<link src="mdm_0.Dbg_TDI_1" tgt="microblaze_1.DBG_TDI" size="1"/>
+	<link src="microblaze_1.DBG_TDO" tgt="mdm_0.Dbg_TDO_1" size="1"/>
+	<link src="mdm_0.Dbg_Reg_En_1" tgt="microblaze_1.DBG_REG_EN" size="5"/>
+	<link src="mdm_0.Dbg_Shift_1" tgt="microblaze_1.DBG_SHIFT" size="1"/>
+	<link src="mdm_0.Dbg_Capture_1" tgt="microblaze_1.DBG_CAPTURE" size="1"/>
+	<link src="mdm_0.Dbg_Update_1" tgt="microblaze_1.DBG_UPDATE" size="1"/>
+	<link src="mdm_0.Dbg_Rst_1" tgt="microblaze_1.DEBUG_RST" size="1"/>
+	<link src="dlmb.LMB_Rst" tgt="microblaze_0.RESET" size="1"/>
+	<link src="mdm_0.Ext_BRK" tgt="microblaze_0.EXT_BRK" size="1"/>
+	<link src="mdm_0.Ext_NM_BRK" tgt="microblaze_0.EXT_NM_BRK" size="1"/>
+	<link src="ilmb.LMB_ReadDBus" tgt="microblaze_0.INSTR" size="32"/>
+	<link src="ilmb.LMB_Ready" tgt="microblaze_0.IREADY" size="1"/>
+	<link src="microblaze_0.INSTR_ADDR" tgt="ilmb.M_ABus" size="32"/>
+	<link src="microblaze_0.IFETCH" tgt="ilmb.M_ReadStrobe" size="1"/>
+	<link src="microblaze_0.I_AS" tgt="ilmb.M_AddrStrobe" size="1"/>
+	<link src="microblaze_0.IPLB_M_ABus" tgt="mb_plb.M_ABus" size="64"/>
+	<link src="microblaze_0.IPLB_M_UABus" tgt="mb_plb.M_UABus" size="64"/>
+	<link src="microblaze_0.IPLB_M_BE" tgt="mb_plb.M_BE" size="16"/>
+	<link src="microblaze_0.IPLB_M_busLock" tgt="mb_plb.M_busLock" size="2"/>
+	<link src="microblaze_0.IPLB_M_lockErr" tgt="mb_plb.M_lockErr" size="2"/>
+	<link src="microblaze_0.IPLB_M_MSize" tgt="mb_plb.M_MSize" size="4"/>
+	<link src="microblaze_0.IPLB_M_priority" tgt="mb_plb.M_priority" size="4"/>
+	<link src="microblaze_0.IPLB_M_rdBurst" tgt="mb_plb.M_rdBurst" size="2"/>
+	<link src="microblaze_0.IPLB_M_request" tgt="mb_plb.M_request" size="2"/>
+	<link src="microblaze_0.IPLB_M_RNW" tgt="mb_plb.M_RNW" size="2"/>
+	<link src="microblaze_0.IPLB_M_size" tgt="mb_plb.M_size" size="8"/>
+	<link src="microblaze_0.IPLB_M_TAttribute" tgt="mb_plb.M_TAttribute" size="32"/>
+	<link src="microblaze_0.IPLB_M_type" tgt="mb_plb.M_type" size="6"/>
+	<link src="microblaze_0.IPLB_M_wrBurst" tgt="mb_plb.M_wrBurst" size="2"/>
+	<link src="microblaze_0.IPLB_M_wrDBus" tgt="mb_plb.M_wrDBus" size="128"/>
+	<link src="mb_plb.PLB_MBusy" tgt="microblaze_0.IPLB_MBusy" size="2"/>
+	<link src="mb_plb.PLB_MRdErr" tgt="microblaze_0.IPLB_MRdErr" size="2"/>
+	<link src="mb_plb.PLB_MWrErr" tgt="microblaze_0.IPLB_MWrErr" size="2"/>
+	<link src="mb_plb.PLB_MIRQ" tgt="microblaze_0.IPLB_MIRQ" size="2"/>
+	<link src="mb_plb.PLB_MWrBTerm" tgt="microblaze_0.IPLB_MWrBTerm" size="2"/>
+	<link src="mb_plb.PLB_MWrDAck" tgt="microblaze_0.IPLB_MWrDAck" size="2"/>
+	<link src="mb_plb.PLB_MAddrAck" tgt="microblaze_0.IPLB_MAddrAck" size="2"/>
+	<link src="mb_plb.PLB_MRdBTerm" tgt="microblaze_0.IPLB_MRdBTerm" size="2"/>
+	<link src="mb_plb.PLB_MRdDAck" tgt="microblaze_0.IPLB_MRdDAck" size="2"/>
+	<link src="mb_plb.PLB_MRdDBus" tgt="microblaze_0.IPLB_MRdDBus" size="128"/>
+	<link src="mb_plb.PLB_MRdWdAddr" tgt="microblaze_0.IPLB_MRdWdAddr" size="8"/>
+	<link src="mb_plb.PLB_MRearbitrate" tgt="microblaze_0.IPLB_MRearbitrate" size="2"/>
+	<link src="mb_plb.PLB_MSSize" tgt="microblaze_0.IPLB_MSSize" size="4"/>
+	<link src="mb_plb.PLB_MTimeout" tgt="microblaze_0.IPLB_MTimeout" size="2"/>
+	<link src="dlmb.LMB_ReadDBus" tgt="microblaze_0.DATA_READ" size="32"/>
+	<link src="dlmb.LMB_Ready" tgt="microblaze_0.DREADY" size="1"/>
+	<link src="microblaze_0.DATA_WRITE" tgt="dlmb.M_DBus" size="32"/>
+	<link src="microblaze_0.DATA_ADDR" tgt="dlmb.M_ABus" size="32"/>
+	<link src="microblaze_0.D_AS" tgt="dlmb.M_AddrStrobe" size="1"/>
+	<link src="microblaze_0.READ_STROBE" tgt="dlmb.M_ReadStrobe" size="1"/>
+	<link src="microblaze_0.WRITE_STROBE" tgt="dlmb.M_WriteStrobe" size="1"/>
+	<link src="microblaze_0.BYTE_ENABLE" tgt="dlmb.M_BE" size="4"/>
+	<link src="microblaze_0.DPLB_M_ABus" tgt="mb_plb.M_ABus" size="64"/>
+	<link src="microblaze_0.DPLB_M_UABus" tgt="mb_plb.M_UABus" size="64"/>
+	<link src="microblaze_0.DPLB_M_BE" tgt="mb_plb.M_BE" size="16"/>
+	<link src="microblaze_0.DPLB_M_busLock" tgt="mb_plb.M_busLock" size="2"/>
+	<link src="microblaze_0.DPLB_M_lockErr" tgt="mb_plb.M_lockErr" size="2"/>
+	<link src="microblaze_0.DPLB_M_MSize" tgt="mb_plb.M_MSize" size="4"/>
+	<link src="microblaze_0.DPLB_M_priority" tgt="mb_plb.M_priority" size="4"/>
+	<link src="microblaze_0.DPLB_M_rdBurst" tgt="mb_plb.M_rdBurst" size="2"/>
+	<link src="microblaze_0.DPLB_M_request" tgt="mb_plb.M_request" size="2"/>
+	<link src="microblaze_0.DPLB_M_RNW" tgt="mb_plb.M_RNW" size="2"/>
+	<link src="microblaze_0.DPLB_M_size" tgt="mb_plb.M_size" size="8"/>
+	<link src="microblaze_0.DPLB_M_TAttribute" tgt="mb_plb.M_TAttribute" size="32"/>
+	<link src="microblaze_0.DPLB_M_type" tgt="mb_plb.M_type" size="6"/>
+	<link src="microblaze_0.DPLB_M_wrBurst" tgt="mb_plb.M_wrBurst" size="2"/>
+	<link src="microblaze_0.DPLB_M_wrDBus" tgt="mb_plb.M_wrDBus" size="128"/>
+	<link src="mb_plb.PLB_MBusy" tgt="microblaze_0.DPLB_MBusy" size="2"/>
+	<link src="mb_plb.PLB_MRdErr" tgt="microblaze_0.DPLB_MRdErr" size="2"/>
+	<link src="mb_plb.PLB_MWrErr" tgt="microblaze_0.DPLB_MWrErr" size="2"/>
+	<link src="mb_plb.PLB_MIRQ" tgt="microblaze_0.DPLB_MIRQ" size="2"/>
+	<link src="mb_plb.PLB_MWrBTerm" tgt="microblaze_0.DPLB_MWrBTerm" size="2"/>
+	<link src="mb_plb.PLB_MWrDAck" tgt="microblaze_0.DPLB_MWrDAck" size="2"/>
+	<link src="mb_plb.PLB_MAddrAck" tgt="microblaze_0.DPLB_MAddrAck" size="2"/>
+	<link src="mb_plb.PLB_MRdBTerm" tgt="microblaze_0.DPLB_MRdBTerm" size="2"/>
+	<link src="mb_plb.PLB_MRdDAck" tgt="microblaze_0.DPLB_MRdDAck" size="2"/>
+	<link src="mb_plb.PLB_MRdDBus" tgt="microblaze_0.DPLB_MRdDBus" size="128"/>
+	<link src="mb_plb.PLB_MRdWdAddr" tgt="microblaze_0.DPLB_MRdWdAddr" size="8"/>
+	<link src="mb_plb.PLB_MRearbitrate" tgt="microblaze_0.DPLB_MRearbitrate" size="2"/>
+	<link src="mb_plb.PLB_MSSize" tgt="microblaze_0.DPLB_MSSize" size="4"/>
+	<link src="mb_plb.PLB_MTimeout" tgt="microblaze_0.DPLB_MTimeout" size="2"/>
+	<link src="mdm_0.Dbg_Clk_0" tgt="microblaze_0.DBG_CLK" size="1"/>
+	<link src="mdm_0.Dbg_TDI_0" tgt="microblaze_0.DBG_TDI" size="1"/>
+	<link src="microblaze_0.DBG_TDO" tgt="mdm_0.Dbg_TDO_0" size="1"/>
+	<link src="mdm_0.Dbg_Reg_En_0" tgt="microblaze_0.DBG_REG_EN" size="5"/>
+	<link src="mdm_0.Dbg_Shift_0" tgt="microblaze_0.DBG_SHIFT" size="1"/>
+	<link src="mdm_0.Dbg_Capture_0" tgt="microblaze_0.DBG_CAPTURE" size="1"/>
+	<link src="mdm_0.Dbg_Update_0" tgt="microblaze_0.DBG_UPDATE" size="1"/>
+	<link src="mdm_0.Dbg_Rst_0" tgt="microblaze_0.DEBUG_RST" size="1"/>
+	<link src="mb_plb_1.SPLB_Rst" tgt="mdm_0.SPLB_Rst" size="7"/>
+	<link src="mb_plb_1.PLB_ABus" tgt="mdm_0.PLB_ABus" size="32"/>
+	<link src="mb_plb_1.PLB_UABus" tgt="mdm_0.PLB_UABus" size="32"/>
+	<link src="mb_plb_1.PLB_PAValid" tgt="mdm_0.PLB_PAValid" size="1"/>
+	<link src="mb_plb_1.PLB_SAValid" tgt="mdm_0.PLB_SAValid" size="1"/>
+	<link src="mb_plb_1.PLB_rdPrim" tgt="mdm_0.PLB_rdPrim" size="7"/>
+	<link src="mb_plb_1.PLB_wrPrim" tgt="mdm_0.PLB_wrPrim" size="7"/>
+	<link src="mb_plb_1.PLB_masterID" tgt="mdm_0.PLB_masterID" size="1"/>
+	<link src="mb_plb_1.PLB_abort" tgt="mdm_0.PLB_abort" size="1"/>
+	<link src="mb_plb_1.PLB_busLock" tgt="mdm_0.PLB_busLock" size="1"/>
+	<link src="mb_plb_1.PLB_RNW" tgt="mdm_0.PLB_RNW" size="1"/>
+	<link src="mb_plb_1.PLB_BE" tgt="mdm_0.PLB_BE" size="8"/>
+	<link src="mb_plb_1.PLB_MSize" tgt="mdm_0.PLB_MSize" size="2"/>
+	<link src="mb_plb_1.PLB_size" tgt="mdm_0.PLB_size" size="4"/>
+	<link src="mb_plb_1.PLB_type" tgt="mdm_0.PLB_type" size="3"/>
+	<link src="mb_plb_1.PLB_lockErr" tgt="mdm_0.PLB_lockErr" size="1"/>
+	<link src="mb_plb_1.PLB_wrDBus" tgt="mdm_0.PLB_wrDBus" size="64"/>
+	<link src="mb_plb_1.PLB_wrBurst" tgt="mdm_0.PLB_wrBurst" size="1"/>
+	<link src="mb_plb_1.PLB_rdBurst" tgt="mdm_0.PLB_rdBurst" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendReq" tgt="mdm_0.PLB_wrPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_rdPendReq" tgt="mdm_0.PLB_rdPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendPri" tgt="mdm_0.PLB_wrPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_rdPendPri" tgt="mdm_0.PLB_rdPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_reqPri" tgt="mdm_0.PLB_reqPri" size="2"/>
+	<link src="mb_plb_1.PLB_TAttribute" tgt="mdm_0.PLB_TAttribute" size="16"/>
+	<link src="mdm_0.Sl_addrAck" tgt="mb_plb_1.Sl_addrAck" size="7"/>
+	<link src="mdm_0.Sl_SSize" tgt="mb_plb_1.Sl_SSize" size="14"/>
+	<link src="mdm_0.Sl_wait" tgt="mb_plb_1.Sl_wait" size="7"/>
+	<link src="mdm_0.Sl_rearbitrate" tgt="mb_plb_1.Sl_rearbitrate" size="7"/>
+	<link src="mdm_0.Sl_wrDAck" tgt="mb_plb_1.Sl_wrDAck" size="7"/>
+	<link src="mdm_0.Sl_wrComp" tgt="mb_plb_1.Sl_wrComp" size="7"/>
+	<link src="mdm_0.Sl_wrBTerm" tgt="mb_plb_1.Sl_wrBTerm" size="7"/>
+	<link src="mdm_0.Sl_rdDBus" tgt="mb_plb_1.Sl_rdDBus" size="448"/>
+	<link src="mdm_0.Sl_rdWdAddr" tgt="mb_plb_1.Sl_rdWdAddr" size="28"/>
+	<link src="mdm_0.Sl_rdDAck" tgt="mb_plb_1.Sl_rdDAck" size="7"/>
+	<link src="mdm_0.Sl_rdComp" tgt="mb_plb_1.Sl_rdComp" size="7"/>
+	<link src="mdm_0.Sl_rdBTerm" tgt="mb_plb_1.Sl_rdBTerm" size="7"/>
+	<link src="mdm_0.Sl_MBusy" tgt="mb_plb_1.Sl_MBusy" size="14"/>
+	<link src="mdm_0.Sl_MWrErr" tgt="mb_plb_1.Sl_MWrErr" size="14"/>
+	<link src="mdm_0.Sl_MRdErr" tgt="mb_plb_1.Sl_MRdErr" size="14"/>
+	<link src="mdm_0.Sl_MIRQ" tgt="mb_plb_1.Sl_MIRQ" size="14"/>
+	<link src="mb_plb.SPLB_Rst" tgt="DDR2_SDRAM.SPLB1_Rst" size="1"/>
+	<link src="ilmb_cntlr_1.BRAM_Rst_A" tgt="lmb_bram_1.BRAM_Rst_A" size="1"/>
+	<link src="ilmb_cntlr_1.BRAM_Clk_A" tgt="lmb_bram_1.BRAM_Clk_A" size="1"/>
+	<link src="ilmb_cntlr_1.BRAM_EN_A" tgt="lmb_bram_1.BRAM_EN_A" size="1"/>
+	<link src="ilmb_cntlr_1.BRAM_WEN_A" tgt="lmb_bram_1.BRAM_WEN_A" size="4"/>
+	<link src="ilmb_cntlr_1.BRAM_Addr_A" tgt="lmb_bram_1.BRAM_Addr_A" size="32"/>
+	<link src="lmb_bram_1.BRAM_Din_A" tgt="ilmb_cntlr_1.BRAM_Din_A" size="32"/>
+	<link src="ilmb_cntlr_1.BRAM_Dout_A" tgt="lmb_bram_1.BRAM_Dout_A" size="32"/>
+	<link src="dlmb_cntlr_1.BRAM_Rst_A" tgt="lmb_bram_1.BRAM_Rst_B" size="1"/>
+	<link src="dlmb_cntlr_1.BRAM_Clk_A" tgt="lmb_bram_1.BRAM_Clk_B" size="1"/>
+	<link src="dlmb_cntlr_1.BRAM_EN_A" tgt="lmb_bram_1.BRAM_EN_B" size="1"/>
+	<link src="dlmb_cntlr_1.BRAM_WEN_A" tgt="lmb_bram_1.BRAM_WEN_B" size="4"/>
+	<link src="dlmb_cntlr_1.BRAM_Addr_A" tgt="lmb_bram_1.BRAM_Addr_B" size="32"/>
+	<link src="lmb_bram_1.BRAM_Din_B" tgt="dlmb_cntlr_1.BRAM_Din_A" size="32"/>
+	<link src="dlmb_cntlr_1.BRAM_Dout_A" tgt="lmb_bram_1.BRAM_Dout_B" size="32"/>
+	<link src="ilmb_cntlr.BRAM_Rst_A" tgt="lmb_bram.BRAM_Rst_A" size="1"/>
+	<link src="ilmb_cntlr.BRAM_Clk_A" tgt="lmb_bram.BRAM_Clk_A" size="1"/>
+	<link src="ilmb_cntlr.BRAM_EN_A" tgt="lmb_bram.BRAM_EN_A" size="1"/>
+	<link src="ilmb_cntlr.BRAM_WEN_A" tgt="lmb_bram.BRAM_WEN_A" size="4"/>
+	<link src="ilmb_cntlr.BRAM_Addr_A" tgt="lmb_bram.BRAM_Addr_A" size="32"/>
+	<link src="lmb_bram.BRAM_Din_A" tgt="ilmb_cntlr.BRAM_Din_A" size="32"/>
+	<link src="ilmb_cntlr.BRAM_Dout_A" tgt="lmb_bram.BRAM_Dout_A" size="32"/>
+	<link src="dlmb_cntlr.BRAM_Rst_A" tgt="lmb_bram.BRAM_Rst_B" size="1"/>
+	<link src="dlmb_cntlr.BRAM_Clk_A" tgt="lmb_bram.BRAM_Clk_B" size="1"/>
+	<link src="dlmb_cntlr.BRAM_EN_A" tgt="lmb_bram.BRAM_EN_B" size="1"/>
+	<link src="dlmb_cntlr.BRAM_WEN_A" tgt="lmb_bram.BRAM_WEN_B" size="4"/>
+	<link src="dlmb_cntlr.BRAM_Addr_A" tgt="lmb_bram.BRAM_Addr_B" size="32"/>
+	<link src="lmb_bram.BRAM_Din_B" tgt="dlmb_cntlr.BRAM_Din_A" size="32"/>
+	<link src="dlmb_cntlr.BRAM_Dout_A" tgt="lmb_bram.BRAM_Dout_B" size="32"/>
+	<link src="ilmb_1.LMB_Rst" tgt="ilmb_cntlr_1.LMB_Rst" size="1"/>
+	<link src="ilmb_1.LMB_ABus" tgt="ilmb_cntlr_1.LMB_ABus" size="32"/>
+	<link src="ilmb_1.LMB_WriteDBus" tgt="ilmb_cntlr_1.LMB_WriteDBus" size="32"/>
+	<link src="ilmb_1.LMB_AddrStrobe" tgt="ilmb_cntlr_1.LMB_AddrStrobe" size="1"/>
+	<link src="ilmb_1.LMB_ReadStrobe" tgt="ilmb_cntlr_1.LMB_ReadStrobe" size="1"/>
+	<link src="ilmb_1.LMB_WriteStrobe" tgt="ilmb_cntlr_1.LMB_WriteStrobe" size="1"/>
+	<link src="ilmb_1.LMB_BE" tgt="ilmb_cntlr_1.LMB_BE" size="4"/>
+	<link src="ilmb_cntlr_1.Sl_DBus" tgt="ilmb_1.Sl_DBus" size="32"/>
+	<link src="ilmb_cntlr_1.Sl_Ready" tgt="ilmb_1.Sl_Ready" size="1"/>
+	<link src="ilmb.LMB_Rst" tgt="ilmb_cntlr.LMB_Rst" size="1"/>
+	<link src="ilmb.LMB_ABus" tgt="ilmb_cntlr.LMB_ABus" size="32"/>
+	<link src="ilmb.LMB_WriteDBus" tgt="ilmb_cntlr.LMB_WriteDBus" size="32"/>
+	<link src="ilmb.LMB_AddrStrobe" tgt="ilmb_cntlr.LMB_AddrStrobe" size="1"/>
+	<link src="ilmb.LMB_ReadStrobe" tgt="ilmb_cntlr.LMB_ReadStrobe" size="1"/>
+	<link src="ilmb.LMB_WriteStrobe" tgt="ilmb_cntlr.LMB_WriteStrobe" size="1"/>
+	<link src="ilmb.LMB_BE" tgt="ilmb_cntlr.LMB_BE" size="4"/>
+	<link src="ilmb_cntlr.Sl_DBus" tgt="ilmb.Sl_DBus" size="32"/>
+	<link src="ilmb_cntlr.Sl_Ready" tgt="ilmb.Sl_Ready" size="1"/>
+	<link src="dlmb_1.LMB_Rst" tgt="dlmb_cntlr_1.LMB_Rst" size="1"/>
+	<link src="dlmb_1.LMB_ABus" tgt="dlmb_cntlr_1.LMB_ABus" size="32"/>
+	<link src="dlmb_1.LMB_WriteDBus" tgt="dlmb_cntlr_1.LMB_WriteDBus" size="32"/>
+	<link src="dlmb_1.LMB_AddrStrobe" tgt="dlmb_cntlr_1.LMB_AddrStrobe" size="1"/>
+	<link src="dlmb_1.LMB_ReadStrobe" tgt="dlmb_cntlr_1.LMB_ReadStrobe" size="1"/>
+	<link src="dlmb_1.LMB_WriteStrobe" tgt="dlmb_cntlr_1.LMB_WriteStrobe" size="1"/>
+	<link src="dlmb_1.LMB_BE" tgt="dlmb_cntlr_1.LMB_BE" size="4"/>
+	<link src="dlmb_cntlr_1.Sl_DBus" tgt="dlmb_1.Sl_DBus" size="32"/>
+	<link src="dlmb_cntlr_1.Sl_Ready" tgt="dlmb_1.Sl_Ready" size="1"/>
+	<link src="dlmb.LMB_Rst" tgt="dlmb_cntlr.LMB_Rst" size="1"/>
+	<link src="dlmb.LMB_ABus" tgt="dlmb_cntlr.LMB_ABus" size="32"/>
+	<link src="dlmb.LMB_WriteDBus" tgt="dlmb_cntlr.LMB_WriteDBus" size="32"/>
+	<link src="dlmb.LMB_AddrStrobe" tgt="dlmb_cntlr.LMB_AddrStrobe" size="1"/>
+	<link src="dlmb.LMB_ReadStrobe" tgt="dlmb_cntlr.LMB_ReadStrobe" size="1"/>
+	<link src="dlmb.LMB_WriteStrobe" tgt="dlmb_cntlr.LMB_WriteStrobe" size="1"/>
+	<link src="dlmb.LMB_BE" tgt="dlmb_cntlr.LMB_BE" size="4"/>
+	<link src="dlmb_cntlr.Sl_DBus" tgt="dlmb.Sl_DBus" size="32"/>
+	<link src="dlmb_cntlr.Sl_Ready" tgt="dlmb.Sl_Ready" size="1"/>
+	<link src="mb_plb_1.SPLB_Rst" tgt="DDR2_SDRAM.SPLB0_Rst" size="7"/>
+	<link src="mb_plb_1.PLB_ABus" tgt="DDR2_SDRAM.SPLB0_PLB_ABus" size="32"/>
+	<link src="mb_plb_1.PLB_PAValid" tgt="DDR2_SDRAM.SPLB0_PLB_PAValid" size="1"/>
+	<link src="mb_plb_1.PLB_SAValid" tgt="DDR2_SDRAM.SPLB0_PLB_SAValid" size="1"/>
+	<link src="mb_plb_1.PLB_masterID" tgt="DDR2_SDRAM.SPLB0_PLB_masterID" size="1"/>
+	<link src="mb_plb_1.PLB_RNW" tgt="DDR2_SDRAM.SPLB0_PLB_RNW" size="1"/>
+	<link src="mb_plb_1.PLB_BE" tgt="DDR2_SDRAM.SPLB0_PLB_BE" size="8"/>
+	<link src="mb_plb_1.PLB_UABus" tgt="DDR2_SDRAM.SPLB0_PLB_UABus" size="32"/>
+	<link src="mb_plb_1.PLB_rdPrim" tgt="DDR2_SDRAM.SPLB0_PLB_rdPrim" size="7"/>
+	<link src="mb_plb_1.PLB_wrPrim" tgt="DDR2_SDRAM.SPLB0_PLB_wrPrim" size="7"/>
+	<link src="mb_plb_1.PLB_abort" tgt="DDR2_SDRAM.SPLB0_PLB_abort" size="1"/>
+	<link src="mb_plb_1.PLB_busLock" tgt="DDR2_SDRAM.SPLB0_PLB_busLock" size="1"/>
+	<link src="mb_plb_1.PLB_MSize" tgt="DDR2_SDRAM.SPLB0_PLB_MSize" size="2"/>
+	<link src="mb_plb_1.PLB_size" tgt="DDR2_SDRAM.SPLB0_PLB_size" size="4"/>
+	<link src="mb_plb_1.PLB_type" tgt="DDR2_SDRAM.SPLB0_PLB_type" size="3"/>
+	<link src="mb_plb_1.PLB_lockErr" tgt="DDR2_SDRAM.SPLB0_PLB_lockErr" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendReq" tgt="DDR2_SDRAM.SPLB0_PLB_wrPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_wrPendPri" tgt="DDR2_SDRAM.SPLB0_PLB_wrPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_rdPendReq" tgt="DDR2_SDRAM.SPLB0_PLB_rdPendReq" size="1"/>
+	<link src="mb_plb_1.PLB_rdPendPri" tgt="DDR2_SDRAM.SPLB0_PLB_rdPendPri" size="2"/>
+	<link src="mb_plb_1.PLB_reqPri" tgt="DDR2_SDRAM.SPLB0_PLB_reqPri" size="2"/>
+	<link src="mb_plb_1.PLB_TAttribute" tgt="DDR2_SDRAM.SPLB0_PLB_TAttribute" size="16"/>
+	<link src="mb_plb_1.PLB_rdBurst" tgt="DDR2_SDRAM.SPLB0_PLB_rdBurst" size="1"/>
+	<link src="mb_plb_1.PLB_wrBurst" tgt="DDR2_SDRAM.SPLB0_PLB_wrBurst" size="1"/>
+	<link src="mb_plb_1.PLB_wrDBus" tgt="DDR2_SDRAM.SPLB0_PLB_wrDBus" size="64"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_addrAck" tgt="mb_plb_1.Sl_addrAck" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_SSize" tgt="mb_plb_1.Sl_SSize" size="14"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_wait" tgt="mb_plb_1.Sl_wait" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rearbitrate" tgt="mb_plb_1.Sl_rearbitrate" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_wrDAck" tgt="mb_plb_1.Sl_wrDAck" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_wrComp" tgt="mb_plb_1.Sl_wrComp" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_wrBTerm" tgt="mb_plb_1.Sl_wrBTerm" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rdDBus" tgt="mb_plb_1.Sl_rdDBus" size="448"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rdWdAddr" tgt="mb_plb_1.Sl_rdWdAddr" size="28"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rdDAck" tgt="mb_plb_1.Sl_rdDAck" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rdComp" tgt="mb_plb_1.Sl_rdComp" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_rdBTerm" tgt="mb_plb_1.Sl_rdBTerm" size="7"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_MBusy" tgt="mb_plb_1.Sl_MBusy" size="14"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_MRdErr" tgt="mb_plb_1.Sl_MRdErr" size="14"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_MWrErr" tgt="mb_plb_1.Sl_MWrErr" size="14"/>
+	<link src="DDR2_SDRAM.SPLB0_Sl_MIRQ" tgt="mb_plb_1.Sl_MIRQ" size="14"/>
+	<link src="mb_plb.PLB_ABus" tgt="DDR2_SDRAM.SPLB1_PLB_ABus" size="32"/>
+	<link src="mb_plb.PLB_PAValid" tgt="DDR2_SDRAM.SPLB1_PLB_PAValid" size="1"/>
+	<link src="mb_plb.PLB_SAValid" tgt="DDR2_SDRAM.SPLB1_PLB_SAValid" size="1"/>
+	<link src="mb_plb.PLB_masterID" tgt="DDR2_SDRAM.SPLB1_PLB_masterID" size="1"/>
+	<link src="mb_plb.PLB_RNW" tgt="DDR2_SDRAM.SPLB1_PLB_RNW" size="1"/>
+	<link src="mb_plb.PLB_BE" tgt="DDR2_SDRAM.SPLB1_PLB_BE" size="8"/>
+	<link src="mb_plb.PLB_UABus" tgt="DDR2_SDRAM.SPLB1_PLB_UABus" size="32"/>
+	<link src="mb_plb.PLB_rdPrim" tgt="DDR2_SDRAM.SPLB1_PLB_rdPrim" size="3"/>
+	<link src="mb_plb.PLB_wrPrim" tgt="DDR2_SDRAM.SPLB1_PLB_wrPrim" size="3"/>
+	<link src="mb_plb.PLB_abort" tgt="DDR2_SDRAM.SPLB1_PLB_abort" size="1"/>
+	<link src="mb_plb.PLB_busLock" tgt="DDR2_SDRAM.SPLB1_PLB_busLock" size="1"/>
+	<link src="mb_plb.PLB_MSize" tgt="DDR2_SDRAM.SPLB1_PLB_MSize" size="2"/>
+	<link src="mb_plb.PLB_size" tgt="DDR2_SDRAM.SPLB1_PLB_size" size="4"/>
+	<link src="mb_plb.PLB_type" tgt="DDR2_SDRAM.SPLB1_PLB_type" size="3"/>
+	<link src="mb_plb.PLB_lockErr" tgt="DDR2_SDRAM.SPLB1_PLB_lockErr" size="1"/>
+	<link src="mb_plb.PLB_wrPendReq" tgt="DDR2_SDRAM.SPLB1_PLB_wrPendReq" size="1"/>
+	<link src="mb_plb.PLB_wrPendPri" tgt="DDR2_SDRAM.SPLB1_PLB_wrPendPri" size="2"/>
+	<link src="mb_plb.PLB_rdPendReq" tgt="DDR2_SDRAM.SPLB1_PLB_rdPendReq" size="1"/>
+	<link src="mb_plb.PLB_rdPendPri" tgt="DDR2_SDRAM.SPLB1_PLB_rdPendPri" size="2"/>
+	<link src="mb_plb.PLB_reqPri" tgt="DDR2_SDRAM.SPLB1_PLB_reqPri" size="2"/>
+	<link src="mb_plb.PLB_TAttribute" tgt="DDR2_SDRAM.SPLB1_PLB_TAttribute" size="16"/>
+	<link src="mb_plb.PLB_rdBurst" tgt="DDR2_SDRAM.SPLB1_PLB_rdBurst" size="1"/>
+	<link src="mb_plb.PLB_wrBurst" tgt="DDR2_SDRAM.SPLB1_PLB_wrBurst" size="1"/>
+	<link src="mb_plb.PLB_wrDBus" tgt="DDR2_SDRAM.SPLB1_PLB_wrDBus" size="64"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_addrAck" tgt="mb_plb.Sl_addrAck" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_SSize" tgt="mb_plb.Sl_SSize" size="6"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_wait" tgt="mb_plb.Sl_wait" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rearbitrate" tgt="mb_plb.Sl_rearbitrate" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_wrDAck" tgt="mb_plb.Sl_wrDAck" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_wrComp" tgt="mb_plb.Sl_wrComp" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_wrBTerm" tgt="mb_plb.Sl_wrBTerm" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rdDBus" tgt="mb_plb.Sl_rdDBus" size="192"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rdWdAddr" tgt="mb_plb.Sl_rdWdAddr" size="12"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rdDAck" tgt="mb_plb.Sl_rdDAck" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rdComp" tgt="mb_plb.Sl_rdComp" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_rdBTerm" tgt="mb_plb.Sl_rdBTerm" size="3"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_MBusy" tgt="mb_plb.Sl_MBusy" size="6"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_MRdErr" tgt="mb_plb.Sl_MRdErr" size="6"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_MWrErr" tgt="mb_plb.Sl_MWrErr" size="6"/>
+	<link src="DDR2_SDRAM.SPLB1_Sl_MIRQ" tgt="mb_plb.Sl_MIRQ" size="6"/>
+</physical>
+<virtual>
+</virtual>
+</connection>			
+<processingElement id="ReconfArea" type="RECONFIGURABLE" name="ReconfArea"/>
+</system>
+</architecture>
+</faster>

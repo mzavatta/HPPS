@@ -1,0 +1,195 @@
+<faster>
+	<architecture>
+		<system id="fpga_0" friendly_name="fpga_0" device="XC5VLX30T-FF665">
+
+			<ipCore id="xps_mailbox_0" type="IP" name="xps_mailbox_0" class="xps_mailbox">
+				<param name="C_SPLB0_BASEADDR" val="0x81e00000"/>
+				<param name="C_SPLB0_HIGHEADDR" val="0x81e0ffff"/>
+				<param name="C_SPLB1_BASEADDR" val="0x82000000"/>
+				<param name="C_SPLB1_HIGHADDR" val="0x8200ffff"/>
+			</ipCore>
+
+			<communication id="mb_plb_1" type="BUS_PLB" name="mb_plb_1" class="plb_v46">
+			</communication>
+
+
+			<communication id="mb_plb" type="BUS_PLB" name="mb_plb" class="plb_v46">
+			</communication>
+
+
+			<ipCore id="proc_sys_reset_0" type="IP" name="proc_sys_reset_0" class="proc_sys_reset">
+			</ipCore>
+
+			<processingElement id="microblaze_1" type="MICROBLAZE" name="microblaze_1" class="microblaze">
+			</processingElement>
+
+			<processingElement id="microblaze_0" type="MICROBLAZE" name="microblaze_0" class="microblaze">
+			</processingElement>
+
+			<ipCore id="mdm_0" type="IP" name="mdm_0" class="mdm">
+				<param name="C_BASEADDR" val="0x84400000"/>
+				<param name="C_HIGHADDR" val="0x8440ffff"/>
+			</ipCore>
+
+			<memory id="lmb_bram_1" type="BRAM" name="lmb_bram_1" class="bram_block">
+			</memory>
+
+			<memory id="lmb_bram" type="BRAM" name="lmb_bram" class="bram_block">
+			</memory>
+
+			<memory id="ilmb_cntlr_1" type="MEMORY_CONTROLLER" name="ilmb_cntlr_1" class="lmb_bram_if_cntlr">
+				<param name="C_BASEADDR" val="0x00000000"/>
+				<param name="C_HIGHADDR" val="0x0000ffff"/>
+			</memory>
+
+			<memory id="ilmb_cntlr" type="MEMORY_CONTROLLER" name="ilmb_cntlr" class="lmb_bram_if_cntlr">
+				<param name="C_BASEADDR" val="0x00000000"/>
+				<param name="C_HIGHADDR" val="0x0000ffff"/>
+			</memory>
+
+			<communication id="ilmb_1" type="BUS" name="ilmb_1" class="lmb_v10">
+			</communication>
+
+			<communication id="ilmb" type="BUS" name="ilmb" class="lmb_v10"> 
+			</communication>
+
+			<memory id="dlmb_cntlr_1" type="MEMORY_CONTROLLER" name="dlmb_cntlr_1" class="lmb_bram_if_cntlr"> 
+				<param name="C_BASEADDR" val="0x00000000"/>
+				<param name="C_HIGHADDR" val="0x0000ffff"/>
+			</memory>
+
+			<memory id="dlmb_cntlr" type="MEMORY_CONTROLLER" name="dlmb_cntlr" class="lmb_bram_if_cntlr">
+				<param name="C_BASEADDR" val="0x00000000"/>
+				<param name="C_HIGHADDR" val="0x0000ffff"/>
+			</memory>
+
+			<communication id="dlmb_1" type="BUS" name="dlmb_1" class="lmb_v10">
+			</communication>
+
+			<communication id="dlmb" type="BUS" name="dlmb" class="lmb_v10">
+			</communication>
+
+			<clock id="clock_generator_0" type="CLOCK_GENERATOR" name="clock_generator_0" class="clock_generator">
+			</clock>
+
+			<memory id="ddr2_sdram" type="TODEFINE" name="DDR2_SDRAM" class="mpmc">
+				<param name="C_BASEADDR" val="0x90000000"/>
+				<param name="C_HIGHADDR" val="0x9fffffff"/>
+			</memory>
+
+			<ipCore id="Intr_Main" type="IP" name="Intr_Main" class="xps_intc">
+				<param name="C_BASEADDR" val="0x81800000"/>
+				<param name="C_HIGHADDR" val="0x8180ffff"/>
+			</ipCore>			
+
+			<ipCore id="Intr_Access" type="IP" name="Intr_Access" class="xps_intc">
+				<param name="C_BASEADDR" val="0x81800000"/>
+				<param name="C_HIGHADDR" val="0x8180ffff"/>
+			</ipCore>
+				
+			<!-- <processingElement id="ReconfArea" type="RECONFIGURABLE" name="ReconfArea"/> -->
+
+			<ipCore id="npi_coreA_0" type="CUSTOM_IP" name="npi_coreA_0" class="npi_coreA">
+				<param name="C_BASEADDR" val="0xc3800000"/>
+				<param name="C_HIGHADDR" val="0xc380ffff"/>
+			</ipCore>
+
+			<ipCore id="npi_coreC_0" type="CUSTOM_IP" name="npi_coreC_0" class="npi_coreC">
+				<param name="C_BASEADDR" val="0xc3820000"/>
+				<param name="C_HIGHADDR" val="0xc382ffff"/>
+			</ipCore>
+	
+			<ipCore id="npi_coreD_0" type="CUSTOM_IP" name="npi_coreD_0" class="npi_coreD">
+				<param name="C_BASEADDR" val="0xc3840000"/>
+				<param name="C_HIGHADDR" val="0xc384ffff"/>
+			</ipCore>
+
+			<ipCore id="npi_coreE_0" type="CUSTOM_IP" name="npi_coreE_0" class="npi_coreE">
+				<param name="C_BASEADDR" val="0xc3860000"/>
+				<param name="C_HIGHADDR" val="0xc386ffff"/>
+			</ipCore>
+		</system>	
+	</architecture>
+	<connection>
+		<physical>
+			<pinout>
+				<pin id="fpga_0_clk_1_sys_clk_pin" sigis="CLK" dir="I" freq="100000000"/>
+	 			<pin id="fpga_0_rst_1_sys_rst_pin" sigis="RST" dir="I" polarity="0"/>
+			</pinout>
+			<link src="fpga_0_clk_1_sys_clk_pin" tgt="clock_generator_0">
+				<srcint id="self"/>
+				<tgtint id="CLKIN"/>
+			</link>
+			<link src="fpga_0_rst_1_sys_rst_pin" tgt="proc_sys_reset_0">
+				<srcint id="self"/>
+				<tgtint id="Ext_Reset_In"/>
+			</link>
+			<link src="fpga_0_rst_1_sys_rst_pin" tgt="clock_generator_0">
+				<srcint id="self"/>
+				<tgtint id="RST"/>
+			</link>
+		</physical>
+		<virtual>
+			<link src="microblaze_0" tgt="mb_plb" type="BUS">
+				<srcint id="DPLB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="microblaze_0" tgt="ilmb" type="LMB">
+				<srcint id="ILMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="microblaze_0" tgt="dlmb" type="LMB">
+				<srcint id="DLMB"/>
+				<tgtint id="self"/>
+			</link>
+			<link src="microblaze_0" tgt="mdm_0" type="DEBUG">
+				<srcint id="DEBUG"/>
+				<tgtint id="MBDEBUG_0"/>
+			</link>
+			<link src="microblaze_0" tgt="Intr_Access" type="PORT">
+				<srcint id="INTERRUPT"/>
+				<tgtint id="Irq"/>
+			</link>
+			<link src="dlmb_cntlr" tgt="dlmb" type="LMB"/>
+			<link src="dlmb_cntlr" tgt="lmb_bram" type="BUS"/>
+			<link src="ilmb_cntlr" tgt="ilmb" type="LMB"/>
+			<link src="ilmb_cntlr" tgt="lmb_bram" type="BUS"/>
+
+			<link src="microblaze_1" tgt="mb_plb_1" type="PLB"/>
+			<link src="microblaze_1" tgt="ilmb_1" type="LMB"/>
+			<link src="microblaze_1" tgt="dlmb_1" type="LMB"/>
+			<link src="microblaze_1" tgt="mdm_0" type="DEBUG">
+				<srcint id="DEBUG"/>
+				<tgtint id="MBDEBUG_1"/>
+			</link>
+			<link src="microblaze_1" tgt="Intr_Main" type="PORT"/>
+
+			<link src="dlmb_cntlr_1" tgt="dlmb_1" type="LMB"/>
+			<link src="dlmb_cntlr_1" tgt="lmb_bram_1" type="BUS"/>
+			<link src="ilmb_cntlr_1" tgt="ilmb_1" type="LMB"/>
+			<link src="ilmb_cntlr_1" tgt="lmb_bram_1" type="BUS"/>
+
+			<link src="mdm_0" tgt="mb_plb_1" type="PLB"/>
+
+			<link src="Intr_Access" tgt="mb_plb" type="PLB"/>
+			<link src="Intr_Main" tgt="mb_plb_1" type="PLB"/>
+		
+			<link src="xps_mailbox_0" tgt="mb_plb_1" type="PLB"/>
+			<link src="xps_mailbox_0" tgt="mb_plb" type="PLB"/>
+			<link src="xps_mailbox_0" tgt="Intr_Main" type="PORT"/>
+			<link src="xps_mailbox_0" tgt="Intr_Access" type="PORT"/>
+
+			<link src="ddr2_sdram" tgt="mb_plb" type="PLB"/>
+			<link src="ddr2_sdram" tgt="mb_plb_1" type="PLB"/>
+		
+			<link src="npi_coreE_0" tgt="mb_plb_1" type="PLB"/>
+			<link src="npi_coreE_0" tgt="Intr_Main" type="PORT"/>
+			<link src="npi_coreE_0" tgt="ddr2_sdram" type="PIM"/>
+
+			<link src="npi_coreD_0" tgt="mb_plb_1" type="PLB"/>
+			<link src="npi_coreD_0" tgt="Intr_Main" type="PORT"/>
+			<link src="npi_coreD_0" tgt="ddr2_sdram" type="PIM"/>
+
+		</virtual>
+</connection>	
+</faster>
