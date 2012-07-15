@@ -5,7 +5,7 @@ Date: July 2012
 Xilinx EDK files generation from a custom XML specification
 """
 
-from archgen_mss import dumb
+########## Imports
 import sys
 import os
 import subprocess
@@ -15,83 +15,100 @@ import time
 import datetime
 from xml.dom.minidom import parseString
 
+########### Global parameters
+psfversion = "2.1.0"	# Platform Specification Format version (PSF)
+edkversion = "12.1 Build EDK_MS1.53d"		# EDK version
 
 ########### Output files definitions
 mhsoutput = "restemp.mhs"
 mssoutput = "restemp.mss"
+xmpoutput = "restemp.xmp"
+
+########### Input files definitions
 xmlinput = "architecture_custom.xml"
+mhsdefaultsFile = "./mhsdefaults"
+mssdefaultsFile = "./mssdefaults"
+# beware of .mpd input files explicited in component classes definitions
+
 ########### Classes definitions
-
-
-
 class ComponentClass:
 	def __init__(self,className,mpdPath):
-		self.className=className
+		self.className=className # e.g. xps_mailbox
 		self.mpdPath=mpdPath
+
+
+
 
 class GlobalPort:
 	def __init__(self,name,value,attributes):
-		self.name=name
-		self.attributes=attributes
-		self.value=value
+		self.name=name			# external name
+		self.attributes=attributes	# attribute list of class Attribute
+		self.value=value		# internal name, used for internal connections
 
-class Attribute:
+class Attribute:	# as a list belonging to GlobalPort e.g. DIR = I, SIGIS = CLK, CLK_FREQ = 100000000 ...
 	def __init__(self,name,value):
-		self.name=name
-		self.value=value
+		self.name=name		# e.g. SIGIS
+		self.value=value	# e.g. CLK
+
+
+
 
 class Component:
-	bus = "" 
+	bus = ""	# will be filled if the component itself is a bus, e.g. if it is a plb_v46 or lmb_v10
 	def __init__(self,cls,instance,parameters,ports,businterfaces):
-		self.cls=cls
-		self.instance=instance	#instance should be into the parameters list but it is kept outside for convenience
-					#as it is often a search objective
-		self.parameters=parameters
-		self.ports=ports
-		self.businterfaces=businterfaces
+		self.cls=cls		# e.g. xps_mailbox
+		self.instance=instance	# instance should be into the parameters list but it is kept outside for convenience
+					# as it is often a search objective
+		self.parameters=parameters	# parameter list of class Parameter
+		self.ports=ports		# port list of class Port
+		self.businterfaces=businterfaces	# bus interfaces list of class BusInterface
 
 class Parameter:
 	def __init__(self,name,value):
-		self.name=name
-		self.value=value
+		self.name=name		# e.g. C_SPLB0_BASEADDR
+		self.value=value	# e.g. 0x81e00000
 
 class Port:
 	def __init__(self,name,sigis,dir,value):
-		self.name=name
-		self.sigis=sigis
-		self.dir=dir
-		self.value=value
+		self.name=name		# e.g. PLB_Clk
+		self.sigis=sigis	# e.g. CLK, INTERRUPT, RST
+		self.dir=dir		# e.g. I, O
+		self.value=value	# assignment name in the internal interconnection
 
 class BusInterface:
 	def __init__(self,name,std,type,value):
-		self.name=name		#name e.g. SPLB
-		self.std=std 		#standard bus e.g. PLBV46, XIL_BRAM...
-		self.type=type
-		self.value=value 	#interconnect value
+		self.name=name		# e.g. SPLB
+		self.std=std 		# e.g. PLBV46, XIL_BRAM...
+		self.type=type		# e.g. SLAVE, TARGET, INITIATOR...
+		self.value=value 	# assignment name in the internal interconnection
 
-class DriverAssignment:
-	text = ""
-	def __init__(self,componentClass,componentInstance):
-		self.componentClass=componentClass
-		self.componentInstance=componentInstance
 
-class OsAssignment:
-	text = ""
-	def __init__(self,componentClass,componentInstance):
-		self.componentClass=componentClass
-		self.componentInstance=componentInstance
 
-class MssProcessorDeclaration:
-	text = ""
+
+
+class DriverAssignment: # associates a component class (or, optionally, a single instance) to a particular driver configuration
+	text = ""	# driver configuration
 	def __init__(self,componentClass,componentInstance):
-		self.componentClass=componentClass
-		self.componentInstance=componentInstance
+		self.componentClass=componentClass		# must not be empty
+		self.componentInstance=componentInstance 	# may be empty
+
+class OsAssignment: # associates a processor class (or, optionally, a single instance) to a particular OS configuration
+	text = ""	# OS configuration
+	def __init__(self,componentClass,componentInstance):
+		self.componentClass=componentClass		# must not be empty
+		self.componentInstance=componentInstance	# may be empty
+
+class MssProcessorDeclaration: # associates a proc class (or, optionally, a single instance) to a particular processor sw build configuration
+	text = ""	# processor sw build configuration
+	def __init__(self,componentClass,componentInstance):
+		self.componentClass=componentClass		# must not be empty
+		self.componentInstance=componentInstance	# may be empty
 
 
 ###########
 
 
-########### Component classes definitions
+########### Component classes instanciation
 xps_mailbox = ComponentClass("xps_mailbox","./hw/XilinxProcessorIPLib/pcores/xps_mailbox_v2_00_b/data/xps_mailbox_v2_1_0.mpd")
 plb_v46 = ComponentClass("plb_v46","./hw/XilinxProcessorIPLib/pcores/plb_v46_v1_04_a/data/plb_v46_v2_1_0.mpd")
 microblaze = ComponentClass("microblaze","./hw/XilinxProcessorIPLib/pcores/microblaze_v7_30_a/data/microblaze_v2_1_0.mpd")
@@ -127,18 +144,18 @@ componentClasses.append(proc_sys_reset)
 componentClasses.append(clock_generator)
 ##########
 
-##########
-mpspecsFile = "./mpspecshw"
-mpspecLines = open('mpspecshw','r').readlines()
+########## File handles
+mhsoutputHandle = open(mhsoutput,'w')
+mssoutputHandle = open(mssoutput,'w')
+xmpoutputHandle = open(xmpoutput,'w')
+mhsdefaultsLinesHandle = open(mhsdefaultsFile,'r').readlines()
+mssdefaultsLinesHandle = open(mssdefaultsFile,'r').readlines()
+archFile = open(xmlinput,'r')
+
 ##########
 
 ##########
-mpspecsswFile = "./mpspecssw"
-mpspecswLines = open('mpspecssw','r').readlines()
-##########
 
-##########
-psfversion = "2.1.0"
 ##########
 
 ##########
@@ -162,15 +179,15 @@ osassignments=list()
 
 # import component descriptions from mpd-like file
 #l=0;
-#while (l<len(mpspecLines)):
-#	if mpspecLines[l].find("BEGIN")>=0:
-#		elem=mpspecLines[l].rstrip().split(" ")
+#while (l<len(mhsdefaultsLinesHandle)):
+#	if mhsdefaultsLinesHandle[l].find("BEGIN")>=0:
+#		elem=mhsdefaultsLinesHandle[l].rstrip().split(" ")
 #		tempComponent = Component(elem[1],list(),list(),list())
 #		#print elem
 #		#print tempComponent.cls
 #		l=l+1
-#		while (mpspecLines[l].find("END")!=0):
-#			elem=mpspecLines[l].rstrip().split(" ")
+#		while (mhsdefaultsLinesHandle[l].find("END")!=0):
+#			elem=mhsdefaultsLinesHandle[l].rstrip().split(" ")
 #			#print elem
 #			for e in range(0,len(elem)):
 #				if elem[e]=="PARAMETER":
@@ -203,7 +220,6 @@ osassignments=list()
 #################  Creation of the "space" of the possible interconnect combinations ####################################################
 
 #open the xml file for reading:
-archFile = open(xmlinput,'r')
 data = archFile.read()
 archFile.close()
 dom = parseString(data)
@@ -261,8 +277,8 @@ def importComponent(node, components):
 	
 	#fetch default parameters in mpspecs
 	valid = 0
-	for l in range(0,len(mpspecLines)):
-		elem = mpspecLines[l].rstrip().split(" ")
+	for l in range(0,len(mhsdefaultsLinesHandle)):
+		elem = mhsdefaultsLinesHandle[l].rstrip().split(" ")
 		if "BEGIN" and cls in elem: # trigger valid =1 when the class is found
 			valid=1
 		elif "PARAMETER" in elem and valid==1: # if valid and if it is a parameter line, append a new parameter
@@ -585,8 +601,8 @@ def importswdefaults():
 		print "importing mss defaults..."
 
 		valid = 0
-		for l in range(0,len(mpspecswLines)):
-			elem = mpspecswLines[l].rstrip().split(" ")
+		for l in range(0,len(mssdefaultsLinesHandle)):
+			elem = mssdefaultsLinesHandle[l].rstrip().split(" ")
 			if "BEGIN" in elem and valid == 0: # trigger valid =1 when begin of a block
 				if "OS" in elem:
 					valid = "O"
@@ -610,7 +626,7 @@ def importswdefaults():
 						tempInstance.componentInstance = elem[4]
 					else:
 						# just append text
-						tempInstance.text = tempInstance.text+mpspecswLines[l] 
+						tempInstance.text = tempInstance.text+mssdefaultsLinesHandle[l] 
 
 				if valid == "P":
 					if "HW_INSTANCE" in elem:
@@ -618,7 +634,7 @@ def importswdefaults():
 						tempInstance.componentInstance = elem[4]
 					else:
 						# just append text
-						tempInstance.text = tempInstance.text+mpspecswLines[l] 
+						tempInstance.text = tempInstance.text+mssdefaultsLinesHandle[l] 
 
 				if valid == "D":
 					if "HW_INSTANCE" in elem:
@@ -626,7 +642,7 @@ def importswdefaults():
 						tempInstance.componentInstance = elem[4]
 					else:
 						# just append text
-						tempInstance.text = tempInstance.text+mpspecswLines[l] 
+						tempInstance.text = tempInstance.text+mssdefaultsLinesHandle[l] 
 
 
 			elif "END" in elem and valid != 0:
@@ -658,14 +674,16 @@ def importswdefaults():
 def print_mss(components):
 	print "printing mss..."
 
-	f = open(mssoutput,'w')
+	
 	print "mss file printed on "+mssoutput
-	f.write("################\n")
-	f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
-	f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
-	f.write("# Generated on "+str(datetime.date.today())+"\n")
-	f.write("# Generated from "+xmlinput+"\n")
-	f.write("################\n\n")
+	mssoutputHandle.write("################\n")
+	mssoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mssoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
+	mssoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
+	mssoutputHandle.write("# Generated from "+xmlinput+"\n")
+	mssoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
+	mssoutputHandle.write("# EDK version "+edkversion+"\n")
+	mssoutputHandle.write("################\n\n")
 
 	for component in components:
 		cls = component.cls
@@ -691,11 +709,11 @@ def print_mss(components):
 
 				assert xor(customInstanceFound, genericInstanceFound)
 	
-				f.write("BEGIN PROCESSOR\n")
-				f.write(" PARAMETER HW_INSTANCE = "+instance+"\n")
-				f.write(tempInstance.text)
-				f.write("END\n")
-				f.write("\n")
+				mssoutputHandle.write("BEGIN PROCESSOR\n")
+				mssoutputHandle.write(" PARAMETER HW_INSTANCE = "+instance+"\n")
+				mssoutputHandle.write(tempInstance.text)
+				mssoutputHandle.write("END\n")
+				mssoutputHandle.write("\n")
 
 				customInstanceFound = 0
 				genericInstanceFound = 0
@@ -713,11 +731,11 @@ def print_mss(components):
 
 				assert xor(customInstanceFound, genericInstanceFound)
 
-				f.write("BEGIN OS\n")
-				f.write(" PARAMETER PROC_INSTANCE = "+instance+"\n")
-				f.write(tempInstance.text)
-				f.write("END\n")
-				f.write("\n")
+				mssoutputHandle.write("BEGIN OS\n")
+				mssoutputHandle.write(" PARAMETER PROC_INSTANCE = "+instance+"\n")
+				mssoutputHandle.write(tempInstance.text)
+				mssoutputHandle.write("END\n")
+				mssoutputHandle.write("\n")
 			
 			else: # component which needs a simple driver
 				#print instance
@@ -734,11 +752,11 @@ def print_mss(components):
 
 				assert xor(customInstanceFound, genericInstanceFound)
 
-				f.write("BEGIN DRIVER\n")
-				f.write(" PARAMETER HW_INSTANCE = "+instance+"\n")
-				f.write(tempInstance.text)
-				f.write("END\n")
-				f.write("\n")
+				mssoutputHandle.write("BEGIN DRIVER\n")
+				mssoutputHandle.write(" PARAMETER HW_INSTANCE = "+instance+"\n")
+				mssoutputHandle.write(tempInstance.text)
+				mssoutputHandle.write("END\n")
+				mssoutputHandle.write("\n")
 			
 			
 		
@@ -772,84 +790,89 @@ for node in virtualNode.childNodes:
 
 ######### Print out all the components database in mhs syntax
 def printall():
-	f = open(mhsoutput,'w')
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n"
-	f.write("################\n")
-	f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
-	f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
-	f.write("# Generated on "+str(datetime.date.today())+"\n")
-	f.write("# Generated from "+xmlinput+"\n")
-	f.write("################\n\n")
+	mhsoutputHandle.write("################\n")
+	mhsoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mhsoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
+	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
+	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
+	mhsoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
+	mhsoutputHandle.write("# EDK version "+edkversion+"\n")
+	mhsoutputHandle.write("################\n\n")
 
 	for item1 in globalports:
-			f.write("PORT "+item1.name+" = "+item1.value)
+			mhsoutputHandle.write("PORT "+item1.name+" = "+item1.value)
 			for item2 in item1.attributes:
-				f.write(", "+item2.name+" = "+item2.value)
-			f.write("\n")
-	f.write("\n")
+				mhsoutputHandle.write(", "+item2.name+" = "+item2.value)
+			mhsoutputHandle.write("\n")
+	mhsoutputHandle.write("\n")
 
 	for item1 in components:
 			#print "\n"
-			f.write("BEGIN "+item1.cls+"\n")
-			f.write("PARAMETER INSTANCE "+item1.instance+"\n")
-			f.write("BUS "+item1.bus+"\n")
+			mhsoutputHandle.write("BEGIN "+item1.cls+"\n")
+			mhsoutputHandle.write("PARAMETER INSTANCE "+item1.instance+"\n")
+			mhsoutputHandle.write("BUS "+item1.bus+"\n")
 			for item2 in item1.parameters:
-				f.write("PARAMETER "+item2.name+" "+item2.value+"\n")
+				mhsoutputHandle.write("PARAMETER "+item2.name+" "+item2.value+"\n")
 			for item3 in item1.ports:
-				f.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+"\n")
+				mhsoutputHandle.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+"\n")
 			for item4 in item1.businterfaces:
-				f.write("BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type+"\n")
-			f.write("END"+"\n")
-			f.write("\n")
+				mhsoutputHandle.write("BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type+"\n")
+			mhsoutputHandle.write("END"+"\n")
+			mhsoutputHandle.write("\n")
 
 	sys.exit()
 ###########
 
 ######### Print out the final mhs file
 def printmhs():
-	f = open(mhsoutput,'w')
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput
-	f.write("################\n")
-	f.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
-	f.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
-	f.write("# Generated on "+str(datetime.date.today())+"\n")
-	f.write("# Generated from "+xmlinput+"\n")
-	f.write("################\n\n")
+	mhsoutputHandle.write("################\n")
+	mhsoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mhsoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
+	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
+	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
+	mhsoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
+	mhsoutputHandle.write("# EDK version "+edkversion+"\n")
+	mhsoutputHandle.write("################\n\n")
 
-	f.write("PARAMETER VERSION = "+psfversion+"\n")
+	mhsoutputHandle.write("PARAMETER VERSION = "+psfversion+"\n")
 
 	for item1 in globalports:
-			f.write("PORT "+item1.name+" = "+item1.value)
+			mhsoutputHandle.write("PORT "+item1.name+" = "+item1.value)
 			for item2 in item1.attributes:
-				f.write(", "+item2.name+" = "+item2.value)
-			f.write("\n")
-	f.write("\n")
+				mhsoutputHandle.write(", "+item2.name+" = "+item2.value)
+			mhsoutputHandle.write("\n")
+	mhsoutputHandle.write("\n")
 
 	for item1 in components:
 			#print "\n"
-			f.write("BEGIN "+item1.cls+"\n")
-			f.write("PARAMETER INSTANCE = "+item1.instance+"\n")
-			#f.write("BUS "+item1.bus+"\n")
+			mhsoutputHandle.write("BEGIN "+item1.cls+"\n")
+			mhsoutputHandle.write("PARAMETER INSTANCE = "+item1.instance+"\n")
+			#mhsoutputHandle.write("BUS "+item1.bus+"\n")
 			for item2 in item1.parameters:
 				if item2.value!="":
-					f.write("PARAMETER "+item2.name+" = "+item2.value+"\n")
+					mhsoutputHandle.write("PARAMETER "+item2.name+" = "+item2.value+"\n")
 			for item3 in item1.ports:
 				if item3.value!="":
-					f.write("PORT "+item3.name+" = "+item3.value+"\n")
+					mhsoutputHandle.write("PORT "+item3.name+" = "+item3.value+"\n")
 			for item4 in item1.businterfaces:
 				if item4.value!="":
-					f.write("BUS_INTERFACE "+item4.name+" = "+item4.value+"\n")
-			f.write("END"+"\n")
-			f.write("\n")
+					mhsoutputHandle.write("BUS_INTERFACE "+item4.name+" = "+item4.value+"\n")
+			mhsoutputHandle.write("END"+"\n")
+			mhsoutputHandle.write("\n")
 
 	
 ###########
 
 
-printmhs()
+printall()
 importswdefaults()
 print_mss(components)
 sys.exit()
+
+###########
+
 """
 print "\nIMPORTED ARCH"
 for item1 in components:
@@ -868,7 +891,7 @@ for item1 in components:
 
 
 
-
+"""
 ################################################ Interconnect generation ##################################################
 # stats extraction
 nnmicroblaze=0
@@ -976,7 +999,7 @@ for node in connectionNode.childNodes:
 									count+=1
 									done=1
 	
-									"""
+									
 									tgtport.value="conn_"+str(count)
 									if srcport.value=="":
 										srcport.value="conn_"+str(count)
@@ -984,7 +1007,7 @@ for node in connectionNode.childNodes:
 										srcport.value=srcport.value+"&conn_"+str(count)
 									count+=1
 									done=1
-									"""
+									
 								elif srcport.dir=="IO" or tgtport.dir=="IO":
 									if srcport.value=="":
 										srcport.value="conn_"+str(count)
@@ -994,7 +1017,7 @@ for node in connectionNode.childNodes:
 									else: tgtport.value=tgtport.value+"&conn_"+str(count)
 									count+=1
 									done=1
-					
+"""
 					
 
 """
@@ -1029,6 +1052,8 @@ for item1 in components:
 			print "BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type
 		print "END"
 """
+
+"""
 f = open('res','w')
 print "\nIMPORTED ARCH"
 for item1 in components:
@@ -1061,7 +1086,7 @@ for item1 in components:
 	
 # check if all mandatory parameters are assigned
 # remember to clean the unused parameters/ports/busint at the end
-
+"""
 
 
 
