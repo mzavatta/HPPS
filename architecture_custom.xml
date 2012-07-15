@@ -72,7 +72,7 @@
 			<clock id="clock_generator_0" type="CLOCK_GENERATOR" name="clock_generator_0" class="clock_generator">
 			</clock>
 
-			<memory id="ddr2_sdram" type="TODEFINE" name="DDR2_SDRAM" class="mpmc">
+			<memory id="ddr2_sdram" type="TODEFINE" name="ddr2_sdram" class="mpmc">
 				<param name="C_BASEADDR" val="0x90000000"/>
 				<param name="C_HIGHADDR" val="0x9fffffff"/>
 			</memory>
@@ -217,6 +217,10 @@
 				<srcint id="SPLB"/>
 				<tgtint id="self"/>
 			</link>
+			<link src="mdm_0" tgt="proc_sys_reset_0" type="">
+				<srcint id="Debug_SYS_Rst"/>
+				<tgtint id="MB_Debug_Sys_Rst"/>
+			</link>
 
 
 
@@ -260,7 +264,112 @@
 			</link>
 
 
-		
+
+			<link src="clock_generator_0" tgt="ddr2_sdram" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="MPMC_Clk0_DIV2"/>
+			</link>
+			<link src="clock_generator_0" tgt="ddr2_sdram" type="">
+				<srcint id="CLKOUT1"/>
+				<tgtint id="MPMC_Clk90"/>
+			</link>
+			<link src="clock_generator_0" tgt="ddr2_sdram" type="">
+				<srcint id="CLKOUT2"/>
+				<tgtint id="MPMC_Clk0"/>
+			</link>
+			<link src="clock_generator_0" tgt="ddr2_sdram" type="">
+				<srcint id="CLKOUT2"/>
+				<tgtint id="MPMC_Clk_200MHz"/>
+			</link>
+			<link src="clock_generator_0" tgt="npi_coreA_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="XIL_NPI_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="npi_coreD_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="XIL_NPI_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="npi_coreE_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="XIL_NPI_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="dlmb" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="LMB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="dlmb_1" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="LMB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="ilmb" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="LMB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="ilmb_1" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="LMB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="mb_plb" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="PLB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="mb_plb_1" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="PLB_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="xps_mailbox_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="FSL_Clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="proc_sys_reset_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="Slowest_sync_clk"/>
+			</link>
+			<link src="clock_generator_0" tgt="proc_sys_reset_0" type="">
+				<srcint id="LOCKED"/>
+				<tgtint id="Dcm_locked"/>
+			</link>
+
+
+
+			<link src="proc_sys_reset_0" tgt="microblaze_0" type="">
+				<srcint id="MB_Reset"/>
+				<tgtint id="MB_RESET"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="microblaze_1" type="">
+				<srcint id="MB_Reset"/>
+				<tgtint id="MB_RESET"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="mb_plb" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="mb_plb_1" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="ilmb" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="ilmb_1" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="dlmb" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="dlmb_1" type="">
+				<srcint id="Bus_Struct_Reset"/>
+				<tgtint id="SYS_Rst"/>
+			</link>
+			<link src="proc_sys_reset_0" tgt="ddr2_sdram" type="">
+				<srcint id="Peripheral_Reset"/>
+				<tgtint id="MPMC_Rst"/>
+			</link>
+
+
 			<link src="npi_coreE_0" tgt="mb_plb_1" type="PLB">
 				<srcint id="SPLB"/>
 				<tgtint id="self"/>

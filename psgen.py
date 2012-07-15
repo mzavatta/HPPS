@@ -23,6 +23,7 @@ edkversion = "12.1 Build EDK_MS1.53d"		# EDK version
 mhsoutput = "restemp.mhs"
 mssoutput = "restemp.mss"
 xmpoutput = "restemp.xmp"
+logoutput = "psgen_log.txt"
 
 ########### Input files definitions
 xmlinput = "architecture_custom.xml"
@@ -105,8 +106,6 @@ class MssProcessorDeclaration: # associates a proc class (or, optionally, a sing
 		self.componentInstance=componentInstance	# may be empty
 
 
-###########
-
 
 ########### Component classes instanciation
 xps_mailbox = ComponentClass("xps_mailbox","./hw/XilinxProcessorIPLib/pcores/xps_mailbox_v2_00_b/data/xps_mailbox_v2_1_0.mpd")
@@ -126,7 +125,6 @@ proc_sys_reset = ComponentClass("proc_sys_reset","./hw/XilinxProcessorIPLib/pcor
 clock_generator = ComponentClass("clock_generator","./hw/XilinxProcessorIPLib/pcores/clock_generator_v4_00_a/data/clock_generator_v2_1_0.mpd")
 
 componentClasses = list()
-
 componentClasses.append(xps_mailbox)
 componentClasses.append(plb_v46)
 componentClasses.append(microblaze)
@@ -142,7 +140,7 @@ componentClasses.append(npi_coreA)
 componentClasses.append(npi_coreC)
 componentClasses.append(proc_sys_reset)
 componentClasses.append(clock_generator)
-##########
+
 
 ########## File handles
 mhsoutputHandle = open(mhsoutput,'w')
@@ -150,79 +148,21 @@ mssoutputHandle = open(mssoutput,'w')
 xmpoutputHandle = open(xmpoutput,'w')
 mhsdefaultsLinesHandle = open(mhsdefaultsFile,'r').readlines()
 mssdefaultsLinesHandle = open(mssdefaultsFile,'r').readlines()
-archFile = open(xmlinput,'r')
-
-##########
-
-##########
-
-##########
-
-##########
-componentSpecs=list()
-components=list()
-globalports=list()
-driverassignments=list()
-mssprocessordeclarations=list()
-osassignments=list()
-##########
+archFileHandle = open(xmlinput,'r')
+logoutputHandle = open(xmpoutput,'w')
 
 
-
-#class BusPLB:
-#	def __init__(self,parameters,ports,businterfaces):
-#		self.parameters=parameters
-#		self.ports=ports
-#		self.businterfaces=businterfaces
-
-
-
-# import component descriptions from mpd-like file
-#l=0;
-#while (l<len(mhsdefaultsLinesHandle)):
-#	if mhsdefaultsLinesHandle[l].find("BEGIN")>=0:
-#		elem=mhsdefaultsLinesHandle[l].rstrip().split(" ")
-#		tempComponent = Component(elem[1],list(),list(),list())
-#		#print elem
-#		#print tempComponent.cls
-#		l=l+1
-#		while (mhsdefaultsLinesHandle[l].find("END")!=0):
-#			elem=mhsdefaultsLinesHandle[l].rstrip().split(" ")
-#			#print elem
-#			for e in range(0,len(elem)):
-#				if elem[e]=="PARAMETER":
-#					tempComponent.parameters.append(Parameter(elem[e+1],""))
-#					break
-#				if elem[e]=="PORT":
-#					tempComponent.ports.append(Port(elem[e+1],""))
-#					break
-#				if elem[e]=="BUS_INTERFACE":
-#					tempComponent.businterfaces.append(BusInterface(elem[e+1],""))
-#					break	
-#			l=l+1
-#			#else if elem[0]=="PORT":
-#		componentSpecs.append(tempComponent)
-#	l=l+1
+########## Initialization of the system components lists
+components=list()	# HW system, root
+globalports=list()	# "
+driverassignments=list()		# SW system, dependent on HW system
+osassignments=list()			# "
+mssprocessordeclarations=list()		# "
 
 
-#for item1 in componentSpecs:
-#	print "BEGIN "+item1.cls
- #       for item2 in item1.parameters:
-#		print "PARAMETER "+item2.name
-#	for item3 in item1.ports:
-#		print "PORT "+item3.name
-#	for item4 in item1.businterfaces:
-#		print "BUS_INTERFACE "+item4.name
-#	print "END"
-
-
-################################################################## XML Import ###########################################################
-#################  Creation of the "space" of the possible interconnect combinations ####################################################
-
-#open the xml file for reading:
-data = archFile.read()
-archFile.close()
-dom = parseString(data)
+########## XML parsing and tree search
+dom = parseString(archFileHandle.read())
+archFileHandle.close()
 
 for node in dom.documentElement.childNodes:
 	if node.nodeType == 1 and node.tagName=="architecture":
@@ -248,18 +188,15 @@ for node in physicalNode.childNodes:
 	if node.nodeType == 1 and node.tagName=="pinout":
 		pinoutNode = node
 
-####################
 
-
+########## XOR helper
 def xor(op1, op2):
     return bool(op1) ^ bool(op2)
 
 
 ############### Component Import from xml, mpspecs, mpd
-
-#given and XML node (component to be instanciated) and a list of components
-#instanciate the component, fill in the information about it and append the newly instanciated component to the list
-
+# given and XML node (component to be instanciated) and a list of components
+# instanciate the component, fill in the information about it and append the newly instanciated component to the list
 def importComponent(node, components):
 	
 	print "import component entered"
@@ -323,7 +260,7 @@ def importComponent(node, components):
 			typeIndex = elem.index("BUS_TYPE") +2
 			tempInstance.businterfaces.append(BusInterface(elem[nameIndex],elem[stdIndex],elem[typeIndex],""))
 	for line in range(0,len(tmpFileLines)): # fetch ports which do not belong to a bus
-		if tmpFileLines[line].find("PORT")>=0 and tmpFileLines[line].find("BUS")<0:
+		if tmpFileLines[line].find("PORT")>=0 and tmpFileLines[line].find("BUS =")<0:
 			elem = tmpFileLines[line].rstrip().split(' ')
 			elem = [e.strip(",").strip("\t\t=") for e in elem]
 			#SIGIS and DIR attributes might not be present
@@ -409,6 +346,10 @@ def connect(link, components, globalports):
 	
 	if srcInstance==0 or tgtInstance==0:
 		print "ERROR LINKS CONTAINS A COMPONENT INSTANCE or PORT NOT FOUND"
+		#print "\t"+srcInstance.instance
+		#print "\t"+tgtInstance.instance
+		print "\t"+src
+		print "\t"+tgt
 		sys.exit()
 
 	
@@ -465,65 +406,79 @@ def connect(link, components, globalports):
 		print tgtInstance.instance+" on "+tgtInterfaceName
 		found = 0
 
-		src_isBus = 0
-		tgt_isBus = 0
-
+		# whether it is a bus device
 		src_isBusDevice = 0
 		tgt_isBusDevice = 0
 
-		# discover if the source is a bus device, otherwise get the interface, either bus or port
-		if srcInstance.bus=="":
-			for i in srcInstance.businterfaces:
+		# whether it is a bus interface within a normal (non-bus) device
+		src_isBus = 0
+		tgt_isBus = 0
+
+		# discover if the source is a bus device
+		if srcInstance.bus!="":
+			src_isBusDevice = 1
+			# get the source interface whose name is specified in the xml
+			# though when the connection is towards the bus itself,
+			# the interface name specified in the xml is be "" or "self"
+			# so in that case it will not find it (see assert)
+			if srcInterfaceName!="self" and srcInterfaceName!="":
+				src_isBusDevice = 0	# redirect to a simple device to device case	
+
+		for i in srcInstance.businterfaces:
+			if i.name == srcInterfaceName:
+				found = 1
+				srcInterface = i
+				src_isBus = 1				
+		if not found:
+			for i in srcInstance.ports:
 				if i.name == srcInterfaceName:
 					found = 1
 					srcInterface = i
-					src_isBus = 1				
-		
-			if not found:
-				for i in srcInstance.ports:
-					if i.name == srcInterfaceName:
-						found = 1
-						srcInterface = i
-		else:
-			src_isBusDevice = 1
-			found = 1
-
-		assert found==1
-
+		assert found==1 or src_isBusDevice
+					
 		found = 0
 
-		# discover if the target is a bus device, otherwise get the interface, either bus or port
-		if tgtInstance.bus=="":
-			for i in tgtInstance.businterfaces:
+		# discover if the target is a bus device
+		if tgtInstance.bus!="":
+			tgt_isBusDevice = 1
+			# get the target interface whose name is specified in the xml
+			# though when the connection is towards the bus itself,
+			# the interface name specified in the xml is be "" or "self"
+			# so in that case it will not find it (see assert)
+			if tgtInterfaceName!="self" and tgtInterfaceName!="":
+				tgt_isBusDevice = 0  # redirect to a simple device to device case
+
+		for i in tgtInstance.businterfaces:
+			if i.name == tgtInterfaceName:
+				found = 1
+				tgtInterface = i
+				tgt_isBus = 1
+		if not found:
+			for i in tgtInstance.ports:
 				if i.name == tgtInterfaceName:
 					found = 1
 					tgtInterface = i
-					tgt_isBus = 1
-		
-			if not found:
-				for i in tgtInstance.ports:
-					if i.name == tgtInterfaceName:
-						found = 1
-						tgtInterface = i
-		else:
-			tgt_isBusDevice = 1
-			found=1
+		assert found==1 or tgt_isBusDevice
 
-		assert found==1
 
-		assert not src_isBusDevice or not tgt_isBusDevice
+		# (optional) ensure we're not connecting a bus with a bus directly
+		# assert not src_isBusDevice or not tgt_isBusDevice
 
 		if src_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
-			print "device to bus connection"
+			# depending on whether the target is actually the bus or a port of the bus
+			print "bus to device connection"
 			assert (tgtInterface.value=="" or tgtInterface==srcInstance.instance) and tgtInterface.std==srcInstance.bus
 			tgtInterface.value = srcInstance.instance
-
+			print "assigned to "+tgtInterface.value			
+			
 		elif tgt_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
+			# depending on whether the target is actually the bus or a port of the bus
 			print "device to bus connection"
 			assert (srcInterface.value==""  or srcInterface==tgtInstance.instance) and srcInterface.std==tgtInstance.bus
-			srcInterface.value = tgtInstance.instance	
+			srcInterface.value = tgtInstance.instance
+			print "assigned to "+srcInterface.value
 
 		elif src_isBus and tgt_isBus:  #point-to-point bus connection
 			print "point to point bus connection"
@@ -532,15 +487,16 @@ def connect(link, components, globalports):
 			(srcInterface.type=="TARGET" and tgtInterface.type=="INITIATOR")
 			srcInterface.value="pp_bus_conn_"+str(count)
 			tgtInterface.value="pp_bus_conn_"+str(count)
+			print "assigned to "+srcInterface.value
 			count+=1
 			
 		elif not src_isBus and not tgt_isBus: #port to port connection
 			# beware of the interrupt manager that enables &-ing of the signals
 
 			print "port to port connection"
-			print srcInterface.value
-			print tgtInterface.value
-			assert srcInterface.sigis==tgtInterface.sigis
+			print "sigis: "+srcInterface.sigis
+			print "sigis: "+tgtInterface.sigis
+			assert (srcInterface.sigis==tgtInterface.sigis) or srcInterface.sigis=="" or tgtInterface.sigis==""
 			
 			if srcInterface.value=="" and tgtInterface.value=="":
 				srcInterface.value="pp_port_conn_"+str(count)
@@ -549,14 +505,14 @@ def connect(link, components, globalports):
 			elif srcInterface.value=="" and tgtInterface.value!="":
 				#what if it is an interrupt and int needs to be &-ed?
 				#srcInterface.value=tgtInterface.value
-				print "destination interface name already assigned"
+				print "destination interface name already assigned to "+tgtInterface.value
 				if tgtInterface.sigis=="INTERRUPT" and srcInterface.sigis=="INTERRUPT":
 					print "\tbut it is an interrupt, therefore compound"
 					srcInterface.value="interrupt_conn_"+str(count)
 					tgtInterface.value=tgtInterface.value+"&interrupt_conn_"+str(count)
 				else: srcInterface.value=tgtInterface.value
 			elif srcInterface.value!="" and tgtInterface.value=="":
-				print "destination source name already assigned"
+				print "source interface name already assigned to "+srcInterface.value
 				tgtInterface.value=srcInterface.value
 			elif srcInterface.value!="" and tgtInterface.value!="" and (srcInterface.value==tgtInterface.value):
 				print "WARNING: LINK ALREADY PRESENT, LIKELY SPECIFIED TWICE IN THE XML"
@@ -671,13 +627,13 @@ def importswdefaults():
 
 
 
-def print_mss(components):
+def printmss(components):
 	print "printing mss..."
 
 	
 	print "mss file printed on "+mssoutput
 	mssoutputHandle.write("################\n")
-	mssoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mssoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
 	mssoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
 	mssoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mssoutputHandle.write("# Generated from "+xmlinput+"\n")
@@ -760,39 +716,11 @@ def print_mss(components):
 			
 			
 		
-
-############### Components import
-
-for node in systemNode.childNodes:
-	if node.nodeType == 1:
-		importComponent(node, components)
-
-###############
-
-############### Pinout import
-
-for node in pinoutNode.childNodes:
-	if node.nodeType == 1:
-		importGlobalPort(node, globalports)
-
-
-
-############### Interconnects connection
-
-count = 0
-for node in physicalNode.childNodes:
-	if node.nodeType == 1 and node.tagName == "link":
-		connect(node, components, globalports)
-for node in virtualNode.childNodes:
-	if node.nodeType == 1 and node.tagName == "link":
-		connect(node, components, globalports)
-
-
-######### Print out all the components database in mhs syntax
+########## Print out all the components database in mhs syntax
 def printall():
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n"
 	mhsoutputHandle.write("################\n")
-	mhsoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mhsoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
 	mhsoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
 	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
@@ -821,14 +749,13 @@ def printall():
 			mhsoutputHandle.write("END"+"\n")
 			mhsoutputHandle.write("\n")
 
-	sys.exit()
-###########
 
-######### Print out the final mhs file
+
+########## Print out the final mhs file
 def printmhs():
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput
 	mhsoutputHandle.write("################\n")
-	mhsoutputHandle.write("# Automatically generated by archgen, Polimi HPPS project 2012\n")
+	mhsoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
 	mhsoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
 	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
@@ -846,7 +773,6 @@ def printmhs():
 	mhsoutputHandle.write("\n")
 
 	for item1 in components:
-			#print "\n"
 			mhsoutputHandle.write("BEGIN "+item1.cls+"\n")
 			mhsoutputHandle.write("PARAMETER INSTANCE = "+item1.instance+"\n")
 			#mhsoutputHandle.write("BUS "+item1.bus+"\n")
@@ -863,14 +789,39 @@ def printmhs():
 			mhsoutputHandle.write("\n")
 
 	
+
+
 ###########
+## Components import
+for node in systemNode.childNodes:
+	if node.nodeType == 1:
+		importComponent(node, components)
 
 
-printall()
+## Pinout import
+for node in pinoutNode.childNodes:
+	if node.nodeType == 1:
+		importGlobalPort(node, globalports)
+
+#printall()
+#sys.exit()
+
+## Interconnects connection
+count = 0	# global variable needed for naming of interconnections
+for node in physicalNode.childNodes:
+	if node.nodeType == 1 and node.tagName == "link":
+		connect(node, components, globalports)
+for node in virtualNode.childNodes:
+	if node.nodeType == 1 and node.tagName == "link":
+		connect(node, components, globalports)
+
+## SW system defaults import
 importswdefaults()
-print_mss(components)
-sys.exit()
 
+printmhs()
+printmss(components)
+
+sys.exit()
 ###########
 
 """
