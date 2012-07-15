@@ -280,6 +280,7 @@ def importComponent(node, components):
 	# insert the instance into the component list
 	components.append(copy.deepcopy(tempInstance))
 
+
 ############### Global ports import
 #given an XML node (port to be instanciated) and a list of global ports
 #instanciate the global port, fill in the information about it and append the newly instanciated global port to the list
@@ -306,12 +307,10 @@ def importGlobalPort(node, globalports):
 	# insert the instance into the global port list
 	globalports.append(copy.deepcopy(tempInstance))
 
+
 ############### Interconnections
 #given an XML node (link to be instanciated). Link can be physical or virtual
 #instanciate the link
-
-
-
 def connect(link, components, globalports):
 
 	global count
@@ -345,11 +344,13 @@ def connect(link, components, globalports):
 			tgtInterfaceName=l.getAttribute("id")
 	
 	if srcInstance==0 or tgtInstance==0:
-		print "ERROR LINKS CONTAINS A COMPONENT INSTANCE or PORT NOT FOUND"
-		#print "\t"+srcInstance.instance
-		#print "\t"+tgtInstance.instance
-		print "\t"+src
-		print "\t"+tgt
+		print "----"
+		print "ERROR LINKS CONTAINS A COMPONENT INSTANCE or GLOBAL PORT NOT FOUND."
+		print "Check the xml for mistaken naming or components not defined."
+		print "Link says:"
+		print "\t"+src+" on "+srcInterfaceName
+		print "\t"+tgt+" on "+tgtInterfaceName
+		print "----"
 		sys.exit()
 
 	
@@ -548,7 +549,6 @@ def connect(link, components, globalports):
 
 
 ###### Check not only slaves on the buses?
-
 #############################################################
 
 
@@ -626,7 +626,7 @@ def importswdefaults():
 		"""
 
 
-
+########## print mss. for each component in the HW print a driver or a os+processor pair
 def printmss(components):
 	print "printing mss..."
 
