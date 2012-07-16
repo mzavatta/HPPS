@@ -1,0 +1,23 @@
+1 INTRODUCTION
+- Reasons behind automation of the design flow: fast exploration of different architectures at a very detailed level (if the whole flow automatized can collect very precise data)
+- Objective of the work: automatize a piece of the flow i.e. generation of the platform files
+
+2 XILINX DESIGN FLOW AND TOOLS
+- very brief on xilinx methodology (hdl sources -> definition of the platform ->
+synthesis (netlist) -> implementation -> bitstream)
+- HW and SW platforms (EDK)
+    - processors, available IPs and custom IPs, buses... drivers etc..
+    - EDK platform specification format: mhs, mpd, mss...
+- partial reconfiguration (PlanAhead)
+
+3 THE TOOL
+- refined objective: detailed assumptions on the xml and other input files and details of the output files
+- platform used as a reference and testing (2 microblaze, 2 plbs...)
+- design choices (default parameters files and information from mpd to achieve flexibility)
+- implementation details (data structures used, naming etc..)
+- how to use it
+
+4 EXTENSIONS AND FUTURE WORK
+- automatic generation of the bitstream from the platform specification (bypass EDK + PlanAhead)
+
+5 REFERENCES (?) (Xilinx manuals)
