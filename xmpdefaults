@@ -1,0 +1,38 @@
+#Please do not modify this file by hand
+$versions$
+IntStyle: ise		
+$psfiles$
+$device$
+SpeedGrade: -1		
+UserCmd1: 		
+UserCmd1Type: 0		
+UserCmd2: 		
+UserCmd2Type: 0		
+GenSimTB: 0		
+SdkExportBmmBit: 1	
+SdkExportDir: SDK/SDK_Export	
+InsertNoPads: 0		
+WarnForEAArch: 1	
+HdlLang: vhdl		
+SimModel: BEHAVIORAL	
+$ucf$
+EnableParTimingError: 0	
+ShowLicenseDialog: 1
+LockAddr:
+$begin:processor$
+BootLoop: 0
+XmdStub: 0
+$end:processor$
+$begin:swproj$
+DefaultInit: EXECUTABLE
+Active: 1
+GlobPtrOpt: 0
+DebugSym: 1		
+ProfileFlag: 0
+ProgStart: 
+StackSize: 
+HeapSize: 
+ProgCCFlags: 
+CompileInXps: 1
+NonXpsApp: 0
+$end:swproj$

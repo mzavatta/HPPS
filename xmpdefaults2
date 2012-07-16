@@ -1,4 +1,3 @@
-#Please do not modify this file by hand
 XmpVersion: 12.1	# take from psf version
 VerMgmt: 12.1		# take from psf version
 IntStyle: ise		# leave ise
@@ -37,6 +36,7 @@ XmdStub: 0			# refer to "Initializing Bistreams with XMDSTUB Procedure" in the x
 # leave this value for everything except
 # InitBram
 # CompilerOptLevel
+# GlobPtrOpt (I would default it to 0, no)
 # LinkerScript
 SwProj: TestApp_Memory_microblaze_0
 Processor: microblaze_0

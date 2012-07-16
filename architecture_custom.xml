@@ -412,5 +412,24 @@
 			</link>
 
 		</virtual>
-</connection>	
+</connection>
+<applications>
+	<application name="TestApp_Memory_microblaze_1" proc="microblaze_1" linkerscript="TestApp_Memory_microblaze_1/src/TestApp_Memory_LinkScr.ld">
+		<header path="Software/Hardware_Cores.h"/>
+		<header path="Software/Software_Cores.h"/>
+		<source path="Software/scheduler.c"/>
+		<source path="Software/scheduler_HW_Cores.c"/>
+		<source path="Software/scheduler_HW_Interrupt.c"/>
+		<source path="Software/scheduler_SW_Cores.c"/>
+		<path path="drivers/em_bridge_npi_v1_00_a/src/"/>
+		<source path="Software/scheduler_MailBox_SW.c"/>
+	</application>
+
+	<application name="TestApp_Memory_microblaze_0" proc="microblaze_0" linkerscript="TestApp_Memory_microblaze_0/src/TestApp_Memory_LinkScr.ld">
+		<header path="Software/Software_Cores.h"/>
+		<source path="Software/microblaze_0_Cores.c"/>
+		<source path="Software/microblaze_0_Main.c"/>
+		<source path="Software/MailBox_SW.c"/>
+	</application>
+</applications>
 </faster>
