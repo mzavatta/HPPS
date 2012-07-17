@@ -17,7 +17,8 @@ from xml.dom.minidom import parseString
 
 ########### Global parameters
 psfversion = "2.1.0"	# Platform Specification Format version (PSF)
-edkversion = "12.1 Build EDK_MS1.53d"		# EDK version
+edkversionLong = "12.1 Build EDK_MS1.53d"	# EDK version verbose
+edkversionShort = "12.1"			# EDK version short
 
 ########### Output files definitions
 mhsoutput = "restemp.mhs"
@@ -31,6 +32,8 @@ mhsdefaultsFile = "./mhsdefaults"
 mssdefaultsFile = "./mssdefaults"
 xmpdefaultsFile = "./xmpdefaults"
 # beware of .mpd input files explicited in component classes definitions
+hwIPbasepath = "/home/hwdesign"
+customIPbasepath = "/home/hwdesign/archgen"
 
 ########### Classes definitions
 class ComponentClass:
@@ -119,21 +122,21 @@ class SwProj:
 
 
 ########### Component classes instanciation
-xps_mailbox = ComponentClass("xps_mailbox","./hw/XilinxProcessorIPLib/pcores/xps_mailbox_v2_00_b/data/xps_mailbox_v2_1_0.mpd")
-plb_v46 = ComponentClass("plb_v46","./hw/XilinxProcessorIPLib/pcores/plb_v46_v1_04_a/data/plb_v46_v2_1_0.mpd")
-microblaze = ComponentClass("microblaze","./hw/XilinxProcessorIPLib/pcores/microblaze_v7_30_a/data/microblaze_v2_1_0.mpd")
-bram_block = ComponentClass("bram_block","./hw/XilinxProcessorIPLib/pcores/bram_block_v1_00_a/data/bram_block_v2_1_0.mpd")
-lmb_v10 = ComponentClass("lmb_v10","./hw/XilinxProcessorIPLib/pcores/lmb_v10_v1_00_a/data/lmb_v10_v2_1_0.mpd")
-lmb_bram_if_cntlr = ComponentClass("lmb_bram_if_cntlr","./hw/XilinxProcessorIPLib/pcores/lmb_bram_if_cntlr_v2_10_b/data/lmb_bram_if_cntlr_v2_1_0.mpd")
-mpmc = ComponentClass("mpmc","./hw/XilinxProcessorIPLib/pcores/mpmc_v6_00_a/data/mpmc_v2_1_0.mpd")
-xps_intc = ComponentClass("xps_intc","./hw/XilinxProcessorIPLib/pcores/xps_intc_v2_01_a/data/xps_intc_v2_1_0.mpd")
-mdm = ComponentClass("mdm","./hw/XilinxProcessorIPLib/pcores/mdm_v1_00_g/data/mdm_v2_1_0.mpd")
-npi_coreE = ComponentClass("npi_coreE","./pcores/npi_coreE_v1_00_a/data/npi_coreE_v2_1_0.mpd")
-npi_coreD = ComponentClass("npi_coreD","./pcores/npi_coreD_v1_00_a/data/npi_coreD_v2_1_0.mpd")
-npi_coreA = ComponentClass("npi_coreA","./pcores/npi_coreA_v1_00_a/data/npi_coreA_v2_1_0.mpd")
-npi_coreC = ComponentClass("npi_coreC","./pcores/npi_coreC_v1_00_a/data/npi_coreC_v2_1_0.mpd")
-proc_sys_reset = ComponentClass("proc_sys_reset","./hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v2_00_a/data/proc_sys_reset_v2_1_0.mpd")
-clock_generator = ComponentClass("clock_generator","./hw/XilinxProcessorIPLib/pcores/clock_generator_v4_00_a/data/clock_generator_v2_1_0.mpd")
+xps_mailbox = ComponentClass("xps_mailbox",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/xps_mailbox_v2_00_b/data/xps_mailbox_v2_1_0.mpd")
+plb_v46 = ComponentClass("plb_v46",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/plb_v46_v1_04_a/data/plb_v46_v2_1_0.mpd")
+microblaze = ComponentClass("microblaze",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/microblaze_v7_30_a/data/microblaze_v2_1_0.mpd")
+bram_block = ComponentClass("bram_block",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/bram_block_v1_00_a/data/bram_block_v2_1_0.mpd")
+lmb_v10 = ComponentClass("lmb_v10",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/lmb_v10_v1_00_a/data/lmb_v10_v2_1_0.mpd")
+lmb_bram_if_cntlr = ComponentClass("lmb_bram_if_cntlr",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/lmb_bram_if_cntlr_v2_10_b/data/lmb_bram_if_cntlr_v2_1_0.mpd")
+mpmc = ComponentClass("mpmc",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/mpmc_v6_00_a/data/mpmc_v2_1_0.mpd")
+xps_intc = ComponentClass("xps_intc",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/xps_intc_v2_01_a/data/xps_intc_v2_1_0.mpd")
+mdm = ComponentClass("mdm",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_g/data/mdm_v2_1_0.mpd")
+npi_coreE = ComponentClass("npi_coreE",customIPbasepath+"/pcores/npi_coreE_v1_00_a/data/npi_coreE_v2_1_0.mpd")
+npi_coreD = ComponentClass("npi_coreD",customIPbasepath+"/pcores/npi_coreD_v1_00_a/data/npi_coreD_v2_1_0.mpd")
+npi_coreA = ComponentClass("npi_coreA",customIPbasepath+"/pcores/npi_coreA_v1_00_a/data/npi_coreA_v2_1_0.mpd")
+npi_coreC = ComponentClass("npi_coreC",customIPbasepath+"/pcores/npi_coreC_v1_00_a/data/npi_coreC_v2_1_0.mpd")
+proc_sys_reset = ComponentClass("proc_sys_reset",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v2_00_a/data/proc_sys_reset_v2_1_0.mpd")
+clock_generator = ComponentClass("clock_generator",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_00_a/data/clock_generator_v2_1_0.mpd")
 
 componentClasses = list()
 componentClasses.append(xps_mailbox)
@@ -161,7 +164,7 @@ mhsdefaultsLinesHandle = open(mhsdefaultsFile,'r').readlines()
 mssdefaultsLinesHandle = open(mssdefaultsFile,'r').readlines()
 xmpdefaultsLinesHandle = open(xmpdefaultsFile,'r').readlines()
 archFileHandle = open(xmlinput,'r')
-logoutputHandle = open(xmpoutput,'w')
+logoutputHandle = open(logoutput,'w')
 
 
 ########## Initialization of the system components lists
@@ -172,6 +175,13 @@ osassignments=list()			# "
 mssprocessordeclarations=list()		# "
 
 swprojs=list()
+
+########## Project and system generics
+systemId = ""
+fpgaArchitecture = ""
+fpgaDevice = ""
+fpgaPackage = ""
+ucfFile = "data/system.ucf"
 
 ########## XML parsing and tree search
 dom = parseString(archFileHandle.read())
@@ -210,12 +220,60 @@ for node in dom.documentElement.childNodes:
 def xor(op1, op2):
     return bool(op1) ^ bool(op2)
 
+########## Warnings list
+warnings = ""
+
+########## Error helper
+error = False
+def exit():
+	if error:
+		print "psgen interrupted by error, see log file "+logoutput+" for details"
+	else: print "psgen successfully terminated, log file "+logoutput
+	sys.exit()
+
+
+########## Import system and device data
+def importgenerics():
+	
+	global fpgaArchitecture, fpgaDevice, fpgaPackage, systemId
+	global error
+
+	systemId = systemNode.getAttribute("id")
+	temp = systemNode.getAttribute("device")
+	elem = temp.rstrip().split("-")
+	if len(elem)!=2:
+		error = True
+		print "UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR MISSING "+'"-"'
+		exit()
+
+
+	symbols = list(elem[0])
+	if symbols[3]=="v" or symbols[3]=="V":
+		fpgaArchitecture = "virtex"
+	elif symbols[3]=="k" or symbols[3]=="K":
+		fpgaArchitecture = "kintex"
+	elif symbols[3]=="a" or symbols[3]=="A":
+		fpgaArchitecture = "artix"
+	elif symbols[3]=="s" or symbols[3]=="S":
+		fpgaArchitecture = "spartan"
+	else:
+		error = True		
+		print "UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR ERRORS"
+		exit()
+
+	fpgaArchitecture+=symbols[2]
+	fpgaDevice = elem[0]
+	fpgaPackage = elem[1]
+
+	
 
 ############### Component Import from xml, mpspecs, mpd
 # given and XML node (component to be instanciated) and a list of components
 # instanciate the component, fill in the information about it and append the newly instanciated component to the list
 def importComponent(node, components):
 	
+	global warnings
+
 	print "import component entered"
 	# instanciate based on xml
 	id = node.getAttribute("id")
@@ -304,6 +362,8 @@ def importComponent(node, components):
 
 def importGlobalPort(node, globalports):
 
+	global error
+
 	ide = node.getAttribute("id")
 	print ide+"\n"
 	tempInstance = GlobalPort(ide,"",list())
@@ -311,7 +371,7 @@ def importGlobalPort(node, globalports):
 	if node.attributes:
 		for a in range(0,len(node.attributes)):
 			if node.attributes.item(a).name != "id":
-				name = node.attributes.item(a).name
+				name = node.attributes.item(a).name.upper()
 				#print name
 				value = node.attributes.item(a).value
 				#print value
@@ -331,6 +391,8 @@ def importGlobalPort(node, globalports):
 def connect(link, components, globalports):
 
 	global count
+	global warnings
+	global error
 
 	src = link.getAttribute("src")
 	tgt = link.getAttribute("tgt")
@@ -361,6 +423,7 @@ def connect(link, components, globalports):
 			tgtInterfaceName=l.getAttribute("id")
 	
 	if srcInstance==0 or tgtInstance==0:
+		error = True
 		print "----"
 		print "ERROR LINKS CONTAINS A COMPONENT INSTANCE or GLOBAL PORT NOT FOUND."
 		print "Check the xml for mistaken naming or components not defined."
@@ -368,9 +431,13 @@ def connect(link, components, globalports):
 		print "\t"+src+" on "+srcInterfaceName
 		print "\t"+tgt+" on "+tgtInterfaceName
 		print "----"
-		sys.exit()
-
+		exit()
 	
+	# can have many cases now:
+	# - source is a global port, destination is a component
+	# - destination is a component, source is a global port
+	# - component to component connection
+		
 	if src_isGlobalPort and not tgt_isGlobalPort: 
 		# usual connection global port to device
 		# not consider the case that the device is a bus
@@ -392,10 +459,9 @@ def connect(link, components, globalports):
 				if i.name == tgtInterfaceName:
 					found = 1
 					tgtInterface = i
-
 		assert found == 1
 
-		assert srcInterfaceName == "self"
+		assert srcInterfaceName == "self" or srcInterfaceName == ""
 				
 		# assign the name to both
 		if srcInstance.value=="" and tgtInterface.value=="": #assign a new name
@@ -407,16 +473,59 @@ def connect(link, components, globalports):
 		elif srcInstance.value!="" and tgtInterface.value=="": #copy to the other one
 			tgtInterface.value=srcInstance.value
 		elif srcInstance.value!="" and tgtInterface.value!="" and srcInstance.value==tgtInterface.value:
-			print "WARNING: LINK ALREADY PRESENT, LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
+			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
 		else: 
+			error = True
 			print "ERROR: the two interfaces are already assigned to different components"
-			sys.exit()
-			
+			exit()
+	
+	elif not src_isGlobalPort and tgt_isGlobalPort:
+		# usual connection device to global port
+		# not consider the case that the device is a bus
+
+		print "Source is a Component intance, Target is a Global Port, "
+		print srcInstance.name+" on "+srcInterfaceName
+		print tgtInstance.instance+" on "+tgtInterfaceName
+
+		# fetch the interface in the component with that name, being it a bus or a port
+		# contained in tgtInterface
+		found = 0
+		for i in srcInstance.businterfaces:
+			if i.name == srcInterfaceName:
+				found = 1
+				srcInterface = i
+		
+		if not found:
+			for i in srcInstance.ports:
+				if i.name == srcInterfaceName:
+					found = 1
+					srcInterface = i
+		assert found == 1
+
+		assert tgtInterfaceName == "self" or tgtInterfaceName == ""
+				
+		# assign the name to both
+		if srcInstance.value=="" and tgtInterface.value=="": #assign a new name
+			srcInstance.value = "ext_port_conn_"+str(count)
+			tgtInterface.value = "ext_port_conn_"+str(count)
+			count+=1
+		elif srcInstance.value=="" and tgtInterface.value!="": #copy to the other one
+			srcInstance.value=tgtInterface.value
+		elif srcInstance.value!="" and tgtInterface.value=="": #copy to the other one
+			tgtInterface.value=srcInstance.value
+		elif srcInstance.value!="" and tgtInterface.value!="" and srcInstance.value==tgtInterface.value:
+			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
+		else: 
+			error = True
+			print "ERROR: the two interfaces are already assigned to different components"
+			exit()
+		
+		
 
 	elif not src_isGlobalPort and not tgt_isGlobalPort:
 		# device to device connection, either bus or port
 		# device might be a bus device e.g. plb, need to check bus attribute of the device instance
-		# srcInstance and srcInterface
+
 		print ""
 		print "-------"
 		print "device to device connection"
@@ -482,6 +591,13 @@ def connect(link, components, globalports):
 		# (optional) ensure we're not connecting a bus with a bus directly
 		# assert not src_isBusDevice or not tgt_isBusDevice
 
+		# can have many cases now:
+		# - source is a normal component, destination is a bus component's bus
+		# - vice versa (in both cases the connection name must be the same as the instance name of the bus)
+		# - point to point bus connection (i.e. when there is no bus component that intermediates e.g. NPI)
+		# - port to port connection
+		# (in the last two cases the same connection name must be assigned to both bus interfaces or ports)
+
 		if src_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
 			# depending on whether the target is actually the bus or a port of the bus
@@ -503,6 +619,10 @@ def connect(link, components, globalports):
 			assert srcInterface.std == tgtInterface.std
 			assert (srcInterface.type=="INITIATOR" and tgtInterface.type=="TARGET") or \
 			(srcInterface.type=="TARGET" and tgtInterface.type=="INITIATOR")
+
+			# what about already assigned names? for the moment guard in this way
+			assert srcInterface.value=="" and tgtInterface.value==""
+
 			srcInterface.value="pp_bus_conn_"+str(count)
 			tgtInterface.value="pp_bus_conn_"+str(count)
 			print "assigned to "+srcInterface.value
@@ -510,12 +630,16 @@ def connect(link, components, globalports):
 			
 		elif not src_isBus and not tgt_isBus: #port to port connection
 			# beware of the interrupt manager that enables &-ing of the signals
+			# it ends up in here also the case where one of the two devices is a bus device \
+			# and the connection on the bus device in on a port (e.g. plb_v46's clock port)
 
 			print "port to port connection"
 			print "sigis: "+srcInterface.sigis
 			print "sigis: "+tgtInterface.sigis
 			assert (srcInterface.sigis==tgtInterface.sigis) or srcInterface.sigis=="" or tgtInterface.sigis==""
 			
+			# on either port a name might have already been assigned (a previously assigned connection on the same port \
+			# on one side and a different port on the other side). Need to take care of this
 			if srcInterface.value=="" and tgtInterface.value=="":
 				srcInterface.value="pp_port_conn_"+str(count)
 				tgtInterface.value="pp_port_conn_"+str(count)
@@ -532,18 +656,22 @@ def connect(link, components, globalports):
 			elif srcInterface.value!="" and tgtInterface.value=="":
 				print "source interface name already assigned to "+srcInterface.value
 				tgtInterface.value=srcInterface.value
-			elif srcInterface.value!="" and tgtInterface.value!="" and (srcInterface.value==tgtInterface.value):
-				print "WARNING: LINK ALREADY PRESENT, LIKELY SPECIFIED TWICE IN THE XML"
+			elif srcInterface.value!="" and tgtInterface.value!="" and srcInterface.value==tgtInterface.value:
+				warnings+="WARNING: LINK ALREADY PRESENT "+src+":"+srcInterfaceName+" " \
+					+tgt+":"+tgtInterfaceName+" LIKELY SPECIFIED TWICE IN THE XML"
 			else:
+				error = True
 				print "ERROR: the two interfaces are already assigned to different components"
-				sys.exit()
+				print "       cannot assign this link without breaking another one"
+				exit()
 			count+=1
 		
 		else:
-			print "ERROR: trying to connect two components from bus to port or vice versa"
+			error = True
+			print "ERROR: trying to connect two components from bus to port or vice versa. Incriminated link:"
 			print "Source: "+srcInstance.instance+" on: "+srcInterface.name
 			print "Target: "+tgtInstance.instance+" on: "+tgtInterface.name
-			sys.exit()
+			exit()
 			
 		print "-------------------"
 
@@ -571,6 +699,8 @@ def connect(link, components, globalports):
 
 def importswdefaults():
 		
+		global error
+
 		print "importing mss defaults..."
 
 		valid = 0
@@ -590,8 +720,9 @@ def importswdefaults():
 					# create tempinstance of class driverassignment and assign to the instance the class name
 					tempInstance = DriverAssignment(elem[2],"")
 				else:
-					print "ERROR"
-					sys.exit()
+					error = True
+					print "ERROR, UNKNOWN BEGIN STATEMENT IN "+mssdefaultsFile
+					exit()
 			elif "PARAMETER" in elem and valid!=0: # if valid and if it is a parameter line, append a new parameter
 				if valid == "O":
 					if "PROC_INSTANCE" in elem:
@@ -655,7 +786,7 @@ def printmss(components):
 	mssoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mssoutputHandle.write("# Generated from "+xmlinput+"\n")
 	mssoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
-	mssoutputHandle.write("# EDK version "+edkversion+"\n")
+	mssoutputHandle.write("# EDK version "+edkversionLong+"\n")
 	mssoutputHandle.write("################\n\n")
 
 	for component in components:
@@ -734,7 +865,9 @@ def printmss(components):
 ########## Import Software Projects
 
 def importswproj(swprojs):
-
+	
+	global error
+	
 	for node in applicationsNode.childNodes:
 		if node.nodeType == 1 and node.tagName=="application":
 			
@@ -762,10 +895,12 @@ def importswproj(swprojs):
 					elif n.tagName=="path":
 						tempIncludePaths.append(n.getAttribute("path"))
 					else:
-						print "XML non identified tag as child to application "+name+", exiting..."
-						sys.exit()
+						error = True
+						print "ERROR XML non identified tag. Error in application tag "+name
+						exit()
 
-			swprojs.append(SwProj(name,proc,ls,copy.deepcopy(tempSources),copy.deepcopy(tempHeaders),copy.deepcopy(tempIncludePaths)))
+			swprojs.append(SwProj(name,proc,ls,copy.deepcopy(tempSources),copy.deepcopy(tempHeaders), \
+						copy.deepcopy(tempIncludePaths)))
 			
 			for s in swprojs:
 				print "begin swproj"
@@ -777,18 +912,14 @@ def importswproj(swprojs):
 					print "header: "+s1
 				for s1 in s.includepaths:
 					print "includepath: "+s1
-				
-				
-
-			
-	
+					
 
 
 ########## Print xmp (xps project configuration)
 
 def printxmp(swprojs):
 
-	global xmpoutputHandle
+	global xmpoutputHandle, error
 
 	print "printing xmp.."
 	print "\timporting defaults for processor.."
@@ -813,19 +944,20 @@ def printxmp(swprojs):
 		elif not valid:
 			xmpoutputHandle.write(l)
 		
-
 	# memorize the default processors text
 	valid = 0
 	for l in xmpdefaultsLinesHandle:
 		if l.find("$begin:processor$")>=0:
 			if valid == 1:
+				error = True
 				print xmpdefaultsFile+" syntax error"
-				sys.exit()	
+				exit()	
 			else: valid=1
 		elif l.find("$end:processor$")>=0:
 			if valid == 0:
+				error = True
 				print xmpdefaultsFile+" syntax error"
-				sys.exit()	
+				exit()	
 			else: valid=0
 		elif valid:
 			processorDefaultText = processorDefaultText + l
@@ -835,13 +967,15 @@ def printxmp(swprojs):
 	for l in xmpdefaultsLinesHandle:
 		if l.find("$begin:swproj$")>=0:
 			if valid == 1:
+				error = True
 				print xmpdefaultsFile+" syntax error"
-				sys.exit()	
+				exit()	
 			else: valid=1
 		elif l.find("$end:swproj$")>=0:
 			if valid == 0:
+				error = True
 				print xmpdefaultsFile+" syntax error"
-				sys.exit()	
+				exit()
 			else: valid=0
 		elif valid:
 			swprojDefaultText = swprojDefaultText + l
@@ -857,6 +991,7 @@ def printxmp(swprojs):
 		swprojFinalText+="SwProj: "+s.name+"\n"
 		swprojFinalText+="Processor: "+s.proc+"\n"
 		swprojFinalText+="Executable: "+s.name+"/executable.elf\n"
+		swprojFinalText+="LinkerScript: "+s.linkerscript+"\n"
 		for s1 in s.headers:
 			swprojFinalText+="Header: "+s1+"\n"
 		for s1 in s.sources:
@@ -873,14 +1008,17 @@ def printxmp(swprojs):
 
 	for l in xmppointerLines:
 		if l.find("$versions$")>=0:
-			print "enter"
-			xmpoutputHandle.write("PLACEV\n")
+			xmpoutputHandle.write("XmpVersion: "+edkversionShort+"\n" \
+						+"VerMgmt: "+edkversionShort+"\n")
 		elif l.find("$psfiles$")>=0:
-			xmpoutputHandle.write("PALCEPS\n")
+			xmpoutputHandle.write("MHS File: "+mhsoutput+"\n" \
+						+"MSS File: "+mssoutput+"\n")
 		elif l.find("$device$")>=0:
-			xmpoutputHandle.write("PLACED\n")
+			xmpoutputHandle.write("Architecture: "+fpgaArchitecture+"\n" \
+						+"Device: "+fpgaDevice+"\n" \
+						+"Package: "+fpgaPackage+"\n")
 		elif l.find("$ucf$")>=0:
-			xmpoutputHandle.write("PLACEUDF\n")
+			xmpoutputHandle.write("UcfFile: "+ucfFile+"\n")
 		elif l.find("$processors$")>=0:
 			xmpoutputHandle.write(processorFinalText)
 		elif l.find("$swprojs$")>=0:
@@ -901,7 +1039,7 @@ def printall():
 	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
 	mhsoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
-	mhsoutputHandle.write("# EDK version "+edkversion+"\n")
+	mhsoutputHandle.write("# EDK version "+edkversionLong+"\n")
 	mhsoutputHandle.write("################\n\n")
 
 	for item1 in globalports:
@@ -936,7 +1074,7 @@ def printmhs():
 	mhsoutputHandle.write("# Generated on "+str(datetime.date.today())+"\n")
 	mhsoutputHandle.write("# Generated from "+xmlinput+"\n")
 	mhsoutputHandle.write("# Platform Specification Format version "+psfversion+"\n")
-	mhsoutputHandle.write("# EDK version "+edkversion+"\n")
+	mhsoutputHandle.write("# EDK version "+edkversionLong+"\n")
 	mhsoutputHandle.write("################\n\n")
 
 	mhsoutputHandle.write("PARAMETER VERSION = "+psfversion+"\n")
@@ -992,6 +1130,10 @@ for node in virtualNode.childNodes:
 		connect(node, components, globalports)
 
 ## SW system defaults import
+
+########## Import system and device data
+importgenerics()
+
 importswdefaults()
 
 printmhs()
@@ -1000,6 +1142,11 @@ printmss(components)
 importswproj(swprojs)
 
 printxmp(swprojs)
-
-sys.exit()
+print systemId
+print fpgaArchitecture
+print fpgaDevice
+print fpgaPackage
+print ucfFile
+print warnings
+exit()
 ###########

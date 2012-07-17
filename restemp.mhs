@@ -8,8 +8,22 @@
 ################
 
 PARAMETER VERSION = 2.1.0
-PORT fpga_0_clk_1_sys_clk_pin = ext_port_conn_0, freq = 100000000, sigis = CLK, dir = I
-PORT fpga_0_rst_1_sys_rst_pin = ext_port_conn_1, polarity = 0, sigis = RST, dir = I
+PORT fpga_0_clk_1_sys_clk_pin = ext_port_conn_0, CLK_FREQ = 100000000, SIGIS = CLK, DIR = I
+PORT fpga_0_rst_1_sys_rst_pin = ext_port_conn_1, SIGIS = RST, DIR = I, RST_POLARITY = 0
+PORT fpga_0_DDR2_SDRAM_DDR2_Clk_pin = ext_port_conn_2, DIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin = ext_port_conn_3, DIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_CE_pin = ext_port_conn_4, BIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_CS_n_pin = ext_port_conn_5, DIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_ODT_pin = ext_port_conn_6, DIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_RAS_n_pin = ext_port_conn_7, DIR = O
+PORT fpga_0_DDR2_SDRAM_DDR2_CAS_n_pin = ext_port_conn_8, DIR = O
+PORT fpga_0_DDR2_SDRAM_DDR2_WE_n_pin = ext_port_conn_9, DIR = O
+PORT fpga_0_DDR2_SDRAM_DDR2_BankAddr_pin = ext_port_conn_10, DIR = O, VEC = [1:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_Addr_pin = ext_port_conn_11, DIR = O, VEC = [12:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_DQ_pin = ext_port_conn_12, DIR = IO, VEC = [63:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_DM_pin = ext_port_conn_13, DIR = O, VEC = [7:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_DQS_pin = ext_port_conn_14, DIR = IO, VEC = [7:0]
+PORT fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin = ext_port_conn_15, DIR = IO, VEC = [7:0]
 
 BEGIN xps_mailbox
 PARAMETER INSTANCE = xps_mailbox_0
@@ -19,9 +33,9 @@ PARAMETER C_SPLB0_BASEADDR = 0x81e00000
 PARAMETER C_SPLB0_HIGHEADDR = 0x81e0ffff
 PARAMETER C_SPLB1_BASEADDR = 0x82000000
 PARAMETER C_SPLB1_HIGHADDR = 0x8200ffff
-PORT FSL_Clk = pp_port_conn_13
-PORT Interrupt_0 = pp_port_conn_12
-PORT Interrupt_1 = pp_port_conn_11
+PORT FSL_Clk = pp_port_conn_27
+PORT Interrupt_0 = pp_port_conn_26
+PORT Interrupt_1 = pp_port_conn_25
 BUS_INTERFACE SPLB0 = mb_plb
 BUS_INTERFACE SPLB1 = mb_plb_1
 END
@@ -29,52 +43,52 @@ END
 BEGIN plb_v46
 PARAMETER INSTANCE = mb_plb_1
 PARAMETER HW_VER = 1.04.a
-PORT PLB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT PLB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN plb_v46
 PARAMETER INSTANCE = mb_plb
 PARAMETER HW_VER = 1.04.a
-PORT PLB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT PLB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN proc_sys_reset
 PARAMETER INSTANCE = proc_sys_reset_0
 PARAMETER C_EXT_RESET_HIGH = 0
 PARAMETER HW_VER = 2.00.a
-PORT Slowest_sync_clk = pp_port_conn_13
+PORT Slowest_sync_clk = pp_port_conn_27
 PORT Ext_Reset_In = ext_port_conn_1
-PORT MB_Debug_Sys_Rst = pp_port_conn_10
-PORT Dcm_locked = pp_port_conn_28
-PORT MB_Reset = pp_port_conn_29
-PORT Bus_Struct_Reset = pp_port_conn_31
-PORT Peripheral_Reset = pp_port_conn_37
+PORT MB_Debug_Sys_Rst = pp_port_conn_24
+PORT Dcm_locked = pp_port_conn_42
+PORT MB_Reset = pp_port_conn_43
+PORT Bus_Struct_Reset = pp_port_conn_45
+PORT Peripheral_Reset = pp_port_conn_51
 END
 
 BEGIN microblaze
 PARAMETER INSTANCE = microblaze_1
 PARAMETER C_DEBUG_ENABLED = 1
 PARAMETER HW_VER = 7.30.a
-PORT MB_RESET = pp_port_conn_29
-PORT INTERRUPT = pp_port_conn_7
+PORT MB_RESET = pp_port_conn_43
+PORT INTERRUPT = pp_port_conn_21
 BUS_INTERFACE DLMB = dlmb_1
 BUS_INTERFACE ILMB = ilmb_1
 BUS_INTERFACE DPLB = mb_plb_1
-BUS_INTERFACE DEBUG = pp_bus_conn_6
+BUS_INTERFACE DEBUG = pp_bus_conn_20
 END
 
 BEGIN microblaze
 PARAMETER INSTANCE = microblaze_0
 PARAMETER C_DEBUG_ENABLED = 1
 PARAMETER HW_VER = 7.30.a
-PORT MB_RESET = pp_port_conn_29
-PORT INTERRUPT = pp_port_conn_3
+PORT MB_RESET = pp_port_conn_43
+PORT INTERRUPT = pp_port_conn_17
 BUS_INTERFACE DLMB = dlmb
 BUS_INTERFACE ILMB = ilmb
 BUS_INTERFACE DPLB = mb_plb
-BUS_INTERFACE DEBUG = pp_bus_conn_2
+BUS_INTERFACE DEBUG = pp_bus_conn_16
 END
 
 BEGIN mdm
@@ -85,24 +99,24 @@ PARAMETER C_UART_WIDTH = 8
 PARAMETER HW_VER = 1.00.g
 PARAMETER C_BASEADDR = 0x84400000
 PARAMETER C_HIGHADDR = 0x8440ffff
-PORT Debug_SYS_Rst = pp_port_conn_10
+PORT Debug_SYS_Rst = pp_port_conn_24
 BUS_INTERFACE SPLB = mb_plb_1
-BUS_INTERFACE MBDEBUG_0 = pp_bus_conn_2
-BUS_INTERFACE MBDEBUG_1 = pp_bus_conn_6
+BUS_INTERFACE MBDEBUG_0 = pp_bus_conn_16
+BUS_INTERFACE MBDEBUG_1 = pp_bus_conn_20
 END
 
 BEGIN bram_block
 PARAMETER INSTANCE = lmb_bram_1
 PARAMETER HW_VER = 1.00.a
-BUS_INTERFACE PORTA = pp_bus_conn_9
-BUS_INTERFACE PORTB = pp_bus_conn_8
+BUS_INTERFACE PORTA = pp_bus_conn_23
+BUS_INTERFACE PORTB = pp_bus_conn_22
 END
 
 BEGIN bram_block
 PARAMETER INSTANCE = lmb_bram
 PARAMETER HW_VER = 1.00.a
-BUS_INTERFACE PORTA = pp_bus_conn_5
-BUS_INTERFACE PORTB = pp_bus_conn_4
+BUS_INTERFACE PORTA = pp_bus_conn_19
+BUS_INTERFACE PORTB = pp_bus_conn_18
 END
 
 BEGIN lmb_bram_if_cntlr
@@ -111,7 +125,7 @@ PARAMETER HW_VER = 2.10.b
 PARAMETER C_BASEADDR = 0x00000000
 PARAMETER C_HIGHADDR = 0x0000ffff
 BUS_INTERFACE SLMB = ilmb_1
-BUS_INTERFACE BRAM_PORT = pp_bus_conn_9
+BUS_INTERFACE BRAM_PORT = pp_bus_conn_23
 END
 
 BEGIN lmb_bram_if_cntlr
@@ -120,21 +134,21 @@ PARAMETER HW_VER = 2.10.b
 PARAMETER C_BASEADDR = 0x00000000
 PARAMETER C_HIGHADDR = 0x0000ffff
 BUS_INTERFACE SLMB = ilmb
-BUS_INTERFACE BRAM_PORT = pp_bus_conn_5
+BUS_INTERFACE BRAM_PORT = pp_bus_conn_19
 END
 
 BEGIN lmb_v10
 PARAMETER INSTANCE = ilmb_1
 PARAMETER HW_VER = 1.00.a
-PORT LMB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT LMB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN lmb_v10
 PARAMETER INSTANCE = ilmb
 PARAMETER HW_VER = 1.00.a
-PORT LMB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT LMB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN lmb_bram_if_cntlr
@@ -143,7 +157,7 @@ PARAMETER HW_VER = 2.10.b
 PARAMETER C_BASEADDR = 0x00000000
 PARAMETER C_HIGHADDR = 0x0000ffff
 BUS_INTERFACE SLMB = dlmb_1
-BUS_INTERFACE BRAM_PORT = pp_bus_conn_8
+BUS_INTERFACE BRAM_PORT = pp_bus_conn_22
 END
 
 BEGIN lmb_bram_if_cntlr
@@ -152,21 +166,21 @@ PARAMETER HW_VER = 2.10.b
 PARAMETER C_BASEADDR = 0x00000000
 PARAMETER C_HIGHADDR = 0x0000ffff
 BUS_INTERFACE SLMB = dlmb
-BUS_INTERFACE BRAM_PORT = pp_bus_conn_4
+BUS_INTERFACE BRAM_PORT = pp_bus_conn_18
 END
 
 BEGIN lmb_v10
 PARAMETER INSTANCE = dlmb_1
 PARAMETER HW_VER = 1.00.a
-PORT LMB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT LMB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN lmb_v10
 PARAMETER INSTANCE = dlmb
 PARAMETER HW_VER = 1.00.a
-PORT LMB_Clk = pp_port_conn_13
-PORT SYS_Rst = pp_port_conn_31
+PORT LMB_Clk = pp_port_conn_27
+PORT SYS_Rst = pp_port_conn_45
 END
 
 BEGIN clock_generator
@@ -187,11 +201,11 @@ PARAMETER C_CLKOUT2_BUF = TRUE
 PARAMETER C_EXT_RESET_HIGH = 0
 PARAMETER HW_VER = 4.00.a
 PORT CLKIN = ext_port_conn_0
-PORT CLKOUT0 = pp_port_conn_13
-PORT CLKOUT1 = pp_port_conn_14
-PORT CLKOUT2 = pp_port_conn_15
+PORT CLKOUT0 = pp_port_conn_27
+PORT CLKOUT1 = pp_port_conn_28
+PORT CLKOUT2 = pp_port_conn_29
 PORT RST = ext_port_conn_1
-PORT LOCKED = pp_port_conn_28
+PORT LOCKED = pp_port_conn_42
 END
 
 BEGIN mpmc
@@ -216,41 +230,53 @@ PARAMETER C_FAMILY = virtex5
 PARAMETER C_PIM2_BASETYPE = 4
 PARAMETER C_PIM3_BASETYPE = 4
 PARAMETER C_PIM4_BASETYPE = 4
-PARAMETER C_BASEADDR = 0x90000000
-PARAMETER C_HIGHADDR = 0x9fffffff
-PORT MPMC_Clk0 = pp_port_conn_15
-PORT MPMC_Clk0_DIV2 = pp_port_conn_13
-PORT MPMC_Clk90 = pp_port_conn_14
-PORT MPMC_Clk_200MHz = pp_port_conn_15
-PORT MPMC_Rst = pp_port_conn_37
+PARAMETER C_MPMC_BASEADDR = 0x90000000
+PARAMETER C_MPMC_HIGHADDR = 0x9fffffff
+PORT MPMC_Clk0 = pp_port_conn_29
+PORT MPMC_Clk0_DIV2 = pp_port_conn_27
+PORT MPMC_Clk90 = pp_port_conn_28
+PORT MPMC_Clk_200MHz = pp_port_conn_29
+PORT MPMC_Rst = pp_port_conn_51
+PORT DDR2_Clk = ext_port_conn_2
+PORT DDR2_Clk_n = ext_port_conn_3
+PORT DDR2_CE = ext_port_conn_4
+PORT DDR2_CS_n = ext_port_conn_5
+PORT DDR2_ODT = ext_port_conn_6
+PORT DDR2_RAS_n = ext_port_conn_7
+PORT DDR2_CAS_n = ext_port_conn_8
+PORT DDR2_WE_n = ext_port_conn_9
+PORT DDR2_BankAddr = ext_port_conn_10
+PORT DDR2_Addr = ext_port_conn_11
+PORT DDR2_DQ = ext_port_conn_12
+PORT DDR2_DM = ext_port_conn_13
+PORT DDR2_DQS = ext_port_conn_14
+PORT DDR2_DQS_n = ext_port_conn_15
 BUS_INTERFACE SPLB0 = mb_plb_1
 BUS_INTERFACE SPLB1 = mb_plb
-BUS_INTERFACE MPMC_PIM2 = pp_bus_conn_43
-BUS_INTERFACE MPMC_PIM3 = pp_bus_conn_41
-BUS_INTERFACE MPMC_PIM4 = pp_bus_conn_39
+BUS_INTERFACE MPMC_PIM2 = pp_bus_conn_57
+BUS_INTERFACE MPMC_PIM3 = pp_bus_conn_55
+BUS_INTERFACE MPMC_PIM4 = pp_bus_conn_53
 END
 
 BEGIN xps_intc
 PARAMETER INSTANCE = Intr_Main
 PARAMETER HW_VER = 2.01.a
-PARAMETER HW_VER = 2.01.a
 PARAMETER C_IRQ_IS_LEVEL = 0
 PARAMETER C_BASEADDR = 0x81800000
 PARAMETER C_HIGHADDR = 0x8180ffff
-PORT Intr = pp_port_conn_11&interrupt_conn_38&interrupt_conn_40&interrupt_conn_42
-PORT Irq = pp_port_conn_7
+PORT Intr = pp_port_conn_25&interrupt_conn_52&interrupt_conn_54&interrupt_conn_56
+PORT Irq = pp_port_conn_21
 BUS_INTERFACE SPLB = mb_plb_1
 END
 
 BEGIN xps_intc
 PARAMETER INSTANCE = Intr_Access
 PARAMETER HW_VER = 2.01.a
-PARAMETER HW_VER = 2.01.a
 PARAMETER C_IRQ_IS_LEVEL = 0
 PARAMETER C_BASEADDR = 0x81800000
 PARAMETER C_HIGHADDR = 0x8180ffff
-PORT Intr = pp_port_conn_12
-PORT Irq = pp_port_conn_3
+PORT Intr = pp_port_conn_26
+PORT Irq = pp_port_conn_17
 BUS_INTERFACE SPLB = mb_plb
 END
 
@@ -259,10 +285,10 @@ PARAMETER INSTANCE = npi_coreA_0
 PARAMETER HW_VER = 1.00.a
 PARAMETER C_BASEADDR = 0xc3800000
 PARAMETER C_HIGHADDR = 0xc380ffff
-PORT INT_DONE = interrupt_conn_42
-PORT XIL_NPI_Clk = pp_port_conn_13
+PORT INT_DONE = interrupt_conn_56
+PORT XIL_NPI_Clk = pp_port_conn_27
 BUS_INTERFACE SPLB = mb_plb_1
-BUS_INTERFACE XIL_NPI = pp_bus_conn_43
+BUS_INTERFACE XIL_NPI = pp_bus_conn_57
 END
 
 BEGIN npi_coreC
@@ -277,10 +303,10 @@ PARAMETER INSTANCE = npi_coreD_0
 PARAMETER HW_VER = 1.00.a
 PARAMETER C_BASEADDR = 0xc3840000
 PARAMETER C_HIGHADDR = 0xc384ffff
-PORT INT_DONE = interrupt_conn_40
-PORT XIL_NPI_Clk = pp_port_conn_13
+PORT INT_DONE = interrupt_conn_54
+PORT XIL_NPI_Clk = pp_port_conn_27
 BUS_INTERFACE SPLB = mb_plb_1
-BUS_INTERFACE XIL_NPI = pp_bus_conn_41
+BUS_INTERFACE XIL_NPI = pp_bus_conn_55
 END
 
 BEGIN npi_coreE
@@ -288,9 +314,9 @@ PARAMETER INSTANCE = npi_coreE_0
 PARAMETER HW_VER = 1.00.a
 PARAMETER C_BASEADDR = 0xc3860000
 PARAMETER C_HIGHADDR = 0xc386ffff
-PORT INT_DONE = interrupt_conn_38
-PORT XIL_NPI_Clk = pp_port_conn_13
+PORT INT_DONE = interrupt_conn_52
+PORT XIL_NPI_Clk = pp_port_conn_27
 BUS_INTERFACE SPLB = mb_plb_1
-BUS_INTERFACE XIL_NPI = pp_bus_conn_39
+BUS_INTERFACE XIL_NPI = pp_bus_conn_53
 END
 

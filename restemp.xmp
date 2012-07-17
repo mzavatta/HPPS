@@ -1,8 +1,12 @@
 #Please do not modify this file by hand
-PLACEV
-IntStyle: ise		
-PALCEPS
-PLACED
+XmpVersion: 12.1
+VerMgmt: 12.1
+IntStyle: default	
+MHS File: restemp.mhs
+MSS File: restemp.mss
+Architecture: virtex5
+Device: XC5VLX30T
+Package: FF665
 SpeedGrade: -1		
 UserCmd1: 		
 UserCmd1Type: 0		
@@ -15,7 +19,7 @@ InsertNoPads: 0
 WarnForEAArch: 1	
 HdlLang: vhdl		
 SimModel: BEHAVIORAL	
-PLACEUDF
+UcfFile: data/system.ucf
 EnableParTimingError: 0	
 ShowLicenseDialog: 1
 LockAddr:
@@ -25,19 +29,18 @@ XmdStub: 0
 Processor: microblaze_0
 BootLoop: 0
 XmdStub: 0
-SwProj: TestApp_Memory_microblaze_1
-Processor: microblaze_1
-Executable: TestApp_Memory_microblaze_1/executable.elf
-Header: Software/Hardware_Cores.h
+SwProj: TestApp_Memory_microblaze_0
+Processor: microblaze_0
+Executable: TestApp_Memory_microblaze_0/executable.elf
+LinkerScript: TestApp_Memory_microblaze_0/src/TestApp_Memory_LinkScr.ld
 Header: Software/Software_Cores.h
-Source: Software/scheduler.c
-Source: Software/scheduler_HW_Cores.c
-Source: Software/scheduler_HW_Interrupt.c
-Source: Software/scheduler_SW_Cores.c
-Source: Software/scheduler_MailBox_SW.c
-SearchIncl: drivers/em_bridge_npi_v1_00_a/src/
+Source: Software/microblaze_0_Cores.c
+Source: Software/microblaze_0_Main.c
+Source: Software/MailBox_SW.c
 DefaultInit: EXECUTABLE
+InitBram: 1
 Active: 1
+CompilerOptLevel: 0
 GlobPtrOpt: 0
 DebugSym: 1		
 ProfileFlag: 0
@@ -47,15 +50,22 @@ HeapSize:
 ProgCCFlags: 
 CompileInXps: 1
 NonXpsApp: 0
-SwProj: TestApp_Memory_microblaze_0
-Processor: microblaze_0
-Executable: TestApp_Memory_microblaze_0/executable.elf
+SwProj: TestApp_Memory_microblaze_1
+Processor: microblaze_1
+Executable: TestApp_Memory_microblaze_1/executable.elf
+LinkerScript: TestApp_Memory_microblaze_1/src/TestApp_Memory_LinkScr.ld
+Header: Software/Hardware_Cores.h
 Header: Software/Software_Cores.h
-Source: Software/microblaze_0_Cores.c
-Source: Software/microblaze_0_Main.c
-Source: Software/MailBox_SW.c
+Source: Software/scheduler.c
+Source: Software/scheduler_HW_Cores.c
+Source: Software/scheduler_HW_Interrupt.c
+Source: Software/scheduler_SW_Cores.c
+Source: Software/scheduler_MailBox_SW.c
+SearchIncl: drivers/em_bridge_npi_v1_00_a/src/
 DefaultInit: EXECUTABLE
+InitBram: 1
 Active: 1
+CompilerOptLevel: 0
 GlobPtrOpt: 0
 DebugSym: 1		
 ProfileFlag: 0

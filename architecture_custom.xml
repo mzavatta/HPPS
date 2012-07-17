@@ -4,7 +4,7 @@
 
 			<ipCore id="xps_mailbox_0" type="IP" name="xps_mailbox_0" class="xps_mailbox">
 				<param name="C_SPLB0_BASEADDR" val="0x81e00000"/>
-				<param name="C_SPLB0_HIGHEADDR" val="0x81e0ffff"/>
+				<param name="C_SPLB0_HIGHADDR" val="0x81e0ffff"/>
 				<param name="C_SPLB1_BASEADDR" val="0x82000000"/>
 				<param name="C_SPLB1_HIGHADDR" val="0x8200ffff"/>
 			</ipCore>
@@ -73,8 +73,8 @@
 			</clock>
 
 			<memory id="ddr2_sdram" type="TODEFINE" name="ddr2_sdram" class="mpmc">
-				<param name="C_BASEADDR" val="0x90000000"/>
-				<param name="C_HIGHADDR" val="0x9fffffff"/>
+				<param name="C_MPMC_BASEADDR" val="0x90000000"/>
+				<param name="C_MPMC_HIGHADDR" val="0x9fffffff"/>
 			</memory>
 
 			<ipCore id="Intr_Main" type="IP" name="Intr_Main" class="xps_intc">
@@ -113,8 +113,22 @@
 	<connection>
 		<physical>
 			<pinout>
-				<pin id="fpga_0_clk_1_sys_clk_pin" sigis="CLK" dir="I" freq="100000000"/>
-	 			<pin id="fpga_0_rst_1_sys_rst_pin" sigis="RST" dir="I" polarity="0"/>
+				<pin id="fpga_0_clk_1_sys_clk_pin" sigis="CLK" dir="I" clk_freq="100000000"/>
+	 			<pin id="fpga_0_rst_1_sys_rst_pin" sigis="RST" dir="I" rst_polarity="0"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_Clk_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_CE_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_CS_n_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_ODT_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_RAS_n_pin" dir="O"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_CAS_n_pin" dir="O"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_WE_n_pin" dir="O"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_BankAddr_pin" dir="O" vec="[1:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_Addr_pin" dir="O" vec="[12:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_DQ_pin" dir="IO" vec="[63:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_DM_pin" dir="O" vec="[7:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_DQS_pin" dir="IO" vec="[7:0]"/>
+				<pin id="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin" dir="IO" vec="[7:0]"/>
 			</pinout>
 			<link src="fpga_0_clk_1_sys_clk_pin" tgt="clock_generator_0">
 				<srcint id="self"/>
@@ -128,6 +142,63 @@
 				<srcint id="self"/>
 				<tgtint id="RST"/>
 			</link>
+
+			<link src="fpga_0_DDR2_SDRAM_DDR2_Clk_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_Clk"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_Clk_n"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_CE_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_CE"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_CS_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_CS_n"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_ODT_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_ODT"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_RAS_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_RAS_n"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_CAS_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_CAS_n"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_WE_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_WE_n"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_BankAddr_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_BankAddr"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_Addr_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_Addr"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_DQ_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_DQ"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_DM_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_DM"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_DQS_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_DQS"/>
+			</link>
+			<link src="fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin" tgt="ddr2_sdram">
+				<srcint id="self"/>
+				<tgtint id="DDR2_DQS_n"/>
+			</link>				
 		</physical>
 		<virtual>
 			<link src="microblaze_0" tgt="mb_plb" type="BUS">
@@ -414,6 +485,14 @@
 		</virtual>
 </connection>
 <applications>
+
+	<application name="TestApp_Memory_microblaze_0" proc="microblaze_0" linkerscript="TestApp_Memory_microblaze_0/src/TestApp_Memory_LinkScr.ld">
+		<header path="Software/Software_Cores.h"/>
+		<source path="Software/microblaze_0_Cores.c"/>
+		<source path="Software/microblaze_0_Main.c"/>
+		<source path="Software/MailBox_SW.c"/>
+	</application>
+
 	<application name="TestApp_Memory_microblaze_1" proc="microblaze_1" linkerscript="TestApp_Memory_microblaze_1/src/TestApp_Memory_LinkScr.ld">
 		<header path="Software/Hardware_Cores.h"/>
 		<header path="Software/Software_Cores.h"/>
@@ -423,13 +502,6 @@
 		<source path="Software/scheduler_SW_Cores.c"/>
 		<path path="drivers/em_bridge_npi_v1_00_a/src/"/>
 		<source path="Software/scheduler_MailBox_SW.c"/>
-	</application>
-
-	<application name="TestApp_Memory_microblaze_0" proc="microblaze_0" linkerscript="TestApp_Memory_microblaze_0/src/TestApp_Memory_LinkScr.ld">
-		<header path="Software/Software_Cores.h"/>
-		<source path="Software/microblaze_0_Cores.c"/>
-		<source path="Software/microblaze_0_Main.c"/>
-		<source path="Software/MailBox_SW.c"/>
 	</application>
 </applications>
 </faster>

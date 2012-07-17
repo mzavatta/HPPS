@@ -1,6 +1,6 @@
 #Please do not modify this file by hand
 $versions$
-IntStyle: ise		
+IntStyle: default	
 $psfiles$
 $device$
 SpeedGrade: -1		
@@ -25,7 +25,9 @@ XmdStub: 0
 $end:processor$
 $begin:swproj$
 DefaultInit: EXECUTABLE
+InitBram: 1
 Active: 1
+CompilerOptLevel: 0
 GlobPtrOpt: 0
 DebugSym: 1		
 ProfileFlag: 0

@@ -1,7 +1,7 @@
 #Please do not modify this file by hand
 XmpVersion: 12.1	# take from psf version
 VerMgmt: 12.1		# take from psf version
-IntStyle: ise		# leave ise
+IntStyle: ise		# wether a native EDK (default) or ISE (ise) project
 MHS File: system.mhs	# !!!!!
 MSS File: system.mss	# !!!!!
 Architecture: virtex5	# !!!!!
