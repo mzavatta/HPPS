@@ -19,6 +19,7 @@ synthesis (netlist) -> implementation -> bitstream)
 
 4 EXTENSIONS AND FUTURE WORK
 - automatic generation of the bitstream from the platform specification (bypass EDK + PlanAhead)
+- automatic architecture (xml) generation for DSE
 
 5 REFERENCES (?) (Xilinx manuals)
 

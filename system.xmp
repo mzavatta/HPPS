@@ -34,10 +34,6 @@ BootLoop: 0			# refer to "Initializing Bistreams with bootloops" in the xps help
 XmdStub: 0			# refer to "Initializing Bistreams with XMDSTUB Procedure" in the xps help, assign as default
 ###
 ### begin of a chunk of related statements
-# leave this value for everything except
-# InitBram
-# CompilerOptLevel
-# LinkerScript
 SwProj: TestApp_Memory_microblaze_0
 Processor: microblaze_0
 Executable: TestApp_Memory_microblaze_0/executable.elf
@@ -46,9 +42,9 @@ Source: Software/microblaze_0_Cores.c
 Source: Software/microblaze_0_Main.c
 Source: Software/MailBox_SW.c
 DefaultInit: EXECUTABLE
-InitBram: 1		# see "Initializing Bitstreams for Hardware Testing" in xps help
+InitBram: 1		# see "Initializing Bitstreams for Hardware Testing" in xps help, use 1 as default
 Active: 1		# no idea
-CompilerOptLevel: 2	# I would put it to 
+CompilerOptLevel: 2	# default to 0
 GlobPtrOpt: 0		# means Use Global Pointer Optimization
 DebugSym: 1		
 ProfileFlag: 0
