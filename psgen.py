@@ -243,6 +243,7 @@ def importgenerics():
 	elem = temp.rstrip().split("-")
 	if len(elem)!=2:
 		error = True
+		logoutputHandle.write("UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR MISSING "+'"-"'+"\n")
 		print "UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR MISSING "+'"-"'
 		exit()
 
@@ -257,7 +258,8 @@ def importgenerics():
 	elif symbols[3]=="s" or symbols[3]=="S":
 		fpgaArchitecture = "spartan"
 	else:
-		error = True		
+		error = True
+		logoutputHandle.write("UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR ERRORS\n")
 		print "UNKNOWN DEVICE CODE, CHECK XML's SYSTEM NODE ATTRIBUTES FOR ERRORS"
 		exit()
 
@@ -274,12 +276,13 @@ def importComponent(node, components):
 	
 	global warnings
 
-	print "import component entered"
+	
+	logoutputHandle.write("importComponent entered\n")
 	# instanciate based on xml
 	id = node.getAttribute("id")
 	cls = node.getAttribute("class")
 	tempInstance = Component(cls,id,list(),list(),list())
-	print "current xml node is id:"+id+" class:"+cls
+	logoutputHandle.write("current xml node is id:"+id+" class:"+cls+"\n")
 	
 	####### TO BE CHANGED GOING INTO THE mpd ######
 	if cls=="plb_v46":
@@ -364,10 +367,12 @@ def importGlobalPort(node, globalports):
 
 	global error
 
+	logoutputHandle.write("importGlobalPort entered\n")
+	
 	ide = node.getAttribute("id")
-	print ide+"\n"
+	logoutputHandle.write(ide+"\n")
 	tempInstance = GlobalPort(ide,"",list())
-	print tempInstance.name
+	logoutputHandle.write(tempInstance.name+"\n")
 	if node.attributes:
 		for a in range(0,len(node.attributes)):
 			if node.attributes.item(a).name != "id":
@@ -378,8 +383,8 @@ def importGlobalPort(node, globalports):
 				tempInstance.attributes.append(Attribute(name, value))
 
 	for a in tempInstance.attributes:
-		print a.value+" "+a.name
-	print "finish\n"
+		logoutputHandle.write(a.value+" "+a.name+"\n")
+	#print "finish\n"
 	
 	# insert the instance into the global port list
 	globalports.append(copy.deepcopy(tempInstance))
@@ -424,6 +429,9 @@ def connect(link, components, globalports):
 	
 	if srcInstance==0 or tgtInstance==0:
 		error = True
+		logoutputHandle.write("----\nERROR LINKS CONTAINS A COMPONENT INSTANCE or GLOBAL PORT NOT FOUND.\n")
+		logoutputHandle.write("Check the xml for mistaken naming or components not defined.\nLink says:\n")
+		logoutputHandle.write("\t"+src+" on "+srcInterfaceName+"\n"+"\t"+tgt+" on "+tgtInterfaceName+"\n----\n")
 		print "----"
 		print "ERROR LINKS CONTAINS A COMPONENT INSTANCE or GLOBAL PORT NOT FOUND."
 		print "Check the xml for mistaken naming or components not defined."
@@ -442,9 +450,8 @@ def connect(link, components, globalports):
 		# usual connection global port to device
 		# not consider the case that the device is a bus
 
-		print "Source is a Global Port, Target is a Component intance"
-		print srcInstance.name+" on "+srcInterfaceName
-		print tgtInstance.instance+" on "+tgtInterfaceName
+		logoutputHandle.write("Source is a Global Port, Target is a Component intance\n")
+		logoutputHandle.write(srcInstance.name+" on "+srcInterfaceName+"\n"+tgtInstance.instance+" on "+tgtInterfaceName+"\n")
 
 		# fetch the interface in the component with that name, being it a bus or a port
 		# contained in tgtInterface
@@ -464,7 +471,11 @@ def connect(link, components, globalports):
 		assert srcInterfaceName == "self" or srcInterfaceName == ""
 				
 		# assign the name to both
-		if srcInstance.value=="" and tgtInterface.value=="": #assign a new name
+		# temporary guard for debugging
+		if tgtInstance.cls == "mpmc":
+			srcInstance.value = srcInstance.name
+			tgtInterface.value = srcInstance.value
+		elif srcInstance.value=="" and tgtInterface.value=="": #assign a new name
 			srcInstance.value = "ext_port_conn_"+str(count)
 			tgtInterface.value = "ext_port_conn_"+str(count)
 			count+=1
@@ -476,6 +487,7 @@ def connect(link, components, globalports):
 			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
 		else: 
 			error = True
+			logoutputHandle.write("ERROR: the two interfaces are already assigned to different components\n")
 			print "ERROR: the two interfaces are already assigned to different components"
 			exit()
 	
@@ -483,9 +495,8 @@ def connect(link, components, globalports):
 		# usual connection device to global port
 		# not consider the case that the device is a bus
 
-		print "Source is a Component intance, Target is a Global Port, "
-		print srcInstance.name+" on "+srcInterfaceName
-		print tgtInstance.instance+" on "+tgtInterfaceName
+		logoutputHandle.write("Source is a Component intance, Target is a Global Port\n")
+		logoutputHandle.write(srcInstance.name+" on "+srcInterfaceName+"\n"+tgtInstance.instance+" on "+tgtInterfaceName+"\n")
 
 		# fetch the interface in the component with that name, being it a bus or a port
 		# contained in tgtInterface
@@ -514,9 +525,10 @@ def connect(link, components, globalports):
 		elif srcInstance.value!="" and tgtInterface.value=="": #copy to the other one
 			tgtInterface.value=srcInstance.value
 		elif srcInstance.value!="" and tgtInterface.value!="" and srcInstance.value==tgtInterface.value:
-			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML" ## ok anyway, already matching
+			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML\n" ## ok anyway, already matching
 		else: 
 			error = True
+			logoutputHandle.write("ERROR: the two interfaces are already assigned to different components\n")
 			print "ERROR: the two interfaces are already assigned to different components"
 			exit()
 		
@@ -525,12 +537,11 @@ def connect(link, components, globalports):
 	elif not src_isGlobalPort and not tgt_isGlobalPort:
 		# device to device connection, either bus or port
 		# device might be a bus device e.g. plb, need to check bus attribute of the device instance
-
-		print ""
-		print "-------"
-		print "device to device connection"
-		print srcInstance.instance+" on "+srcInterfaceName
-		print tgtInstance.instance+" on "+tgtInterfaceName
+		
+		logoutputHandle.write("\n-------\n")
+		logoutputHandle.write("device to device connection")
+		logoutputHandle.write(srcInstance.instance+" on "+srcInterfaceName+"\n")
+		logoutputHandle.write(tgtInstance.instance+" on "+tgtInterfaceName+"\n")
 		found = 0
 
 		# whether it is a bus device
@@ -601,21 +612,21 @@ def connect(link, components, globalports):
 		if src_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
 			# depending on whether the target is actually the bus or a port of the bus
-			print "bus to device connection"
+			logoutputHandle.write("bus to device connection\n")
 			assert (tgtInterface.value=="" or tgtInterface==srcInstance.instance) and tgtInterface.std==srcInstance.bus
 			tgtInterface.value = srcInstance.instance
-			print "assigned to "+tgtInterface.value			
+			logoutputHandle.write("assigned to "+tgtInterface.value+"\n")	
 			
 		elif tgt_isBusDevice: #device to bus connection
 			# assign the target interface to the bus instance
 			# depending on whether the target is actually the bus or a port of the bus
-			print "device to bus connection"
+			logoutputHandle.write("device to bus connection\n")
 			assert (srcInterface.value==""  or srcInterface==tgtInstance.instance) and srcInterface.std==tgtInstance.bus
 			srcInterface.value = tgtInstance.instance
-			print "assigned to "+srcInterface.value
+			logoutputHandle.write("assigned to "+srcInterface.value+"\n")
 
 		elif src_isBus and tgt_isBus:  #point-to-point bus connection
-			print "point to point bus connection"
+			logoutputHandle.write("point to point bus connection\n")
 			assert srcInterface.std == tgtInterface.std
 			assert (srcInterface.type=="INITIATOR" and tgtInterface.type=="TARGET") or \
 			(srcInterface.type=="TARGET" and tgtInterface.type=="INITIATOR")
@@ -625,7 +636,7 @@ def connect(link, components, globalports):
 
 			srcInterface.value="pp_bus_conn_"+str(count)
 			tgtInterface.value="pp_bus_conn_"+str(count)
-			print "assigned to "+srcInterface.value
+			logoutputHandle.write("assigned to "+srcInterface.value+"\n")
 			count+=1
 			
 		elif not src_isBus and not tgt_isBus: #port to port connection
@@ -633,9 +644,10 @@ def connect(link, components, globalports):
 			# it ends up in here also the case where one of the two devices is a bus device \
 			# and the connection on the bus device in on a port (e.g. plb_v46's clock port)
 
-			print "port to port connection"
-			print "sigis: "+srcInterface.sigis
-			print "sigis: "+tgtInterface.sigis
+			logoutputHandle.write("port to port connection\n")
+			logoutputHandle.write("sigis: "+srcInterface.sigis+"\n")
+			logoutputHandle.write("sigis: "+tgtInterface.sigis+"\n")
+
 			assert (srcInterface.sigis==tgtInterface.sigis) or srcInterface.sigis=="" or tgtInterface.sigis==""
 			
 			# on either port a name might have already been assigned (a previously assigned connection on the same port \
@@ -643,24 +655,26 @@ def connect(link, components, globalports):
 			if srcInterface.value=="" and tgtInterface.value=="":
 				srcInterface.value="pp_port_conn_"+str(count)
 				tgtInterface.value="pp_port_conn_"+str(count)
-				print "both assigned to "+srcInterface.value
+				logoutputHandle.write("both assigned to "+srcInterface.value+"\n")
 			elif srcInterface.value=="" and tgtInterface.value!="":
 				#what if it is an interrupt and int needs to be &-ed?
 				#srcInterface.value=tgtInterface.value
-				print "destination interface name already assigned to "+tgtInterface.value
+				logoutputHandle.write("destination interface name already assigned to "+tgtInterface.value+"\n")
 				if tgtInterface.sigis=="INTERRUPT" and srcInterface.sigis=="INTERRUPT":
-					print "\tbut it is an interrupt, therefore compound"
+					logoutputHandle.write("\tbut it is an interrupt, therefore compound\n")
 					srcInterface.value="interrupt_conn_"+str(count)
 					tgtInterface.value=tgtInterface.value+"&interrupt_conn_"+str(count)
 				else: srcInterface.value=tgtInterface.value
 			elif srcInterface.value!="" and tgtInterface.value=="":
-				print "source interface name already assigned to "+srcInterface.value
+				logoutputHandle.write("source interface name already assigned to "+srcInterface.value+"\n")
 				tgtInterface.value=srcInterface.value
 			elif srcInterface.value!="" and tgtInterface.value!="" and srcInterface.value==tgtInterface.value:
 				warnings+="WARNING: LINK ALREADY PRESENT "+src+":"+srcInterfaceName+" " \
 					+tgt+":"+tgtInterfaceName+" LIKELY SPECIFIED TWICE IN THE XML"
 			else:
 				error = True
+				logoutputHandle.write("ERROR: the two interfaces are already assigned to different components\n")
+				logoutputHandle.write("       cannot assign this link without breaking another one\n")
 				print "ERROR: the two interfaces are already assigned to different components"
 				print "       cannot assign this link without breaking another one"
 				exit()
@@ -668,28 +682,15 @@ def connect(link, components, globalports):
 		
 		else:
 			error = True
+			logoutputHandle.write("ERROR: trying to connect two components from bus to port or vice versa. Incriminated link:\n")
+			logoutputHandle.write("Source: "+srcInstance.instance+" on: "+srcInterface.name+"\n")
+			logoutputHandle.write("Target: "+tgtInstance.instance+" on: "+tgtInterface.name+"\n")
 			print "ERROR: trying to connect two components from bus to port or vice versa. Incriminated link:"
 			print "Source: "+srcInstance.instance+" on: "+srcInterface.name
 			print "Target: "+tgtInstance.instance+" on: "+tgtInterface.name
 			exit()
 			
-		print "-------------------"
-
-	"""	
-	else: 
-		print "Source is a component instance"
-		print srcInstance.instance+" on "+srcInterface
-		
-	if tgt_isPort: 
-		print "Target is a Global Port"
-		print tgtInstance.name+" on "+tgtInterface
-	else:
-		print "Target is a component instance"
-		print tgtInstance.instance+" on "+tgtInterface
-
-	"""
-
-	
+		logoutputHandle.write("----------------\n")
 
 
 
@@ -697,11 +698,12 @@ def connect(link, components, globalports):
 #############################################################
 
 
-def importswdefaults():
+def importmssdefaults():
 		
 		global error
 
-		print "importing mss defaults..."
+		logoutputHandle.write("importsmssdefaults entered")
+		print "importmssdefaults entered"
 
 		valid = 0
 		for l in range(0,len(mssdefaultsLinesHandle)):
@@ -721,6 +723,7 @@ def importswdefaults():
 					tempInstance = DriverAssignment(elem[2],"")
 				else:
 					error = True
+					logoutputHandle.write("ERROR, UNKNOWN BEGIN STATEMENT IN "+mssdefaultsFile+"\n")
 					print "ERROR, UNKNOWN BEGIN STATEMENT IN "+mssdefaultsFile
 					exit()
 			elif "PARAMETER" in elem and valid!=0: # if valid and if it is a parameter line, append a new parameter
@@ -757,29 +760,15 @@ def importswdefaults():
 
 			
 
-		""""
-		# print the database
-		for o in osassignments:
-			print o.componentClass
-			if o.componentInstance!="": print o.componentInstance
-			print o.text
-		for o in driverassignments:
-			print o.componentClass
-			if o.componentInstance!="": print o.componentInstance
-			print o.text
-		for o in mssprocessordeclarations:
-			print o.componentClass
-			if o.componentInstance!="": print o.componentInstance
-			print o.text
-		"""
-
-
 ########## print mss. for each component in the HW print a driver or a os+processor pair
 def printmss(components):
+	
+	logoutputHandle.write("printing mss...\n")
 	print "printing mss..."
 
-	
+	logoutputHandle.write("mss file printed on "+mssoutput+"\n")
 	print "mss file printed on "+mssoutput
+
 	mssoutputHandle.write("################\n")
 	mssoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
 	mssoutputHandle.write("# Author: Marco Zavatta (marco.zavatta@mail.polimi.it)\n")
@@ -842,7 +831,6 @@ def printmss(components):
 				mssoutputHandle.write("\n")
 			
 			else: # component which needs a simple driver
-				#print instance
 				for da in driverassignments:
 					if da.componentInstance == instance:
 						tempInstance = da
@@ -896,22 +884,12 @@ def importswproj(swprojs):
 						tempIncludePaths.append(n.getAttribute("path"))
 					else:
 						error = True
+						logoutputHandle.write("ERROR XML non identified tag. Error in application tag "+name+"\n")
 						print "ERROR XML non identified tag. Error in application tag "+name
 						exit()
 
 			swprojs.append(SwProj(name,proc,ls,copy.deepcopy(tempSources),copy.deepcopy(tempHeaders), \
 						copy.deepcopy(tempIncludePaths)))
-			
-			for s in swprojs:
-				print "begin swproj"
-				print s.name
-				print s.proc
-				for s1 in s.sources:
-					print "source: "+s1
-				for s1 in s.headers:
-					print "header: "+s1
-				for s1 in s.includepaths:
-					print "includepath: "+s1
 					
 
 
@@ -921,8 +899,9 @@ def printxmp(swprojs):
 
 	global xmpoutputHandle, error
 
+	logoutputHandle.write("printing xmp..\n")
+	logoutputHandle.write("\timporting defaults for processor..\n")
 	print "printing xmp.."
-	print "\timporting defaults for processor.."
 
 	processorDefaultText = ""
 	swprojDefaultText = ""
@@ -950,13 +929,13 @@ def printxmp(swprojs):
 		if l.find("$begin:processor$")>=0:
 			if valid == 1:
 				error = True
-				print xmpdefaultsFile+" syntax error"
+				logoutputHandle.write(xmpdefaultsFile+" syntax error\n")
 				exit()	
 			else: valid=1
 		elif l.find("$end:processor$")>=0:
 			if valid == 0:
 				error = True
-				print xmpdefaultsFile+" syntax error"
+				logoutputHandle.write(xmpdefaultsFile+" syntax error\n")
 				exit()	
 			else: valid=0
 		elif valid:
@@ -968,13 +947,13 @@ def printxmp(swprojs):
 		if l.find("$begin:swproj$")>=0:
 			if valid == 1:
 				error = True
-				print xmpdefaultsFile+" syntax error"
+				logoutputHandle.write(xmpdefaultsFile+" syntax error\n")
 				exit()	
 			else: valid=1
 		elif l.find("$end:swproj$")>=0:
 			if valid == 0:
 				error = True
-				print xmpdefaultsFile+" syntax error"
+				logoutputHandle.write(xmpdefaultsFile+" syntax error\n")
 				exit()
 			else: valid=0
 		elif valid:
@@ -1000,7 +979,7 @@ def printxmp(swprojs):
 			swprojFinalText+="SearchIncl: "+s1+"\n"
 		swprojFinalText+=swprojDefaultText
 	
-	print swprojFinalText
+	logoutputHandle.write(swprojFinalText+"\n")
 		
 	xmpoutputHandle.close()
 	xmppointerLines = open(xmpoutput).readlines()
@@ -1027,11 +1006,13 @@ def printxmp(swprojs):
 	
 
 	# clean swprojs
-	print "done"
+	print "swprojects imported"
+	logoutputHandle.write("swprojects imported\n")
 
 
 ########## Print out all the components database in mhs syntax
 def printall():
+	logoutputHandle.write("\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n")
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n"
 	mhsoutputHandle.write("################\n")
 	mhsoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
@@ -1067,6 +1048,7 @@ def printall():
 
 ########## Print out the final mhs file
 def printmhs():
+	logoutputHandle.write("\nIMPORTED ARCH PRINTED ON "+mhsoutput+"\n")
 	print "\nIMPORTED ARCH PRINTED ON "+mhsoutput
 	mhsoutputHandle.write("################\n")
 	mhsoutputHandle.write("# Automatically generated by psgen, Polimi HPPS project 2012\n")
@@ -1105,22 +1087,21 @@ def printmhs():
 	
 
 
-###########
-## Components import
+########### Execution flow
+## Import generic parameters like device code, project name etc..
+importgenerics()
+
+## Components import (for each component in the xml: fetch defaults (mhsdefaults) + fetch mpd information + instanciate)
 for node in systemNode.childNodes:
 	if node.nodeType == 1:
 		importComponent(node, components)
 
-
-## Pinout import
+## Global port import (for each global port in the xml instanciate one)
 for node in pinoutNode.childNodes:
 	if node.nodeType == 1:
 		importGlobalPort(node, globalports)
 
-#printall()
-#sys.exit()
-
-## Interconnects connection
+## Interconnects connection (links from xml)
 count = 0	# global variable needed for naming of interconnections
 for node in physicalNode.childNodes:
 	if node.nodeType == 1 and node.tagName == "link":
@@ -1129,24 +1110,16 @@ for node in virtualNode.childNodes:
 	if node.nodeType == 1 and node.tagName == "link":
 		connect(node, components, globalports)
 
-## SW system defaults import
+## SW (drivers) system defaults import (from mssdefaults)
+importmssdefaults()
 
-########## Import system and device data
-importgenerics()
-
-importswdefaults()
-
-printmhs()
-printmss(components)
-
+## Import applications to be assigned to the processors (for each application in xml instanciate one)
 importswproj(swprojs)
 
-printxmp(swprojs)
-print systemId
-print fpgaArchitecture
-print fpgaDevice
-print fpgaPackage
-print ucfFile
-print warnings
+## Print platform specification files
+printmhs() # uses information in memory generated by importComponent() and importGlobalPort() and connect()
+printmss(components)	# uses information in memory from importmssdefaults
+printxmp(swprojs) # uses xmpdefaults and applications loaded by importswproj()
+
 exit()
 ###########

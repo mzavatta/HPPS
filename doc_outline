@@ -21,3 +21,8 @@ synthesis (netlist) -> implementation -> bitstream)
 - automatic generation of the bitstream from the platform specification (bypass EDK + PlanAhead)
 
 5 REFERENCES (?) (Xilinx manuals)
+
+
+
+Interfacing with other tools
+Language abstraction
