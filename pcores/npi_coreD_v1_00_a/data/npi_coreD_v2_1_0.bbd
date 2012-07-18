@@ -1,0 +1,9 @@
+##############################################################################
+## Filename:          C:\Andres\Implementaciones2\RepositorioDeCores\MyProcessorIPLib\pcores/cei_hwicap_control_v1_00_a/data/cei_hwicap_control_v2_1_0.bbd
+## Description:       Black Box Definition
+## Date:              Fri Nov 05 11:56:21 2010 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+Files
+################################################################################
+FIFO_2_CLKS.ngc

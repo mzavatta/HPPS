@@ -1,0 +1,23 @@
+##############################################################################
+## Filename:          C:/CopiaSeguridad/Andres/ResearchStay/HLS-ARCHITECTURE/dualMBFaster/dualMBFaster/edk/pcores/npi_coreC_v1_00_a/data/em_bridge_npi_b_v2_1_0.pao
+## Description:       Peripheral Analysis Order
+## Date:              Mon Nov 07 15:26:26 2011 (by Create and Import Peripheral Wizard)
+##############################################################################
+
+lib proc_common_v3_00_a proc_common_pkg vhdl
+lib proc_common_v3_00_a ipif_pkg vhdl
+lib proc_common_v3_00_a or_muxcy vhdl
+lib proc_common_v3_00_a or_gate128 vhdl
+lib proc_common_v3_00_a family_support vhdl
+lib proc_common_v3_00_a pselect_f vhdl
+lib proc_common_v3_00_a counter_f vhdl
+lib plbv46_slave_single_v1_01_a plb_address_decoder vhdl
+lib plbv46_slave_single_v1_01_a plb_slave_attachment vhdl
+lib plbv46_slave_single_v1_01_a plbv46_slave_single vhdl
+lib proc_common_v3_00_a soft_reset vhdl
+lib npi_coreC_v1_00_a ExternalInterface vhdl
+lib npi_coreC_v1_00_a coreC verilog
+lib npi_coreC_v1_00_a npi vhdl
+lib npi_coreC_v1_00_a Top_bridge vhdl
+lib npi_coreC_v1_00_a user_logic vhdl
+lib npi_coreC_v1_00_a npi_coreC vhdl
