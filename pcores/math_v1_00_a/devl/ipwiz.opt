@@ -1,0 +1,9 @@
+-batch 
+-create math 
+-ver 1.00.a 
+-dir "C:\PartialReconfiguration\reconfig_peripheral_lab\edk" 
+-lang vhdl 
+-bus plbv46 s 
+-rst 
+-reg 2 
+-xps 

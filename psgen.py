@@ -131,12 +131,15 @@ lmb_bram_if_cntlr = ComponentClass("lmb_bram_if_cntlr",hwIPbasepath+"/hw/XilinxP
 mpmc = ComponentClass("mpmc",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/mpmc_v6_00_a/data/mpmc_v2_1_0.mpd")
 xps_intc = ComponentClass("xps_intc",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/xps_intc_v2_01_a/data/xps_intc_v2_1_0.mpd")
 mdm = ComponentClass("mdm",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/mdm_v1_00_g/data/mdm_v2_1_0.mpd")
+math = ComponentClass("math",customIPbasepath+"/pcores/math_v1_00_a/data/math_v2_1_0.mpd")
 npi_coreE = ComponentClass("npi_coreE",customIPbasepath+"/pcores/npi_coreE_v1_00_a/data/npi_coreE_v2_1_0.mpd")
 npi_coreD = ComponentClass("npi_coreD",customIPbasepath+"/pcores/npi_coreD_v1_00_a/data/npi_coreD_v2_1_0.mpd")
 npi_coreA = ComponentClass("npi_coreA",customIPbasepath+"/pcores/npi_coreA_v1_00_a/data/npi_coreA_v2_1_0.mpd")
 npi_coreC = ComponentClass("npi_coreC",customIPbasepath+"/pcores/npi_coreC_v1_00_a/data/npi_coreC_v2_1_0.mpd")
 proc_sys_reset = ComponentClass("proc_sys_reset",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/proc_sys_reset_v2_00_a/data/proc_sys_reset_v2_1_0.mpd")
 clock_generator = ComponentClass("clock_generator",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/clock_generator_v4_00_a/data/clock_generator_v2_1_0.mpd")
+xps_hwicap = ComponentClass("xps_hwicap",hwIPbasepath+"/hw/XilinxProcessorIPLib/pcores/xps_hwicap_v4_00_a/data/xps_hwicap_v2_1_0.mpd")
+
 
 componentClasses = list()
 componentClasses.append(xps_mailbox)
@@ -148,13 +151,14 @@ componentClasses.append(lmb_bram_if_cntlr)
 componentClasses.append(mpmc)
 componentClasses.append(xps_intc)
 componentClasses.append(mdm)
+componentClasses.append(math)
 componentClasses.append(npi_coreE)
 componentClasses.append(npi_coreD)
 componentClasses.append(npi_coreA)
 componentClasses.append(npi_coreC)
 componentClasses.append(proc_sys_reset)
 componentClasses.append(clock_generator)
-
+componentClasses.append(xps_hwicap)
 
 ########## File handles
 mhsoutputHandle = open(mhsoutput,'w')
@@ -539,7 +543,7 @@ def connect(link, components, globalports):
 		# device might be a bus device e.g. plb, need to check bus attribute of the device instance
 		
 		logoutputHandle.write("\n-------\n")
-		logoutputHandle.write("device to device connection")
+		logoutputHandle.write("device to device connection\n")
 		logoutputHandle.write(srcInstance.instance+" on "+srcInterfaceName+"\n")
 		logoutputHandle.write(tgtInstance.instance+" on "+tgtInterfaceName+"\n")
 		found = 0

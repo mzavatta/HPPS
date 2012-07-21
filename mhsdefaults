@@ -99,3 +99,10 @@ BEGIN npi_coreE
 PARAMETER HW_VER = 1.00.a
 END
 
+BEGIN xps_hwicap
+ PARAMETER HW_VER = 4.00.a
+END
+
+BEGIN math
+ PARAMETER HW_VER = 1.00.a
+END

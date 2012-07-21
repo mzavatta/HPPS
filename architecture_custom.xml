@@ -87,7 +87,15 @@
 				<param name="C_HIGHADDR" val="0x8180ffff"/>
 			</ipCore>
 				
-			<!-- <processingElement id="ReconfArea" type="RECONFIGURABLE" name="ReconfArea"/> -->
+			<processingElement id="ReconfArea" type="RECONFIGURABLE" name="ReconfArea" class="math">
+				<param name="C_BASEADDR" val="0xc9400000"/>
+				<param name="C_HIGHADDR" val="0xc940ffff"/>
+			</processingElement>
+
+			<ipCore id="xps_hwicap_0" type="IP" name="xps_hwicap_0" class="xps_hwicap">
+				<param name="C_BASEADDR" val="0x86800000"/>
+				<param name="C_HIGHADDR" val="0x8680ffff"/>
+			</ipCore>
 
 			<ipCore id="npi_coreA_0" type="CUSTOM_IP" name="npi_coreA_0" class="npi_coreA">
 				<param name="C_BASEADDR" val="0xc3800000"/>
@@ -482,6 +490,19 @@
 				<tgtint id="MPMC_PIM2"/>
 			</link>
 
+			<link src="clock_generator_0" tgt="xps_hwicap_0" type="">
+				<srcint id="CLKOUT0"/>
+				<tgtint id="ICAP_Clk"/>
+			</link>
+			<link src="xps_hwicap_0" tgt="mb_plb_1" type="">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
+
+			<link src="ReconfArea" tgt="mb_plb_1" type="">
+				<srcint id="SPLB"/>
+				<tgtint id="self"/>
+			</link>
 		</virtual>
 </connection>
 <applications>

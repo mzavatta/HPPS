@@ -41,6 +41,10 @@ current xml node is id:Intr_Main class:xps_intc
 importComponent entered
 current xml node is id:Intr_Access class:xps_intc
 importComponent entered
+current xml node is id:ReconfArea class:math
+importComponent entered
+current xml node is id:xps_hwicap_0 class:xps_hwicap
+importComponent entered
 current xml node is id:npi_coreA_0 class:npi_coreA
 importComponent entered
 current xml node is id:npi_coreC_0 class:npi_coreC
@@ -180,35 +184,40 @@ fpga_0_DDR2_SDRAM_DDR2_DQS_n_pin on self
 ddr2_sdram on DDR2_DQS_n
 
 -------
-device to device connectionmicroblaze_0 on DPLB
+device to device connection
+microblaze_0 on DPLB
 mb_plb on self
 device to bus connection
 assigned to mb_plb
 ----------------
 
 -------
-device to device connectionmicroblaze_0 on ILMB
+device to device connection
+microblaze_0 on ILMB
 ilmb on self
 device to bus connection
 assigned to ilmb
 ----------------
 
 -------
-device to device connectionmicroblaze_0 on DLMB
+device to device connection
+microblaze_0 on DLMB
 dlmb on self
 device to bus connection
 assigned to dlmb
 ----------------
 
 -------
-device to device connectionmicroblaze_0 on DEBUG
+device to device connection
+microblaze_0 on DEBUG
 mdm_0 on MBDEBUG_0
 point to point bus connection
 assigned to pp_bus_conn_2
 ----------------
 
 -------
-device to device connectionmicroblaze_0 on INTERRUPT
+device to device connection
+microblaze_0 on INTERRUPT
 Intr_Access on Irq
 port to port connection
 sigis: INTERRUPT
@@ -217,63 +226,72 @@ both assigned to pp_port_conn_3
 ----------------
 
 -------
-device to device connectiondlmb_cntlr on SLMB
+device to device connection
+dlmb_cntlr on SLMB
 dlmb on self
 device to bus connection
 assigned to dlmb
 ----------------
 
 -------
-device to device connectiondlmb_cntlr on BRAM_PORT
+device to device connection
+dlmb_cntlr on BRAM_PORT
 lmb_bram on PORTB
 point to point bus connection
 assigned to pp_bus_conn_4
 ----------------
 
 -------
-device to device connectionilmb_cntlr on SLMB
+device to device connection
+ilmb_cntlr on SLMB
 ilmb on self
 device to bus connection
 assigned to ilmb
 ----------------
 
 -------
-device to device connectionilmb_cntlr on BRAM_PORT
+device to device connection
+ilmb_cntlr on BRAM_PORT
 lmb_bram on PORTA
 point to point bus connection
 assigned to pp_bus_conn_5
 ----------------
 
 -------
-device to device connectionmicroblaze_1 on DPLB
+device to device connection
+microblaze_1 on DPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionmicroblaze_1 on ILMB
+device to device connection
+microblaze_1 on ILMB
 ilmb_1 on self
 device to bus connection
 assigned to ilmb_1
 ----------------
 
 -------
-device to device connectionmicroblaze_1 on DLMB
+device to device connection
+microblaze_1 on DLMB
 dlmb_1 on self
 device to bus connection
 assigned to dlmb_1
 ----------------
 
 -------
-device to device connectionmicroblaze_1 on DEBUG
+device to device connection
+microblaze_1 on DEBUG
 mdm_0 on MBDEBUG_1
 point to point bus connection
 assigned to pp_bus_conn_6
 ----------------
 
 -------
-device to device connectionmicroblaze_1 on INTERRUPT
+device to device connection
+microblaze_1 on INTERRUPT
 Intr_Main on Irq
 port to port connection
 sigis: INTERRUPT
@@ -282,42 +300,48 @@ both assigned to pp_port_conn_7
 ----------------
 
 -------
-device to device connectiondlmb_cntlr_1 on SLMB
+device to device connection
+dlmb_cntlr_1 on SLMB
 dlmb_1 on self
 device to bus connection
 assigned to dlmb_1
 ----------------
 
 -------
-device to device connectiondlmb_cntlr_1 on BRAM_PORT
+device to device connection
+dlmb_cntlr_1 on BRAM_PORT
 lmb_bram_1 on PORTB
 point to point bus connection
 assigned to pp_bus_conn_8
 ----------------
 
 -------
-device to device connectionilmb_cntlr_1 on SLMB
+device to device connection
+ilmb_cntlr_1 on SLMB
 ilmb_1 on self
 device to bus connection
 assigned to ilmb_1
 ----------------
 
 -------
-device to device connectionilmb_cntlr_1 on BRAM_PORT
+device to device connection
+ilmb_cntlr_1 on BRAM_PORT
 lmb_bram_1 on PORTA
 point to point bus connection
 assigned to pp_bus_conn_9
 ----------------
 
 -------
-device to device connectionmdm_0 on SPLB
+device to device connection
+mdm_0 on SPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionmdm_0 on Debug_SYS_Rst
+device to device connection
+mdm_0 on Debug_SYS_Rst
 proc_sys_reset_0 on MB_Debug_Sys_Rst
 port to port connection
 sigis: 
@@ -326,35 +350,40 @@ both assigned to pp_port_conn_10
 ----------------
 
 -------
-device to device connectionIntr_Access on SPLB
+device to device connection
+Intr_Access on SPLB
 mb_plb on self
 device to bus connection
 assigned to mb_plb
 ----------------
 
 -------
-device to device connectionIntr_Main on SPLB
+device to device connection
+Intr_Main on SPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionxps_mailbox_0 on SPLB1
+device to device connection
+xps_mailbox_0 on SPLB1
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionxps_mailbox_0 on SPLB0
+device to device connection
+xps_mailbox_0 on SPLB0
 mb_plb on self
 device to bus connection
 assigned to mb_plb
 ----------------
 
 -------
-device to device connectionxps_mailbox_0 on Interrupt_1
+device to device connection
+xps_mailbox_0 on Interrupt_1
 Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
@@ -363,7 +392,8 @@ both assigned to pp_port_conn_11
 ----------------
 
 -------
-device to device connectionxps_mailbox_0 on Interrupt_0
+device to device connection
+xps_mailbox_0 on Interrupt_0
 Intr_Access on Intr
 port to port connection
 sigis: INTERRUPT
@@ -372,21 +402,24 @@ both assigned to pp_port_conn_12
 ----------------
 
 -------
-device to device connectionddr2_sdram on SPLB1
+device to device connection
+ddr2_sdram on SPLB1
 mb_plb on self
 device to bus connection
 assigned to mb_plb
 ----------------
 
 -------
-device to device connectionddr2_sdram on SPLB0
+device to device connection
+ddr2_sdram on SPLB0
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 ddr2_sdram on MPMC_Clk0_DIV2
 port to port connection
 sigis: CLK
@@ -395,7 +428,8 @@ both assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT1
+device to device connection
+clock_generator_0 on CLKOUT1
 ddr2_sdram on MPMC_Clk90
 port to port connection
 sigis: CLK
@@ -404,7 +438,8 @@ both assigned to pp_port_conn_14
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT2
+device to device connection
+clock_generator_0 on CLKOUT2
 ddr2_sdram on MPMC_Clk0
 port to port connection
 sigis: CLK
@@ -413,7 +448,8 @@ both assigned to pp_port_conn_15
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT2
+device to device connection
+clock_generator_0 on CLKOUT2
 ddr2_sdram on MPMC_Clk_200MHz
 port to port connection
 sigis: CLK
@@ -422,7 +458,8 @@ source interface name already assigned to pp_port_conn_15
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 npi_coreA_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
@@ -431,7 +468,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 npi_coreD_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
@@ -440,7 +478,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 npi_coreE_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
@@ -449,7 +488,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 dlmb on LMB_Clk
 port to port connection
 sigis: CLK
@@ -458,7 +498,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 dlmb_1 on LMB_Clk
 port to port connection
 sigis: CLK
@@ -467,7 +508,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 ilmb on LMB_Clk
 port to port connection
 sigis: CLK
@@ -476,7 +518,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 ilmb_1 on LMB_Clk
 port to port connection
 sigis: CLK
@@ -485,7 +528,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 mb_plb on PLB_Clk
 port to port connection
 sigis: CLK
@@ -494,7 +538,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 mb_plb_1 on PLB_Clk
 port to port connection
 sigis: CLK
@@ -503,7 +548,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 xps_mailbox_0 on FSL_Clk
 port to port connection
 sigis: CLK
@@ -512,7 +558,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on CLKOUT0
+device to device connection
+clock_generator_0 on CLKOUT0
 proc_sys_reset_0 on Slowest_sync_clk
 port to port connection
 sigis: CLK
@@ -521,7 +568,8 @@ source interface name already assigned to pp_port_conn_13
 ----------------
 
 -------
-device to device connectionclock_generator_0 on LOCKED
+device to device connection
+clock_generator_0 on LOCKED
 proc_sys_reset_0 on Dcm_locked
 port to port connection
 sigis: 
@@ -530,7 +578,8 @@ both assigned to pp_port_conn_28
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on MB_Reset
+device to device connection
+proc_sys_reset_0 on MB_Reset
 microblaze_0 on MB_RESET
 port to port connection
 sigis: RST
@@ -539,7 +588,8 @@ both assigned to pp_port_conn_29
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on MB_Reset
+device to device connection
+proc_sys_reset_0 on MB_Reset
 microblaze_1 on MB_RESET
 port to port connection
 sigis: RST
@@ -548,7 +598,8 @@ source interface name already assigned to pp_port_conn_29
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 mb_plb on SYS_Rst
 port to port connection
 sigis: RST
@@ -557,7 +608,8 @@ both assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 mb_plb_1 on SYS_Rst
 port to port connection
 sigis: RST
@@ -566,7 +618,8 @@ source interface name already assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 ilmb on SYS_Rst
 port to port connection
 sigis: RST
@@ -575,7 +628,8 @@ source interface name already assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 ilmb_1 on SYS_Rst
 port to port connection
 sigis: RST
@@ -584,7 +638,8 @@ source interface name already assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 dlmb on SYS_Rst
 port to port connection
 sigis: RST
@@ -593,7 +648,8 @@ source interface name already assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Bus_Struct_Reset
+device to device connection
+proc_sys_reset_0 on Bus_Struct_Reset
 dlmb_1 on SYS_Rst
 port to port connection
 sigis: RST
@@ -602,7 +658,8 @@ source interface name already assigned to pp_port_conn_31
 ----------------
 
 -------
-device to device connectionproc_sys_reset_0 on Peripheral_Reset
+device to device connection
+proc_sys_reset_0 on Peripheral_Reset
 ddr2_sdram on MPMC_Rst
 port to port connection
 sigis: RST
@@ -611,72 +668,110 @@ both assigned to pp_port_conn_37
 ----------------
 
 -------
-device to device connectionnpi_coreE_0 on SPLB
+device to device connection
+npi_coreE_0 on SPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionnpi_coreE_0 on INT_DONE
+device to device connection
+npi_coreE_0 on INT_DONE
 Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
 destination interface name already assigned to pp_port_conn_11
-	but it is an interrupt, therefore compound----------------
+	but it is an interrupt, therefore compound
+----------------
 
 -------
-device to device connectionnpi_coreE_0 on XIL_NPI
+device to device connection
+npi_coreE_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM4
 point to point bus connection
 assigned to pp_bus_conn_39
 ----------------
 
 -------
-device to device connectionnpi_coreD_0 on SPLB
+device to device connection
+npi_coreD_0 on SPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionnpi_coreD_0 on INT_DONE
+device to device connection
+npi_coreD_0 on INT_DONE
 Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
 destination interface name already assigned to pp_port_conn_11&interrupt_conn_38
-	but it is an interrupt, therefore compound----------------
+	but it is an interrupt, therefore compound
+----------------
 
 -------
-device to device connectionnpi_coreD_0 on XIL_NPI
+device to device connection
+npi_coreD_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM3
 point to point bus connection
 assigned to pp_bus_conn_41
 ----------------
 
 -------
-device to device connectionnpi_coreA_0 on SPLB
+device to device connection
+npi_coreA_0 on SPLB
 mb_plb_1 on self
 device to bus connection
 assigned to mb_plb_1
 ----------------
 
 -------
-device to device connectionnpi_coreA_0 on INT_DONE
+device to device connection
+npi_coreA_0 on INT_DONE
 Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
 destination interface name already assigned to pp_port_conn_11&interrupt_conn_38&interrupt_conn_40
-	but it is an interrupt, therefore compound----------------
+	but it is an interrupt, therefore compound
+----------------
 
 -------
-device to device connectionnpi_coreA_0 on XIL_NPI
+device to device connection
+npi_coreA_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM2
 point to point bus connection
 assigned to pp_bus_conn_43
+----------------
+
+-------
+device to device connection
+clock_generator_0 on CLKOUT0
+xps_hwicap_0 on ICAP_Clk
+port to port connection
+sigis: CLK
+sigis: CLK
+source interface name already assigned to pp_port_conn_13
+----------------
+
+-------
+device to device connection
+xps_hwicap_0 on SPLB
+mb_plb_1 on self
+device to bus connection
+assigned to mb_plb_1
+----------------
+
+-------
+device to device connection
+ReconfArea on SPLB
+mb_plb_1 on self
+device to bus connection
+assigned to mb_plb_1
 ----------------
 importsmssdefaults entered
 IMPORTED ARCH PRINTED ON restemp.mhs
