@@ -140,9 +140,9 @@ proc_sys_reset_0 on Ext_Reset_In
 Source is a Global Port, Target is a Component intance
 fpga_0_rst_1_sys_rst_pin on self
 clock_generator_0 on RST
-Source is a Global Port, Target is a Component intance
-fpga_0_DDR2_SDRAM_DDR2_Clk_pin on self
+Source is a Component intance, Target is a Global Port
 ddr2_sdram on DDR2_Clk
+fpga_0_DDR2_SDRAM_DDR2_Clk_pin on self
 Source is a Global Port, Target is a Component intance
 fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin on self
 ddr2_sdram on DDR2_Clk_n
@@ -212,7 +212,7 @@ device to device connection
 microblaze_0 on DEBUG
 mdm_0 on MBDEBUG_0
 point to point bus connection
-assigned to pp_bus_conn_2
+assigned to pp_bus_conn_13
 ----------------
 
 -------
@@ -222,7 +222,7 @@ Intr_Access on Irq
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-both assigned to pp_port_conn_3
+both assigned to pp_port_conn_14
 ----------------
 
 -------
@@ -238,7 +238,7 @@ device to device connection
 dlmb_cntlr on BRAM_PORT
 lmb_bram on PORTB
 point to point bus connection
-assigned to pp_bus_conn_4
+assigned to pp_bus_conn_15
 ----------------
 
 -------
@@ -254,7 +254,7 @@ device to device connection
 ilmb_cntlr on BRAM_PORT
 lmb_bram on PORTA
 point to point bus connection
-assigned to pp_bus_conn_5
+assigned to pp_bus_conn_16
 ----------------
 
 -------
@@ -286,7 +286,7 @@ device to device connection
 microblaze_1 on DEBUG
 mdm_0 on MBDEBUG_1
 point to point bus connection
-assigned to pp_bus_conn_6
+assigned to pp_bus_conn_17
 ----------------
 
 -------
@@ -296,7 +296,7 @@ Intr_Main on Irq
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-both assigned to pp_port_conn_7
+both assigned to pp_port_conn_18
 ----------------
 
 -------
@@ -312,7 +312,7 @@ device to device connection
 dlmb_cntlr_1 on BRAM_PORT
 lmb_bram_1 on PORTB
 point to point bus connection
-assigned to pp_bus_conn_8
+assigned to pp_bus_conn_19
 ----------------
 
 -------
@@ -328,7 +328,7 @@ device to device connection
 ilmb_cntlr_1 on BRAM_PORT
 lmb_bram_1 on PORTA
 point to point bus connection
-assigned to pp_bus_conn_9
+assigned to pp_bus_conn_20
 ----------------
 
 -------
@@ -346,7 +346,7 @@ proc_sys_reset_0 on MB_Debug_Sys_Rst
 port to port connection
 sigis: 
 sigis: RST
-both assigned to pp_port_conn_10
+both assigned to pp_port_conn_21
 ----------------
 
 -------
@@ -388,7 +388,7 @@ Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-both assigned to pp_port_conn_11
+both assigned to pp_port_conn_22
 ----------------
 
 -------
@@ -398,7 +398,7 @@ Intr_Access on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-both assigned to pp_port_conn_12
+both assigned to pp_port_conn_23
 ----------------
 
 -------
@@ -424,7 +424,7 @@ ddr2_sdram on MPMC_Clk0_DIV2
 port to port connection
 sigis: CLK
 sigis: CLK
-both assigned to pp_port_conn_13
+both assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -434,7 +434,7 @@ ddr2_sdram on MPMC_Clk90
 port to port connection
 sigis: CLK
 sigis: CLK
-both assigned to pp_port_conn_14
+both assigned to pp_port_conn_25
 ----------------
 
 -------
@@ -444,7 +444,7 @@ ddr2_sdram on MPMC_Clk0
 port to port connection
 sigis: CLK
 sigis: CLK
-both assigned to pp_port_conn_15
+both assigned to pp_port_conn_26
 ----------------
 
 -------
@@ -454,7 +454,7 @@ ddr2_sdram on MPMC_Clk_200MHz
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_15
+source interface name already assigned to pp_port_conn_26
 ----------------
 
 -------
@@ -464,7 +464,7 @@ npi_coreA_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -474,7 +474,7 @@ npi_coreD_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -484,7 +484,7 @@ npi_coreE_0 on XIL_NPI_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -494,7 +494,7 @@ dlmb on LMB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -504,7 +504,7 @@ dlmb_1 on LMB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -514,7 +514,7 @@ ilmb on LMB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -524,7 +524,7 @@ ilmb_1 on LMB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -534,7 +534,7 @@ mb_plb on PLB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -544,7 +544,7 @@ mb_plb_1 on PLB_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -554,7 +554,7 @@ xps_mailbox_0 on FSL_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -564,7 +564,7 @@ proc_sys_reset_0 on Slowest_sync_clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------
@@ -574,7 +574,7 @@ proc_sys_reset_0 on Dcm_locked
 port to port connection
 sigis: 
 sigis: 
-both assigned to pp_port_conn_28
+both assigned to pp_port_conn_39
 ----------------
 
 -------
@@ -584,7 +584,7 @@ microblaze_0 on MB_RESET
 port to port connection
 sigis: RST
 sigis: RST
-both assigned to pp_port_conn_29
+both assigned to pp_port_conn_40
 ----------------
 
 -------
@@ -594,7 +594,7 @@ microblaze_1 on MB_RESET
 port to port connection
 sigis: RST
 sigis: RST
-source interface name already assigned to pp_port_conn_29
+source interface name already assigned to pp_port_conn_40
 ----------------
 
 -------
@@ -604,7 +604,7 @@ mb_plb on SYS_Rst
 port to port connection
 sigis: RST
 sigis: RST
-both assigned to pp_port_conn_31
+both assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -614,7 +614,7 @@ mb_plb_1 on SYS_Rst
 port to port connection
 sigis: RST
 sigis: RST
-source interface name already assigned to pp_port_conn_31
+source interface name already assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -624,7 +624,7 @@ ilmb on SYS_Rst
 port to port connection
 sigis: RST
 sigis: 
-source interface name already assigned to pp_port_conn_31
+source interface name already assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -634,7 +634,7 @@ ilmb_1 on SYS_Rst
 port to port connection
 sigis: RST
 sigis: 
-source interface name already assigned to pp_port_conn_31
+source interface name already assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -644,7 +644,7 @@ dlmb on SYS_Rst
 port to port connection
 sigis: RST
 sigis: 
-source interface name already assigned to pp_port_conn_31
+source interface name already assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -654,7 +654,7 @@ dlmb_1 on SYS_Rst
 port to port connection
 sigis: RST
 sigis: 
-source interface name already assigned to pp_port_conn_31
+source interface name already assigned to pp_port_conn_42
 ----------------
 
 -------
@@ -664,7 +664,7 @@ ddr2_sdram on MPMC_Rst
 port to port connection
 sigis: RST
 sigis: RST
-both assigned to pp_port_conn_37
+both assigned to pp_port_conn_48
 ----------------
 
 -------
@@ -682,7 +682,7 @@ Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-destination interface name already assigned to pp_port_conn_11
+destination interface name already assigned to pp_port_conn_22
 	but it is an interrupt, therefore compound
 ----------------
 
@@ -691,7 +691,7 @@ device to device connection
 npi_coreE_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM4
 point to point bus connection
-assigned to pp_bus_conn_39
+assigned to pp_bus_conn_50
 ----------------
 
 -------
@@ -709,7 +709,7 @@ Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-destination interface name already assigned to pp_port_conn_11&interrupt_conn_38
+destination interface name already assigned to pp_port_conn_22&interrupt_conn_49
 	but it is an interrupt, therefore compound
 ----------------
 
@@ -718,7 +718,7 @@ device to device connection
 npi_coreD_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM3
 point to point bus connection
-assigned to pp_bus_conn_41
+assigned to pp_bus_conn_52
 ----------------
 
 -------
@@ -736,7 +736,7 @@ Intr_Main on Intr
 port to port connection
 sigis: INTERRUPT
 sigis: INTERRUPT
-destination interface name already assigned to pp_port_conn_11&interrupt_conn_38&interrupt_conn_40
+destination interface name already assigned to pp_port_conn_22&interrupt_conn_49&interrupt_conn_51
 	but it is an interrupt, therefore compound
 ----------------
 
@@ -745,7 +745,7 @@ device to device connection
 npi_coreA_0 on XIL_NPI
 ddr2_sdram on MPMC_PIM2
 point to point bus connection
-assigned to pp_bus_conn_43
+assigned to pp_bus_conn_54
 ----------------
 
 -------
@@ -755,7 +755,7 @@ xps_hwicap_0 on ICAP_Clk
 port to port connection
 sigis: CLK
 sigis: CLK
-source interface name already assigned to pp_port_conn_13
+source interface name already assigned to pp_port_conn_24
 ----------------
 
 -------

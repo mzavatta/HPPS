@@ -74,10 +74,11 @@ class Parameter:
 		self.value=value	# e.g. 0x81e00000
 
 class Port:
-	def __init__(self,name,sigis,dir,value):
+	def __init__(self,name,sigis,dir,value,threestate):
 		self.name=name		# e.g. PLB_Clk
 		self.sigis=sigis	# e.g. CLK, INTERRUPT, RST
 		self.dir=dir		# e.g. I, O
+		self.threestate=threestate
 		self.value=value	# assignment name in the internal interconnection
 
 class BusInterface:
@@ -347,19 +348,28 @@ def importComponent(node, components):
 		if tmpFileLines[line].find("PORT")>=0 and tmpFileLines[line].find("BUS =")<0:
 			elem = tmpFileLines[line].rstrip().split(' ')
 			elem = [e.strip(",").strip("\t\t=") for e in elem]
-			#SIGIS and DIR attributes might not be present
+			#SIGIS, DIR and THREE_STATE attributes might not be present
 			sigisIndex=0
 			dirIndex=0
+			tsIndex=0
+			tsigis=""
+			tdir=""
+			tts=""
 			for e in range(0,len(elem)):
 				if elem[e]=="SIGIS": sigisIndex=e+2
 				elif elem[e]=="DIR": dirIndex=e+2
-			if sigisIndex!=0 and dirIndex!=0:					
-				tempInstance.ports.append(Port(elem[1],elem[sigisIndex],elem[dirIndex],""))
-			elif sigisIndex!=0 and dirIndex==0:
-				tempInstance.ports.append(Port(elem[1],elem[sigisIndex],"",""))
-			elif sigisIndex==0 and dirIndex!=0:
-				tempInstance.ports.append(Port(elem[1],"",elem[dirIndex],""))
-			else: tempInstance.ports.append(Port(elem[1],"","",""))
+				elif elem[e]=="THREE_STATE": tsIndex=e+2
+			if sigisIndex!=0:	tsigis = elem[sigisIndex]
+			if dirIndex!=0:	tdir = elem[dirIndex]
+			if tsIndex!=0: 	tts = elem[tsIndex]
+			tempInstance.ports.append(Port(elem[1],tsigis,tdir,"",tts))
+			#if sigisIndex!=0 and dirIndex!=0:					
+			#	tempInstance.ports.append(Port(elem[1],elem[sigisIndex],elem[dirIndex],""))
+			#elif sigisIndex!=0 and dirIndex==0:
+			#	tempInstance.ports.append(Port(elem[1],elem[sigisIndex],"",""))
+			#elif sigisIndex==0 and dirIndex!=0:
+			#	tempInstance.ports.append(Port(elem[1],"",elem[dirIndex],""))
+			#else: tempInstance.ports.append(Port(elem[1],"","",""))
 
 	# insert the instance into the component list
 	components.append(copy.deepcopy(tempInstance))
@@ -450,6 +460,10 @@ def connect(link, components, globalports):
 	# - source is a global port, destination is a component
 	# - destination is a component, source is a global port
 	# - component to component connection
+	
+	# attention that the naming must be weird if
+	# whether the interface has a three state attribute
+	isThreeState = 0
 		
 	if src_isGlobalPort and not tgt_isGlobalPort: 
 		# usual connection global port to device
@@ -471,13 +485,15 @@ def connect(link, components, globalports):
 				if i.name == tgtInterfaceName:
 					found = 1
 					tgtInterface = i
+					if tgtInterface.threestate!="":
+						isThreeState = 1
 		assert found == 1
 
 		assert srcInterfaceName == "self" or srcInterfaceName == ""
 				
 		# assign the name to both
 		# temporary guard for debugging
-		if tgtInstance.cls == "mpmc":
+		if isThreeState:
 			srcInstance.value = srcInstance.name
 			tgtInterface.value = srcInstance.value
 		elif srcInstance.value=="" and tgtInterface.value=="": #assign a new name
@@ -501,7 +517,7 @@ def connect(link, components, globalports):
 		# not consider the case that the device is a bus
 
 		logoutputHandle.write("Source is a Component intance, Target is a Global Port\n")
-		logoutputHandle.write(srcInstance.name+" on "+srcInterfaceName+"\n"+tgtInstance.instance+" on "+tgtInterfaceName+"\n")
+		logoutputHandle.write(srcInstance.instance+" on "+srcInterfaceName+"\n"+tgtInstance.name+" on "+tgtInterfaceName+"\n")
 
 		# fetch the interface in the component with that name, being it a bus or a port
 		# contained in tgtInterface
@@ -516,20 +532,25 @@ def connect(link, components, globalports):
 				if i.name == srcInterfaceName:
 					found = 1
 					srcInterface = i
+					if srcInterface.threestate!="":
+						isThreeState = 1
 		assert found == 1
 
 		assert tgtInterfaceName == "self" or tgtInterfaceName == ""
 				
 		# assign the name to both
-		if srcInstance.value=="" and tgtInterface.value=="": #assign a new name
-			srcInstance.value = "ext_port_conn_"+str(count)
-			tgtInterface.value = "ext_port_conn_"+str(count)
+		if isThreeState:
+			tgtInstance.value = tgtInstance.name
+			srcInterface.value = srcInstance.value
+		elif srcInterface.value=="" and tgtInstance.value=="": #assign a new name
+			srcInterface.value = "ext_port_conn_"+str(count)
+			tgtInstance.value = "ext_port_conn_"+str(count)
 			count+=1
-		elif srcInstance.value=="" and tgtInterface.value!="": #copy to the other one
-			srcInstance.value=tgtInterface.value
-		elif srcInstance.value!="" and tgtInterface.value=="": #copy to the other one
-			tgtInterface.value=srcInstance.value
-		elif srcInstance.value!="" and tgtInterface.value!="" and srcInstance.value==tgtInterface.value:
+		elif srcInterface.value=="" and tgtInstance.value!="": #copy to the other one
+			srcInterface.value=tgtInstance.value
+		elif srcInterface.value!="" and tgtInstance.value=="": #copy to the other one
+			tgtInstance.value=srcInterface.value
+		elif srcInterface.value!="" and tgtInstance.value!="" and srcInterface.value==tgtInstance.value:
 			warnings+="WARNING: LINK LIKELY SPECIFIED TWICE IN THE XML\n" ## ok anyway, already matching
 		else: 
 			error = True
@@ -1052,7 +1073,7 @@ def printall():
 			for item2 in item1.parameters:
 				mhsoutputHandle.write("PARAMETER "+item2.name+" "+item2.value+"\n")
 			for item3 in item1.ports:
-				mhsoutputHandle.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+"\n")
+				mhsoutputHandle.write("PORT "+item3.name+" "+item3.value+" "+item3.sigis+" "+item3.dir+" "+item3.threestate+"\n")
 			for item4 in item1.businterfaces:
 				mhsoutputHandle.write("BUS_INTERFACE "+item4.name+" "+item4.value+" "+item4.std+" "+item4.type+"\n")
 			mhsoutputHandle.write("END"+"\n")

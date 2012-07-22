@@ -150,10 +150,11 @@
 				<srcint id="self"/>
 				<tgtint id="RST"/>
 			</link>
-
-			<link src="fpga_0_DDR2_SDRAM_DDR2_Clk_pin" tgt="ddr2_sdram">
-				<srcint id="self"/>
-				<tgtint id="DDR2_Clk"/>
+			
+			<!-- testing if the code accepts global ports in both sides of the link -->
+			<link src="ddr2_sdram" tgt="fpga_0_DDR2_SDRAM_DDR2_Clk_pin">
+				<srcint id="DDR2_Clk"/>
+				<tgtint id="self"/>
 			</link>
 			<link src="fpga_0_DDR2_SDRAM_DDR2_Clk_n_pin" tgt="ddr2_sdram">
 				<srcint id="self"/>
